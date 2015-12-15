@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <meta charset="UTF-8">
+  <link href="styles/bootstrap.min.css" rel="stylesheet">
+  <!--
+  <script type="text/javascript" src="assets/handlebars-v3.0.3.js"></script>
+    -->
+
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="styles/font-awesome.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/theme.css">
+</head>
+
+
+<body class="">
+  <!--[endif]-->
+
+    <div class="row-fluid">
+    <div class="dialog">
+        <p class="brand" href="index.html">Fishin' with a Mission</p>
+        <div class="block">
+            <div id="loginDiv" class="block-header">
+                <h2>Sign In</h2>
+            </div>
+            <form class='login'>
+                <label>Username</label>
+                <input name="email" id="inputEmail" type="text" class="span12">
+                <label>Password</label>
+                <input type="password" name="password" id="inputPassword" type="password" class="span12">
+
+                <div class="form-actions">
+                    <button class="btn btn-success pull-right" type="submit">Sign in</button>
+                    <label>
+                    <input class="checkbox" type="checkbox" value="register-now"> Register now
+                    </label>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--[endif]-->
+<div class="row-fluid register">
+    <div class="dialog">
+        <p class="brand" href="index.html">Fishin' with a Mission</p>
+        <div class="block">
+            <div id="registerDiv" class="block-header">
+                <h2>Register</h2>
+            </div>
+            <form class="register">
+                <label>Username</label>
+                <input name="email" id="inputEmail" type="text" class="span12">
+                <!--
+                <a class="reset-password" href="reset-password.html">Forgot your password?</a>
+                -->
+                <label>Password</label>
+                <input type="password" name="password" id="inputPassword" type="password" class="span12">
+                <label>Password Confirmation</label>
+                <input type="password" name="passwordConfirm" id="inputPasswordConfirm" class="span12">
+                <div class="form-actions">
+
+                <!--
+                    <a href="index.html" class="btn btn-success pull-right">Sign In</a>
+                -->
+                    <button class="btn btn-success pull-right" type="submit">Sign up</button>
+                    <!--
+                    You can have a remember me or sign up here
+                    <label class="remember-me"><input type="checkbox"> Remember me</label>
+                    <a href="sign-up.html" class="sign-up">Sign Up</a>
+
+
+                        <label>
+                        <input class="checkbox" type="checkbox" value="register-now"> Register now
+                        </label>
+                        -->
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class='status'>
+
+</div>
+
+  <div id="dashboard">
+    <div class="navbar">
+        <div class="navbar-inner">
+                <ul class="nav pull-right">
+
+                    <li id="fat-menu" class="dropdown">
+                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-user"></i> Bill Barber
+                            <i class="icon-caret-down"></i>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="#">My Account</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
+                            <li class="divider visible-phone"></li>
+                            <li><a tabindex="-1" href="sign-in.html">Logout</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <a class="brand" href="index.html">Community Activities Manager</a>
+        </div>
+    </div>
+
+    <div id="main-menu">
+
+        <div id="phone-navigation">
+            <select class="selectnav" id="phone-menu">
+
+                <option value="index.html" selected="selected"> Dashboard</option>
+
+                <option value="reports.html" > Reports</option>
+
+                <option value="components.html" > Components</option>
+
+                <option value="pricing.html" > Pricing</option>
+
+                <option value="" > Settings</option>
+
+                <option value="sign-in.html" >- Sign In Page</option>
+
+                <option value="sign-up.html" >- Sign Up Page</option>
+
+                <option value="reset-password.html" >- Reset Password Page</option>
+
+                <option value="">----------------------</option>
+
+                <option value="index.html" selected="selected"> Dashboard</option>
+
+                <option value="reports.html" > Reports</option>
+
+                <option value="components.html" > UI Features</option>
+
+                <option value="pricing.html" > Pricing</option>
+
+                <option value="media.html" > Media</option>
+
+                <option value="blog.html" > Blog</option>
+
+                <option value="help.html" > Help</option>
+
+                <option value="faq.html" > Faq</option>
+
+                <option value="calendar.html" > Calendar</option>
+
+                <option value="forms.html" > Forms</option>
+
+                <option value="tables.html" > Tables</option>
+
+                <option value="icons.html" > Font Awesome</option>
+
+            </select>
+        </div>
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="index.html"><i class="icon-dashboard"></i> <span>Dashboard</span></a></li>
+            <!--
+            <li ><a href="reports.html" ><i class="icon-bar-chart"></i> <span>Reports</span></a></li>
+            <li ><a href="components.html" ><i class="icon-cogs"></i> <span>Components</span></a></li>
+            <li ><a href="pricing.html"><i class="icon-magic"></i> <span>Pricing</span></a></li>
+            -->
+             <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> My Home's Activities <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <!--
+                    <li><a href="sign-in.html"><span>Sign-in Page</span></a></li>
+                    <li><a href="sign-up.html"><span>Sign-up Page</span></a></li>
+                    <li><a href="reset-password.html"><span>Forgot Password Page</span></a></li>
+                    -->
+                    <li><button type="button" id="showActivityForm" class="btn btn-link">Create an Activity</button></li>
+                    <li><button type="button" id="showParticipantForm" class="btn btn-link">Create a Participant</button></li>
+                    <li><button type="button" class="listParticipants btn btn-link">Show All Participants<
+                    <li><button type="button" class="listActivities btn btn-link">Show All Activities</button></li>
+                    <li><button type="button" id="showSearch" class="btn btn-link">Search for an Activity</button></li>
+                    <li><button type="button" class="deleteact btn btn-link">Delete the Activity below</button></li>
+                    <!--
+                    <li><code>btn btn-link</code>
+                    -->
+                    <li><button type="button" class="btn btn-link">Show Activities by Date</button></li>
+
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> My Home's Residents <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><button type="button" class="btn btn-link">Show all Residents</button></li>
+                    <li><button type="button" class="btn btn-link">Show a Resident</button></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> Settings <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="sign-in.html"><span>Sign-in Page</span></a></li>
+                    <li><a href="sign-up.html"><span>Sign-up Page</span></a></li>
+                    <li><a href="reset-password.html"><span>Forgot Password Page</span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+
+    <div id="sidebar-nav">
+
+        <ul id="dashboard-menu" class="nav nav-list">
+
+            <li class="active "><a href="index.html"><i class="icon-home"></i> <span>Dashboard</span></a></li>
+
+            <li class=" "><a href="media.html"><i class="icon-film"></i> <span>Media</span></a></li>
+
+
+        </ul>
+    </div>
+
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row-fluid">
+
+          <div class="span8 main-content">
+
+            <div class="row-fluid">
+              <div class="row-fluid">
+                <h2>My Homes Activities
+                <label for="result">Status</label>
+                <textarea id="status"></textarea>
+                </h2>
+
+                <ul class="item-summary">
+                  <li>
+                    <!--
+                    <div id="putActivitiesList">
+
+                    </div>
+                    -->
+                    <div id="putParticipantsList">
+
+                    </div>div.
+
+                  </li>
+                  <li class="more">
+                    <a href="#">Show All</a>
+                  </li>
+                </ul>
+
+                <!-- Create Acitvity Div -->
+                <div id="activityFormDiv">
+                  <form class="addActivity">
+                    <h2 class="form-signin-heading">Enter new activity info below</h2>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Activity Name">
+                    <input type="text" class="form-control" id="provider" placeholder="Activity Service Provider">
+                    <input type="text" class="form-control" id="prono" placeholder="Street Number">
+                    <input type="text" class="form-control" id="prostreet"  placeholder="Street Name">
+                    <input type="text" class="form-control" id="procity" placeholder="City">
+                    <input type="text" class="form-control" id="prostate" placeholder="State">
+                    <input type="text" class="form-control" id="zip" placeholder="Zip code">
+                    <input type="text" class="form-control" id="dov" placeholder="Date of activity">
+                    <input type="text" class="form-control" id="tov" placeholder="Time of Activity">
+                    <input type="text" class="form-control" id="length" placeholder="Length of Activity">
+                    <input type="text" class="form-control" id="participant" placeholder="Participant">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">Add new activity</button>
+                    <!--
+                    <button class="getact btn btn-lg btn-primary btn-block" name="getActivity" type="click">Show a single activity</button>
+
+                    <input id="actid" type="text" size="4" placeholder="Id">
+                    -->
+                    <button class="updateact btn btn-lg btn-primary btn-block" type="click">Update an activity</button>
+                  </form>
+                  <button class="getact btn btn-lg btn-primary btn-block" name="getActivity" type="click">Show a single activity</button>
+                  <!--
+                  <button class="deleteact btn btn-lg btn-primary btn-block" name="deleteActivity" type="click">Delete this activity</button>
+                  -->
+                </div>
+                <!-- end of activityFormDiv for activity creation-->
+
+
+                <!-- Create Acitvity Div -->
+                <div id="participantFormDiv">
+                  <form class="addParticipant">
+                    <h2 class="form-signin-heading">Enter new participant info below</h2>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Participants Name">
+                    <input type="text" class="form-control" id="email" placeholder="Email">
+                    <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+                    <input type="text" class="form-control" id="role"  placeholder="Role">
+                    <input type="text" class="form-control" id="boat" placeholder="Boat">
+                    <input type="text" class="form-control" id="team" placeholder="Team">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">Add new participant</button>
+                </div>
+                <!-- end of activityFormDiv for activity creation-->
+
+
+
+
+
+                <!-- Update Acitvity Div -->
+                <div id="updateAcivityDiv">
+                  <form class="updateActivity">
+                    <h2 class="form-signin-heading">Find an Activity, make your changes and hit update</h2>
+
+                    <input type="text" name="id" class="form-control" id="activityId" placeholder="Activity Id">
+                    <input type="text" name="name" class="form-control" id="upName" placeholder="Activity Name">
+                    <input type="text" name="provider" class="form-control" id="upProvider" placeholder="Activity Service Provider">
+                    <input type="text" name="prono" class="form-control" id="upProno" placeholder="Street Number">
+                    <input type="text" name="prostreet" class="form-control" id="upProstreet"  placeholder="Street Name">
+                    <input type="text" name="procity" class="form-control" id="upProcity" placeholder="City">
+                    <input type="text" name="prostate" class="form-control" id="upProstate" placeholder="State">
+                    <input type="text" name="zip" class="form-control" id="upZip" placeholder="Zip code">
+                    <input type="text" name="dov" class="form-control" id="upDov" placeholder="Date of activity">
+                    <input type="text" name="tov" class="form-control" id="upTov" placeholder="Time of Activity">
+                    <input type="text" name="length" class="form-control" id="upLength" placeholder="Length of Activity">
+                    <input type="text" name="participant" class="form-control" id="upParticipant" placeholder="Participant">
+
+
+                    <button class="getact btn btn-lg btn-primary btn-block" name="getActivityForUpdate" type="click">Show a single activity</button>
+                    <!--
+                    <button type="click" class="getact btn btn-lg btn-primary btn-block">Update activity</button>
+                    -->
+                    <button type="submit" class="updateact btn btn-lg btn-primary btn-block">Update activity</button>
+                  </form>
+                </div>
+                <!-- end of updateActivityDiv for activity creation-->
+
+                <div id="searchDiv">
+                    <input id="actid" type="text" size="4" placeholder="Search by ID">
+                    <input id="providerid" type="text" size="4" placeholder="Search by Provider">
+                    <input id="dateid" type="text" size="4" placeholder="Search by Date">
+                    <button type="button" id="searchById" class="btn btn-link">Search By Id</button>
+                    <button type="button" id="searchByProvider" class="btn btn-link">Search By Provider</button>
+                    <button type="button" id="searchByDate" class="btn btn-link">Search By Date of Activity</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="span4 sidebar">
+    <div class="widget">
+        <h2>Boats</h2>
+        <ul class="cards">
+            <li>
+                <p class="title">Bolvej</p>
+                <div class="img">
+                    <img src="assets/images/small-fishing-boat.jpg">
+                    <!-- <div class="label label-info">Pro</div> -->
+                </div>
+                <p class="info-text">Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+                <!--
+                <div class="stats">
+                    <p class="time">5 minutes ago</p>
+                    <span>15 <i class="icon-pushpin"></i></span>
+                    <span>27 <i class="icon-comment"></i></span>
+                    <span>158 <i class="icon-eye-open"></i></span>
+                </div>
+                -->
+            </li>
+            <li>
+                <p class="title">Laguana fishing boat</p>
+                <div class="img">
+                    <img src="assets/images/laguna-fishing-boat.jpg">
+                    <!-- <div class="label label-warning">Free</div> -->
+                </div>
+                <p class="info-text">Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master.</p>
+            </li>
+            <li>
+                <p class="title">Smith's Southport Boat</p>
+                <div class="img">
+                    <img src="assets/images/southport-boat.png">
+                    <!-- <div class="label label-info">Pro</div> -->
+                </div>
+                <p class="info-text">Anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack.</p>
+            </li>
+            <li class="more">
+                <a href="#">Show All</a>
+            </li>
+        </ul>
+    </div>
+  </div>
+</div>
+
+        <footer>
+            <hr>
+            <p class="pull-right">Design by <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
+            <p>&copy; 2013 <a href="#">Your Company</a></p>
+        </footer>
+
+      </div>
+    </div>
+
+  </div>
+
+    <!-- Handlebars - populate activities data on dashboard -->
+    <script id="activitiesList" type="text/x-handlebars-template">
+        {{#each activities}}
+            <div id="activitytest">
+                <div class="overview">
+                    <p class="main-detail">{{dov}}</p>
+                    <p class="sub-detail">{{tov}}</p>
+                    <!--
+                    <span class="label label-success">Active</span> <span class="label label-info">New</span>
+                    -->
+                </div>
+                <div class="info" data-id="{{id}}">
+                    <p>{{name}}</p>
+                    <p>{{provider}}</p>
+                    <!--
+                    <a class="btn btn-mini" href="#">Show Details</a>
+                    -->
+                    <button type="button" class="btn btn-link">Show Details</button>
+                    <button type="button" class="btn btn-link">Edit</button>
+                    <button type="button" class="btn btn-link">Delete</button>
+                </div>
+                <li>
+                <p> </p>
+                </li>
+                <div class="clearfix"></div>
+            </div>
+        {{/each}}
+    </script>
+    <!-- END Handlebars call -->
+
+    <!-- Handlebars - populate activities data on dashboard -->
+    <script id="participantsList" type="text/x-handlebars-template">
+        {{#each participants}}
+            <div id="participanttest">
+                <div class="overview">
+                    <p class="main-detail">{{name}}</p>
+                    <p class="sub-detail">{{email}}</p>
+                    <!--
+                    <span class="label label-success">Active</span> <span class="label label-info">New</span>
+                    -->
+                </div>
+                <div class="info" data-id="{{id}}">
+                    <p>{{phone}}</p>
+                    <p>{{role}}</p>
+                    <!--
+                    <a class="btn btn-mini" href="#">Show Details</a>
+                    -->
+                    <button type="button" class="btn btn-link">Show Details</button>
+                    <button type="button" class="btn btn-link">Edit</button>
+                    <button type="button" class="btn btn-link">Delete</button>
+                </div>
+                <li>
+                <p> </p>
+                </li>
+                <div class="clearfix"></div>
+            </div>
+        {{/each}}
+    </script>
+    <!-- END Handlebars call -->
+
+    <!--
+    <div id="show-activities">
+
+        <table id="Activites-table" class="table table-hover">
+          <thead>
+            <th>Name</th>
+            <th>Provider</th>
+            <th>Date</th>
+            <th>Time</th>
+          </thead>
+          <tbody id="activity-body">
+            <script id="activitiesList" type="text/x-handlebars-template">
+            {{#each activities}}
+            <tr>
+              <td>{{name}}</td>
+              <td>{{provider}}</td>
+              <td>{{dov}}</td>
+              <td>{{tov}}</td>
+              <td><button class="tbutton" data-id={{id}}>Delete</button></td>
+            </tr>
+            <{{/each}}>
+            </script>
+          </tbody>
+        </table>
+    </div>
+    -->
+
+    <!--
+    <script type="text/javascript" src="assets/handlebars-v3.0.3.js"></script>
+    -->
+
+    <!-- handlebars -->
+    <script type="text/javascript" src="app/handlebars-v4.0.4.js"></script>
+
+    <!--  Local Scripts -->
+    <script src="app/handlebars_module.js" type = "application/javascript"></script>
+
+
+    <form id='myForm'>
+    <input type="button" name="first_btn" id="first_btn">
+    <input type="button" name="second_btn" id="second_btn">
+    </form>
+
+  <div id="activityFormDiv">
+    <!-- <form class="addActivity">  -->
+    <form class="activityForm">
+      <h2 class="form-signin-heading">Enter new activity info below</h2>
+      <input type="text" name="name" class="form-control" id="name" placeholder="Activity Name">
+      <input type="text" class="form-control" id="provider" placeholder="Activity Service Provider">
+      <input type="text" class="form-control" id="prono" placeholder="Street Number">
+      <input type="text" class="form-control" id="prostreet"  placeholder="Street Name">
+      <input type="text" class="form-control" id="procity" placeholder="City">
+      <input type="text" class="form-control" id="prostate" placeholder="State">
+      <input type="text" class="form-control" id="zip" placeholder="Zip code">
+      <input type="text" class="form-control" id="dov" placeholder="Date of activity">
+      <input type="text" class="form-control" id="tov" placeholder="Time of Activity">
+      <input type="text" class="form-control" id="length" placeholder="Length of Activity">
+      <input type="text" class="form-control" id="participant" placeholder="Participant">
+      <button type="submit" class="addActivity btn btn-lg btn-primary btn-block">Add new activity</button>
+      <button class="getact btn btn-lg btn-primary btn-block" name="getActivity" type="click">Show a single activity</button>
+      <input id="actid" type="text" size="4" placeholder="Id">
+    <!--
+      <button class="updateact btn btn-lg btn-primary btn-block" type="click">Update an activity</button>
+
+      <button class="deleteact btn btn-lg btn-primary btn-block" name="deleteActivity" type="click">Delete an activity</button>
+
+      <button id="deleteact" class="btn btn-lg btn-primary btn-block" type="submit">Delete this activity</button>
+      -->
+    </form>
+  </div>    <!-- end of activityFormDiv for activity creation-->
+
+
+  <!-- <div id="propertiesDiv">
+  <form class="listProperties">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Show all properties</button>
+  </form>    --><!-- end of listProperties -->
+
+  <!-- <form class="listOneProperty">
+    <label for="prop-id">Id:</label>
+    <input id="prop-id" type="text" size="4" placeholder="Id">
+    <input name="list-property" type="submit" value="Show Property">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Show a single properties</button>
+  </form>   end of ListOneProperty -->
+
+  <!-- <form class="deleteProperty">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Delete this property</button>
+  </form>
+  </div> -->
+
+  <!-- <form class="listOneActivity">
+    <label for="act-id">Id:</label>
+    <input id="act-id" type="text" size="4">
+    <input name="list-property" type="submit" value="Show Property">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Show a single activity</button>
+  </form> -->
+
+  <!-- <form id="updateActivity">
+    <label for="activity-id">Id:</label>
+    <input id="activity-id" type="text" size="4">
+    <input id="act-field" type-"text" placeholder="name of field to update">
+    <input id="act-value" type-"text" placeholder="updated value">
+    <input name="list-property" type="submit" value="Show Property"> -->
+   <!--  <button class="btn btn-lg btn-primary btn-block" type="submit">Update an activity</button>
+  </form>
+
+    <form class="deleteActivity">
+        <button class="btn btn-lg btn-primary btn-block" type="click">Delete this activity</button>
+    </form>
+
+  <form class="listActivities">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Show all activities</button>
+  </form>
+  -->
+
+
+
+  <div id="propertyFormDiv">
+    <form class="addProperty">
+      <h2 class="form-signin-heading">Enter new property info below</h2>
+      <input type="text" class="form-control" id="no" placeholder="Street Number">
+      <input type="text" class="form-control" id="street"  placeholder="Street">
+      <input type="text" class="form-control" id="city" placeholder="City">
+      <input type="text" class="form-control" id="state" placeholder="State">
+      <input type="text" class="form-control" id="zip" placeholder="Zip code">
+      <input type="text" class="form-control" id="house_mgmt_co" placeholder="Property Mgmt Company">
+      <input type="text" class="form-control" id="manager" placeholder="House Manager">
+      <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+      <button class="getprop btn btn-lg btn-primary btn-block" name="getProperty" type="click">Show a single property</button>
+      <input id="propid" type="text" size="4" placeholder="Id">
+      <button class="updateprop btn btn-lg btn-primary btn-block" type="click">Update a property</button>
+      <button class="deleteprop btn btn-lg btn-primary btn-block" type="submit">Delete this property</button>
+    </form>
+  </div>
+
+<!--
+<body>
+<div class="bs-example">
+    <table class="propertyTable">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Street</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip Code</th>
+                <th>Property Mgmt Co</th>
+                <th>Property Manager</th>
+            </tr>
+        </thead>
+
+        <tbody ID="allProperties">
+          <script id="properties-list" type="text/x-handlebars-template">
+          <div>
+            {{#each properties}}
+            <tr>
+              <td>{{no}}</td>
+              <td>{{street}}</td>
+              <td>{{city}}</td>
+              <td>{{state}}</td>
+              <td>{{zip}}</td>
+              <td>{{house_mgmt_co}}</td>
+              <td>{{manager}}</td>
+            </tr>
+             {{/each}}
+            </div>
+          </script>
+        </tbody>
+    </table>
+</div>
+-->
+
+    <!--
+    <label for="result">Result</label>
+    <textarea id="result"></textarea>
+    -->
+<!-- </div> -->
+
+  <script src="app/bootstrap.js"></script>
+    <!-- END Local Scripts -->
+    <script type="text/javascript">
+        $("[rel=tooltip]").tooltip();
+        $(function() {
+            $('.demo-cancel-click').click(function(){return false;});
+        });
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="app/jquery.loadJSON.js"></script>
+  <script src="app/app.js" type="application/javascript" charset="utf-8"></script>
+</body>
+</html>
