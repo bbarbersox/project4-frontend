@@ -228,6 +228,7 @@ $(document).ready(function() {
     $('#activityFormDiv').css("display", "none");
     $('#putActivitiesList').css("display", "block");
     $('#updateAcivityDiv').css("display", "none");
+    $('#participantFormDiv').css("display", "none");
     $('.getact').css("display", "none");
   };
 
