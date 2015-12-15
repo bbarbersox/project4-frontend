@@ -277,7 +277,7 @@ $(document).ready(function() {
     }
     $('#result').val(JSON.stringify(data, null, 4));
     console.log(data);
-    fwmapi.listActivities(token, allActivityCB);
+    // fwmapi.listActivities(token, allActivityCB);
     $('#status').val('you successfully logged in');
     $('.login').css("display", "none");
     $('#activityFormDiv').css("display", "none");
@@ -324,12 +324,28 @@ $(document).ready(function() {
     $('#result').val(JSON.stringify(data, null, 4));
     console.log('got to callback to process all participant data');
     console.log(data);
-    $('#putParticipantsList').css("display", "block");
+    $('#showParticipants').css("display", "block");
     $('#participantFormDiv').css("display", "none");
     $('#updateAcivityDiv').css("display", "none");
     actHandlebars.displayParticipants(data);
   };
   // END --- allParticipantCB
+
+  var participantsTableCB = function callback(error, data) {
+    debugger;
+    if (error) {
+      console.error(error);
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+    $('#result').val(JSON.stringify(data, null, 4));
+    console.log('got to Handlebars to  participants table function');
+    console.log(data);
+    var participantsTemplate = Handlebars.compile($('#participantsList').html());
+    var newHTML = participantsTemplate(data);
+    $("#participant-body").html(newHTML);
+    $('#showParticipants').css("display", "block");
+  };
 
 
   /////////
@@ -425,7 +441,8 @@ $(document).ready(function() {
     {
       debugger;
     e.preventDefault();
-    fwmapi.listParticipants(token, allParticipantsCB);
+    // fwmapi.listParticipants(token, allParticipantsCB);
+    fwmapi.listParticipants(token, participantsTableCB);
   });
   // ----- end of Show All Activities processing ----- //
 
@@ -593,8 +610,8 @@ $(document).ready(function() {
         "email":$("email").val(),
         "phone":$("phone").val(),
         "role":$("role").val(),
-        "boat_id":$("boat").val(),
-        "team_id":$("team").val()
+        "boat_id":0,
+        "team_id":0
       }
     };
 
@@ -603,8 +620,8 @@ $(document).ready(function() {
 
     dataForServer.participant.phone = $(".addParticipant input[id=phone]").val();
     dataForServer.participant.role = $(".addParticipant input[id=role]").val();
-    dataForServer.participant.boat_id = $(".addParticipant input[id=boat]").val();
-    dataForServer.participant.team_id = $(".addParticipant input[id=team]").val();
+    dataForServer.participant.boat_id = $(".addParticipant input[id=boat_id]").val();
+    dataForServer.participant.team_id = $(".addParticipant input[id=team_id]").val();
 
     e.preventDefault();
     fwmapi.addParticipant(dataForServer, token, callback);

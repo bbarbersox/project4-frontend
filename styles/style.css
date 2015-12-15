@@ -1,0 +1,147 @@
+
+#loginDiv {
+  display: block;
+}
+
+#registerDiv {
+  display: none;
+}
+
+#dashboard {
+  display: none;
+}
+
+#propertiesDiv {
+  display: none;
+}
+
+#propertyFormDiv {
+  display: none;
+}
+
+#activityFormDiv {
+  display: none;
+}
+
+#participantFormDiv {
+  display: none;
+}
+
+#showParticipants {
+  display: none;
+}
+
+#updateAcivityDiv {
+  display: none;
+}
+
+#putActivitiesList {
+  display: none;
+}
+
+#searchDiv {
+  display: none;
+}
+
+#result {
+  height: 60ex;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.status {
+  max-height: 20px;
+  max-width: 20px;
+  padding: 5px;
+  margin: 0 auto;
+}
+
+.login {
+
+}
+
+.register {
+  display: none;
+}
+
+.formactions {
+  display: none;
+}
+
+.properties {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.listActivities {
+  display: none;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.listOneActivity {
+  display: none;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.getact {
+  display: none;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+#updateActivity {
+  display: block;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.deleteActivity {
+  display: none;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.listProperties {
+  display: none;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.listOneProperty {
+  display: none;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.addProperty {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.addActivity {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.deleteProperty {
+  display: none;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.bs-example {
+      margin: 20px;
+}

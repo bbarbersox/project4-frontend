@@ -171,7 +171,7 @@
             <li ><a href="pricing.html"><i class="icon-magic"></i> <span>Pricing</span></a></li>
             -->
              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> My Home's Activities <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> Participants <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <!--
                     <li><a href="sign-in.html"><span>Sign-in Page</span></a></li>
@@ -192,7 +192,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> My Home's Residents <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> Boats <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><button type="button" class="btn btn-link">Show all Residents</button></li>
                     <li><button type="button" class="btn btn-link">Show a Resident</button></li>
@@ -230,21 +230,45 @@
 
             <div class="row-fluid">
               <div class="row-fluid">
-                <h2>My Homes Activities
+                <h2>Participants
                 <label for="result">Status</label>
                 <textarea id="status"></textarea>
                 </h2>
 
+                <!--
                 <ul class="item-summary">
                   <li>
-                    <!--
-                    <div id="putActivitiesList">
+                -->
+                <div id="showParticipants">
 
-                    </div>
-                    -->
-                    <div id="putParticipantsList">
-
-                    </div>div.
+                    <table id="Participants-table" class="table table-hover">
+                        <<thead>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Role</th>
+                            <th>Boat</th>
+                            <th>Team</th>
+                        </thead>
+                        <tbody id="participant-body">
+                            <!-- <div id="putParticipantsList"> -->
+                            <script id="participantsList" type="text/x-handlebars-template">
+                                {{#each participants}}
+                                    <tr>
+                                      <td>{{name}}</td>
+                                      <td>{{email}}</td>
+                                      <td>{{phone}}</td>
+                                      <td>{{role}}</td>
+                                      <td>{{boat_id}}</td>
+                                      <td>{{team_id}}</td>
+                                      <td><button class="tbutton" data-id="{{id}}">Delete</button></td>
+                                    </tr>
+                                <{{/each}}>
+                            </script>
+                            <!-- </div> -->
+                        </tbody>
+                    </table>
+                </div>
 
                   </li>
                   <li class="more">
@@ -291,8 +315,8 @@
                     <input type="text" class="form-control" id="email" placeholder="Email">
                     <input type="text" class="form-control" id="phone" placeholder="Phone Number">
                     <input type="text" class="form-control" id="role"  placeholder="Role">
-                    <input type="text" class="form-control" id="boat" placeholder="Boat">
-                    <input type="text" class="form-control" id="team" placeholder="Team">
+                    <input type="text" class="form-control" id="boat_id" placeholder="Boat_id">
+                    <input type="text" class="form-control" id="team_id" placeholder="Team_id">
                     <button type="submit" class="btn btn-lg btn-primary btn-block">Add new participant</button>
                 </div>
                 <!-- end of activityFormDiv for activity creation-->
@@ -426,23 +450,24 @@
     </script>
     <!-- END Handlebars call -->
 
-    <!-- Handlebars - populate activities data on dashboard -->
+    <!-- Handlebars - populate participants data on dashboard
     <script id="participantsList" type="text/x-handlebars-template">
         {{#each participants}}
             <div id="participanttest">
                 <div class="overview">
                     <p class="main-detail">{{name}}</p>
                     <p class="sub-detail">{{email}}</p>
-                    <!--
-                    <span class="label label-success">Active</span> <span class="label label-info">New</span>
-                    -->
-                </div>
-                <div class="info" data-id="{{id}}">
                     <p>{{phone}}</p>
                     <p>{{role}}</p>
-                    <!--
+
+                    <span class="label label-success">Active</span> <span class="label label-info">New</span>
+
+                </div>
+                <div class="info" data-id="{{id}}">
+
+
                     <a class="btn btn-mini" href="#">Show Details</a>
-                    -->
+
                     <button type="button" class="btn btn-link">Show Details</button>
                     <button type="button" class="btn btn-link">Edit</button>
                     <button type="button" class="btn btn-link">Delete</button>
@@ -454,34 +479,27 @@
             </div>
         {{/each}}
     </script>
-    <!-- END Handlebars call -->
+    END Handlebars call -->
 
-    <!--
-    <div id="show-activities">
 
-        <table id="Activites-table" class="table table-hover">
-          <thead>
-            <th>Name</th>
-            <th>Provider</th>
-            <th>Date</th>
-            <th>Time</th>
-          </thead>
-          <tbody id="activity-body">
-            <script id="activitiesList" type="text/x-handlebars-template">
-            {{#each activities}}
-            <tr>
-              <td>{{name}}</td>
-              <td>{{provider}}</td>
-              <td>{{dov}}</td>
-              <td>{{tov}}</td>
-              <td><button class="tbutton" data-id={{id}}>Delete</button></td>
-            </tr>
-            <{{/each}}>
-            </script>
-          </tbody>
-        </table>
-    </div>
-    -->
+
+    <script id="participantsList" type="text/x-handlebars-template">
+        {{#each participants}}
+            <tbody id="participant-body">
+                <tr>
+                  <td>{{name}}</td>
+                  <td>{{email}}</td>
+                  <td>{{phone}}</td>
+                  <td>{{role}}</td>
+                  <td>{{boat_id}}</td>
+                  <td>{{team_id}}</td>
+                  <td><button class="tbutton" data-id="{{id}}">Delete</button></td>
+                </tr>
+            </tbody>
+        <{{/each}}>
+    </script>
+
+
 
     <!--
     <script type="text/javascript" src="assets/handlebars-v3.0.3.js"></script>
