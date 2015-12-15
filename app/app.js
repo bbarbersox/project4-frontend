@@ -249,18 +249,6 @@ $(document).ready(function() {
     $('#putActivitiesList').css("display", "block");
   };
 
-  var tableCB = function callback(error, data) {
-    if (error) {
-      console.error(error);
-      $('#result').val('status: ' + error.status + ', error: ' +error.error);
-      return;
-    }
-    $('#result').val(JSON.stringify(data, null, 4));
-    var newHTML = propertyList({properties: data.properties});
-    $('#allProperties').html(newHTML);
-  };
-
-
   // allActivityCB - callback processes return of activity data
   var allActivityCB = function callback(error, data) {
     if (error) {
@@ -279,25 +267,9 @@ $(document).ready(function() {
   };
   // END --- allActivityCB
 
-   // allParticipantCB - callback processes return of participant data
-  var allParticipantsCB = function callback(error, data) {
-    if (error) {
-      console.error(error);
-      $('#result').val('status: ' + error.status + ', error: ' +error.error);
-      return;
-    }
-    $('#result').val(JSON.stringify(data, null, 4));
-    console.log('got to callback to process all participant data');
-    console.log(data);
-    $('#showParticipants').css("display", "block");
-    $('#participantFormDiv').css("display", "none");
-    $('#updateAcivityDiv').css("display", "none");
-    actHandlebars.displayParticipants(data);
-  };
-  // END --- allParticipantCB
-
+  // allParticipantCB - callback processes return of participant data &
+  // renders it, via handlebars into a table
   var participantsTableCB = function callback(error, data) {
-    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -311,6 +283,7 @@ $(document).ready(function() {
     $("#participant-body").html(newHTML);
     $('#showParticipants').css("display", "block");
   };
+   // END --- allParticipantCB
 
 
   /////////
@@ -323,8 +296,7 @@ $(document).ready(function() {
     }
     $('#result').val(JSON.stringify(data, null, 4));
     // $('form').loadJSON(data);
-    // var newHTML = propertyList({properties: data.properties});
-    // $('#allProperties').html(newHTML);
+
 
     $.each(data, function(i, item) {
       ($('#'+i).val(item));
