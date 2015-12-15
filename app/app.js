@@ -168,6 +168,19 @@ var fwmapi = {
       }, callback);
     },
 
+    deleteParticipant: function (id, token, callback) {
+      debugger;
+      console.log(id);
+      this.ajax({
+      method: 'DELETE',
+      url: this.fwm + '/participants/'+ id,
+      headers: {
+          Authorization: 'Token token=' + token
+        },
+        dataType: 'json'
+      }, callback);
+    },
+
 
     deleteActivity: function (id, token, callback) {
       console.log(id);
@@ -277,6 +290,8 @@ $(document).ready(function() {
     }
     $('#result').val(JSON.stringify(data, null, 4));
     console.log(data);
+    token = data.user.token;
+    userId = data.user.id;
     // fwmapi.listActivities(token, allActivityCB);
     $('#status').val('you successfully logged in');
     $('.login').css("display", "none");
@@ -385,6 +400,7 @@ $(document).ready(function() {
 
   // Delete Activity Callback
   var deleteCB = function callback(error, data) {
+    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -421,8 +437,6 @@ $(document).ready(function() {
         return;
       }
       callback(null, data);
-      token = data.user.token;
-      userId = data.user.id;
     };
 
     fwmapi.login(credentials, loginCB);
@@ -506,6 +520,23 @@ $(document).ready(function() {
     fwmapi.deleteActivity(actId, token, deleteCB);
   });
   // end of Delete Activity processing
+
+
+  $("#participant-body").on("click", function(event){
+    debugger;
+    var elementId = $(event.target).data("id");
+    if(elementId === undefined){
+      return;
+    }
+  //   var token = $(".token").val();
+    fwmapi.deleteParticipant(elementId, token, deleteCB);
+  //   benchController.deleteRow(token, elementID, function() {
+  //     $(event.target).parents("tr").remove();
+  //   });
+   });
+
+
+
 
   $('#activitytest').on("click", "button", function(event){
     debugger;
@@ -604,6 +635,7 @@ $(document).ready(function() {
   // Create an Participant processing
   $('.addParticipant').on('submit', function(e) {
     debugger;
+    e.preventDefault();
     var dataForServer = {
       participant : {
         "name":$('#name').val(),
@@ -623,81 +655,10 @@ $(document).ready(function() {
     dataForServer.participant.boat_id = $(".addParticipant input[id=boat_id]").val();
     dataForServer.participant.team_id = $(".addParticipant input[id=team_id]").val();
 
-    e.preventDefault();
+
     fwmapi.addParticipant(dataForServer, token, callback);
   });
   // ----- end of Create Participant processing ----- //
 
-
-
-
-  /* Property Management Logic
-  $('.listProperties').on('submit', function(e) {
-    console.log('got to list properties function', token);
-    e.preventDefault();
-    fwmapi.listProperties(token, tableCB);
-  });
-
-  $('.getprop').on('click', function(e) {
-      debugger;
-      console.log('got to list one property function', token);
-      // var id = $(".listOneActivity input[id=act-id]").val();
-      var id = $(".addProperty input[id=propid]").val();
-      // var id = 5;
-      e.preventDefault();
-      fwmapi.listOneProperty(id, token, formCB);
-    });
-
-  $('.addProperty').on('submit', function(e) {
-    var dataForServer = {
-      property : {
-        "no":$('#no').val(),
-        "street":$('#street').val(),
-        "city":$('#city').val(),
-        "state":$('#state').val(),
-        "zip":$('#zip').val(),
-        "house_mgmt_co":$('#house_mgmt_co').val(),
-        "manager":$('#manager').val(),
-        "user_id":0
-      }
-    };
-
-
-
-    // dataForServer.property.no = $(".addProperty input[id=streetNo]").val();
-    // dataForServer.property.street = $(".addProperty input[id=street]").val();
-    // dataForServer.property.city = $(".addProperty input[id=city]").val();
-    // dataForServer.property.state = $(".addProperty input[id=state]").val();
-    // dataForServer.property.zip = $(".addProperty input[id=zipcode]").val();
-    // dataForServer.property.house_mgmt_co = $(".addProperty input[id=propertyMgmtCo]").val();
-    // dataForServer.property.manager = $(".addProperty input[id=manager]").val();
-    // dataForServer.property.user_id = userId;
-
-    console.log('got to add property function', dataForServer);
-    e.preventDefault();
-    fwmapi.addProperty(dataForServer, token, callback);
-  });
-
-  $('.updateprop').on('click', function(e) {
-    // var token = $(this).children('[name="token"]').val();
-    var dataForServer = {
-      property : {
-        no: $('#name').val(),
-        street: $('#provider').val(),
-        city: $('#prono').val(),
-        state: $('#prostreet').val(),
-        zip: $('#procity').val(),
-        house_mgmt_co: $('#prostate').val(),
-        ['zip']: $('#zip').val()
-      }
-    };
-
-    var propId = $('#propid').val(); //captuers activity
-
-    e.preventDefault();
-    fwmapi.updateProperty(propId, dataForServer, token, callback);
-    });
-    END --- Property Management logic */
-  // });
 
 });

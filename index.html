@@ -180,7 +180,7 @@
                     -->
                     <li><button type="button" id="showActivityForm" class="btn btn-link">Create an Activity</button></li>
                     <li><button type="button" id="showParticipantForm" class="btn btn-link">Create a Participant</button></li>
-                    <li><button type="button" class="listParticipants btn btn-link">Show All Participants<
+                    <li><button type="button" class="listParticipants btn btn-link">Show All Participants></button></li>
                     <li><button type="button" class="listActivities btn btn-link">Show All Activities</button></li>
                     <li><button type="button" id="showSearch" class="btn btn-link">Search for an Activity</button></li>
                     <li><button type="button" class="deleteact btn btn-link">Delete the Activity below</button></li>
@@ -242,16 +242,17 @@
                 <div id="showParticipants">
 
                     <table id="Participants-table" class="table table-hover">
-                        <<thead>
+                        <thead>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Role</th>
                             <th>Boat</th>
                             <th>Team</th>
+                            <th>edit</th>
+                            <th>delete</th>
                         </thead>
                         <tbody id="participant-body">
-                            <!-- <div id="putParticipantsList"> -->
                             <script id="participantsList" type="text/x-handlebars-template">
                                 {{#each participants}}
                                     <tr>
@@ -261,7 +262,10 @@
                                       <td>{{role}}</td>
                                       <td>{{boat_id}}</td>
                                       <td>{{team_id}}</td>
-                                      <td><button class="tbutton" data-id="{{id}}">Delete</button></td>
+                                      <td><button class="deletepart tbutton" data-id="{{id}}">Delete</button></td>
+                                      <td><button class="editpart tbutton" data-id="{{id}}">Edit</button></td>
+
+
                                     </tr>
                                 <{{/each}}>
                             </script>
@@ -307,7 +311,7 @@
                 <!-- end of activityFormDiv for activity creation-->
 
 
-                <!-- Create Acitvity Div -->
+                <!-- Create Participant Div -->
                 <div id="participantFormDiv">
                   <form class="addParticipant">
                     <h2 class="form-signin-heading">Enter new participant info below</h2>
@@ -319,7 +323,7 @@
                     <input type="text" class="form-control" id="team_id" placeholder="Team_id">
                     <button type="submit" class="btn btn-lg btn-primary btn-block">Add new participant</button>
                 </div>
-                <!-- end of activityFormDiv for activity creation-->
+                <!-- end of create Participant div-->
 
 
 
@@ -450,60 +454,6 @@
     </script>
     <!-- END Handlebars call -->
 
-    <!-- Handlebars - populate participants data on dashboard
-    <script id="participantsList" type="text/x-handlebars-template">
-        {{#each participants}}
-            <div id="participanttest">
-                <div class="overview">
-                    <p class="main-detail">{{name}}</p>
-                    <p class="sub-detail">{{email}}</p>
-                    <p>{{phone}}</p>
-                    <p>{{role}}</p>
-
-                    <span class="label label-success">Active</span> <span class="label label-info">New</span>
-
-                </div>
-                <div class="info" data-id="{{id}}">
-
-
-                    <a class="btn btn-mini" href="#">Show Details</a>
-
-                    <button type="button" class="btn btn-link">Show Details</button>
-                    <button type="button" class="btn btn-link">Edit</button>
-                    <button type="button" class="btn btn-link">Delete</button>
-                </div>
-                <li>
-                <p> </p>
-                </li>
-                <div class="clearfix"></div>
-            </div>
-        {{/each}}
-    </script>
-    END Handlebars call -->
-
-
-
-    <script id="participantsList" type="text/x-handlebars-template">
-        {{#each participants}}
-            <tbody id="participant-body">
-                <tr>
-                  <td>{{name}}</td>
-                  <td>{{email}}</td>
-                  <td>{{phone}}</td>
-                  <td>{{role}}</td>
-                  <td>{{boat_id}}</td>
-                  <td>{{team_id}}</td>
-                  <td><button class="tbutton" data-id="{{id}}">Delete</button></td>
-                </tr>
-            </tbody>
-        <{{/each}}>
-    </script>
-
-
-
-    <!--
-    <script type="text/javascript" src="assets/handlebars-v3.0.3.js"></script>
-    -->
 
     <!-- handlebars -->
     <script type="text/javascript" src="app/handlebars-v4.0.4.js"></script>
@@ -608,48 +558,6 @@
     </form>
   </div>
 
-<!--
-<body>
-<div class="bs-example">
-    <table class="propertyTable">
-        <thead>
-            <tr>
-                <th>Number</th>
-                <th>Street</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Zip Code</th>
-                <th>Property Mgmt Co</th>
-                <th>Property Manager</th>
-            </tr>
-        </thead>
-
-        <tbody ID="allProperties">
-          <script id="properties-list" type="text/x-handlebars-template">
-          <div>
-            {{#each properties}}
-            <tr>
-              <td>{{no}}</td>
-              <td>{{street}}</td>
-              <td>{{city}}</td>
-              <td>{{state}}</td>
-              <td>{{zip}}</td>
-              <td>{{house_mgmt_co}}</td>
-              <td>{{manager}}</td>
-            </tr>
-             {{/each}}
-            </div>
-          </script>
-        </tbody>
-    </table>
-</div>
--->
-
-    <!--
-    <label for="result">Result</label>
-    <textarea id="result"></textarea>
-    -->
-<!-- </div> -->
 
   <script src="app/bootstrap.js"></script>
     <!-- END Local Scripts -->
