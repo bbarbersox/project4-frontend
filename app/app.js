@@ -193,55 +193,6 @@ var fwmapi = {
         dataType: 'json'
       }, callback);
     },
-
-
-    listProperties: function (token, callback) {
-      this.ajax({
-        method: 'GET',
-        url: this.fwm + '/properties',
-        headers: {
-          Authorization: 'Token token=' + token
-        },
-        dataType: 'json'
-      }, callback);
-    },
-
-    listOneProperty: function (id, token, callback) {
-      this.ajax({
-        method: 'GET',
-        url: this.fwm + '/properties/'+id,
-        headers: {
-          Authorization: 'Token token=' + token
-        },
-        dataType: 'json'
-      }, callback);
-    },
-
-    updateProperty: function (id, data, token, callback) {
-      this.ajax({
-        method: 'PATCH',
-        url: this.fwm + '/properties/' + id, // id is the activity id
-        headers: {
-          Authorization: 'Token token=' + token
-        },
-        contentType: 'application/json; charset=utf-8',
-        data: JSON.stringify(data),
-        dataType: 'json'
-      }, callback);
-    },
-
-    addProperty: function (formdata, token, callback) {
-      this.ajax({
-        method: 'POST',
-        url: this.fwm + '/properties',
-        headers: {
-          Authorization: 'Token token=' + token
-        },
-        contentType : 'application/json',
-        data: JSON.stringify(formdata),
-        dataType: 'json'
-      }, callback);
-    },
   };
 
 $(document).ready(function() {
