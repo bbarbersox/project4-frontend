@@ -273,9 +273,7 @@ $(document).ready(function() {
 
     $('#result').val(JSON.stringify(data, null, 4));
     console.log(data);
-    fwmapi.listActivities(token, allActivityCB);
-    $('#status').val('you successfully logged in');
-    $('.login').css("display", "none");
+    fwmapi.listParticipants(token, participantsTableCB);
     $('#activityFormDiv').css("display", "none");
     $('#putActivitiesList').css("display", "block");
     $('#updateAcivityDiv').css("display", "none");
@@ -455,7 +453,6 @@ $(document).ready(function() {
     {
       debugger;
     e.preventDefault();
-    // fwmapi.listParticipants(token, allParticipantsCB);
     fwmapi.listParticipants(token, participantsTableCB);
   });
   // ----- end of Show All Activities processing ----- //

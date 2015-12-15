@@ -253,22 +253,7 @@
                             <th>delete</th>
                         </thead>
                         <tbody id="participant-body">
-                            <script id="participantsList" type="text/x-handlebars-template">
-                                {{#each participants}}
-                                    <tr>
-                                      <td>{{name}}</td>
-                                      <td>{{email}}</td>
-                                      <td>{{phone}}</td>
-                                      <td>{{role}}</td>
-                                      <td>{{boat_id}}</td>
-                                      <td>{{team_id}}</td>
-                                      <td><button class="deletepart tbutton" data-id="{{id}}">Delete</button></td>
-                                      <td><button class="editpart tbutton" data-id="{{id}}">Edit</button></td>
 
-
-                                    </tr>
-                                <{{/each}}>
-                            </script>
                             <!-- </div> -->
                         </tbody>
                     </table>
@@ -276,7 +261,8 @@
 
                   </li>
                   <li class="more">
-                    <a href="#">Show All</a>
+                    <button type="button" class="listParticipants btn btn-link">Show All</button>
+                    <!-- <a href="#">Show All</a> -->
                   </li>
                 </ul>
 
@@ -557,6 +543,24 @@
       <button class="deleteprop btn btn-lg btn-primary btn-block" type="submit">Delete this property</button>
     </form>
   </div>
+
+
+    <script id="participantsList" type="text/x-handlebars-template">
+        {{#each participants}}
+            <tr>
+              <td>{{name}}</td>
+              <td>{{email}}</td>
+              <td>{{phone}}</td>
+              <td>{{role}}</td>
+              <td>{{boat_id}}</td>
+              <td>{{team_id}}</td>
+              <td><button class="deletepart tbutton" data-id="{{id}}">Delete</button></td>
+              <td><button class="editpart tbutton" data-id="{{id}}">Edit</button></td>
+
+
+            </tr>
+        <{{/each}}>
+    </script>
 
 
   <script src="app/bootstrap.js"></script>
