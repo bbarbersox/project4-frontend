@@ -356,9 +356,9 @@ $(document).ready(function() {
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
       return;
     }
-    // fwmapi.listActivities(token, allActivityCB);
+    fwmapi.listParticipants(token, participantsTableCB);
     $('#status').val('you successfully deleted the activity');
-    // $('#result').val(JSON.stringify(data, null, 4));
+    // $(event.target).parents("tr").remove();
   };
   // ----- end of Delete processing ----- //
 
@@ -477,11 +477,7 @@ $(document).ready(function() {
     if(elementId === undefined){
       return;
     }
-  //   var token = $(".token").val();
     fwmapi.deleteParticipant(elementId, token, deleteCB);
-  //   benchController.deleteRow(token, elementID, function() {
-  //     $(event.target).parents("tr").remove();
-  //   });
    });
 
 
