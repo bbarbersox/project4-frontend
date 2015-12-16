@@ -256,6 +256,10 @@ $(document).ready(function() {
     this.reset();
     });
 
+    $('.addParticipant').each(function(){
+    this.reset();
+    });
+
     $('#participantFormDiv').hide();
     $('#showParticipantUpdate').hide();
     // $('#putActivitiesList').css("display", "block");
@@ -366,6 +370,27 @@ $(document).ready(function() {
     $('#status').val('you can now update the participants info');
   };
   // END --- show a single participants info
+
+  var addBoatCB = function callback(error, data) {
+    if (error) {
+      console.error(error);
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+
+    $('#result').val(JSON.stringify(data, null, 4));
+    console.log(data);
+
+    // fwmapi.listBoats(token, boatsTableCB);
+
+    $('.addBoat').each(function(){
+    this.reset();
+    });
+
+    $('#showBoatAdd').hide();
+    // $('#showBoatTable').show();
+
+  };
 
   // Delete Activity Callback
   var deleteCB = function callback(error, data) {
@@ -648,40 +673,32 @@ $(document).ready(function() {
   });
 
   // Create an Activity processing
-  $('.addActivity').on('submit', function(e) {
+  $('.addBoat').on('submit', function(e) {
+    // e.preventDefault();
     var dataForServer = {
-      activity : {
-        "name":$('#name').val(),
-        "provider":$("provider").val(),
-        "prono":$("prono").val(),
-        "prostreet":$("prostreet").val(),
-        "procity":$("procity").val(),
-        "prostate":$("prostate").val(),
-        "zip":$("zip").val(),
-        "dov":$("dov").val(),
-        "tov":$("tov").val(),
-        "length":$("length").val(),
-        "participant":$("participant").val(),
-        "user_id":userId
+      boat : {
+        "title": $(".addBoat input[id=title]").val(),
+        "description": $(".addBoat input[id=description]").val(),
+        "avatar": $(".addBoat input[id=avatar]").val(),
+        "capacity": $(".addBoat input[id=capacity]").val(),
+        "open_seats":$(".addBoat input[id=capacity]").val()
       }
     };
 
-    dataForServer.activity["name"] = $(".addActivity input[id=name]").val();
-    dataForServer.activity.provider = $(".addActivity input[id=provider]").val();
+    // dataForServer.boat["name"] = $(".addBoat input[id=title]").val();
+    // dataForServer.activity.provider = $(".addActivity input[id=provider]").val();
 
-    dataForServer.activity.prono = $(".addActivity input[id=proNo]").val();
-    dataForServer.activity.prostreet = $(".addActivity input[id=prostreet]").val();
-    dataForServer.activity.procity = $(".addActivity input[id=procity]").val();
-    dataForServer.activity.prostate = $(".addActivity input[id=prostate]").val();
-    dataForServer.activity.zip = $(".addActivity input[id=azip]").val();
-    dataForServer.activity.dov = $(".addActivity input[id=dov]").val();
-    dataForServer.activity.tov = $(".addActivity input[id=tov]").val();
-    dataForServer.activity["length"] = $(".addActivity input[id=length]").val();
-    dataForServer.activity.participant = $(".addActivity input[id=participant]").val();
-    dataForServer.activity.user_id = userId;
-
-    e.preventDefault();
-    fwmapi.addActivity(dataForServer, token, callback);
+    // dataForServer.activity.prono = $(".addActivity input[id=proNo]").val();
+    // dataForServer.activity.prostreet = $(".addActivity input[id=prostreet]").val();
+    // dataForServer.activity.procity = $(".addActivity input[id=procity]").val();
+    // dataForServer.activity.prostate = $(".addActivity input[id=prostate]").val();
+    // dataForServer.activity.zip = $(".addActivity input[id=azip]").val();
+    // dataForServer.activity.dov = $(".addActivity input[id=dov]").val();
+    // dataForServer.activity.tov = $(".addActivity input[id=tov]").val();
+    // dataForServer.activity["length"] = $(".addActivity input[id=length]").val();
+    // dataForServer.activity.participant = $(".addActivity input[id=participant]").val();
+    // dataForServer.activity.user_id = userId;
+    fwmapi.addBoat(dataForServer, token, callback);
   });
   // ----- end of Create Activity processing ----- //
 
@@ -691,29 +708,16 @@ $(document).ready(function() {
     debugger;
     e.preventDefault();
 
-    $('.addParticipant').each(function(){
-    this.reset();
-    });
-
-    // var dataForServer = {
-    //   participant : {
-    //     "name":$("name").val(),
-    //     "email":$("email").val(),
-    //     "phone":$("phone").val(),
-    //     "role":$("role").val(),
-    //     "boat_id":0,
-    //     "team_id":0
-    //   }
-    // };
-
-    dataForServer.participant.name = $(".addParticipant input[id=name]").val();
-    dataForServer.participant.email = $(".addParticipant input[id=email]").val();
-
-    dataForServer.participant.phone = $(".addParticipant input[id=phone]").val();
-    dataForServer.participant.role = $(".addParticipant input[id=role]").val();
-    dataForServer.participant.boat_id = $(".addParticipant input[id=boat_id]").val();
-    dataForServer.participant.team_id = $(".addParticipant input[id=team_id]").val();
-
+    var dataForServer = {
+      participant : {
+        "name": $(".addParticipant input[id=name]").val(),
+        "email": $(".addParticipant input[id=email]").val(),
+        "phone": $(".addParticipant input[id=phone]").val(),
+        "role": $(".addParticipant input[id=role]").val(),
+        "boat_id": $(".addParticipant input[id=boat_id]").val(),
+        "team_id": $(".addParticipant input[id=team_id]").val()
+      }
+    };
 
     fwmapi.addParticipant(dataForServer, token, callback);
   });
