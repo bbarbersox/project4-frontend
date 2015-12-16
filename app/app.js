@@ -387,7 +387,7 @@ $(document).ready(function() {
     }
     fwmapi.listParticipants(token, participantsTableCB);
     $('#status').val('you successfully deleted the activity');
-    // $(event.target).parents("tr").remove();
+    $(event.target).parents("tr").remove();
   };
   // ----- end of Delete processing ----- //
 
@@ -564,37 +564,37 @@ $(document).ready(function() {
   });
   */
 
-  $("#participant-body").on("click", function(event){
+  // $("#participant-body").on("click", function(event){
+  //   debugger;
+  //   var elementId = $(event.target).data("id");
+  //   if(elementId === undefined){
+  //     return;
+  //   }
+  //   if($($(this)).hasClass('deletepart')){
+  //    //append the button
+  //    // fwmapi.deleteParticipant(elementId, token, deleteCB);
+  //     console.log('delete button was clicked');
+  //     } else {
+  //       console.log('edit button was clicked');
+  //       }
+  // });
+
+  $(document).on("click", "#delete-button", function(event){
     debugger;
     var elementId = $(event.target).data("id");
-    if(elementId === undefined){
-      return;
-    }
-    if($($(this)).hasClass('deletepart')){
-     //append the button
-     // fwmapi.deleteParticipant(elementId, token, deleteCB);
-      console.log('delete button was clicked');
-      } else {
-        console.log('edit button was clicked');
-        }
+
+    fwmapi.deleteParticipant(elementId, token, deleteCB);
+    console.log('the participant was deleted');
+
   });
 
-  $("#participant-body").on("submit", function(event){
+  $(document).on("click", "#edit-button", function(event){
     debugger;
-    var elementId = $(event.target).data("id");
-    if(elementId === undefined){
-      return;
-    }
-    if($($(this)).hasClass('deletepart')){
-     //append the button
-     // fwmapi.deleteParticipant(elementId, token, deleteCB);
-      console.log('delete button was clicked');
-      } else {
-        console.log('edit button was clicked');
-        }
+    var participantId = $(event.target).data("id");
+    console.log(participantId);
+    fwmapi.searchById(participantId, token, participantFormCB);
+    console.log('edit button was clicked & id of record to edit is ' + participantid);
   });
-
-
 
   $('#activitytest').on("click", "button", function(event){
     debugger;

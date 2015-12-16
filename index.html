@@ -243,6 +243,7 @@
 
                     <table id="Participants-table" class="table table-hover">
                         <thead>
+                            <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
@@ -315,6 +316,7 @@
                 <div id="showParticipantUpdate">
                     <form class="updateParticipant">
                         <h2 class="form-signin-heading">Update participant info below</h2>
+                        <input type="text" name="pId" class="form-control" id="particpantId" placeholder="Participants Id">
                         <input type="text" name="name" class="form-control" id="name" placeholder="Participants Name">
                         <input type="text" class="form-control" id="email" placeholder="Email">
                         <input type="text" class="form-control" id="phone" placeholder="Phone Number">
@@ -491,13 +493,14 @@
     <script id="participantsList" type="text/x-handlebars-template">
         {{#each participants}}
             <tr>
+                <td>{{id}}</td>
                 <td>{{name}}</td>
                 <td>{{email}}</td>
                 <td>{{phone}}</td>
                 <td>{{role}}</td>
                 <td>{{boat_id}}</td>
                 <td>{{team_id}}</td>
-                <td><button class="editpart tbutton btn-xs" id="edit-button" type="submit" data-id="{{id}}">Edit</button></td>
+                <td><button class="editpart tbutton btn-xs" id="edit-button" data-id="{{id}}">Edit</button></td>
                 <td><button class="deletepart tbutton btn-xs" id="delete-button" data-id="{{id}}">Delete</button></td>
             </tr>
         {{/each}}
