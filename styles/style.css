@@ -35,6 +35,14 @@
   display: none;
 }
 
+#showBoatAdd {
+  display: none;
+}
+
+#showBoatUpdate {
+  display: none;
+}
+
 #updateAcivityDiv {
   display: none;
 }

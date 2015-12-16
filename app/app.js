@@ -69,57 +69,11 @@ var fwmapi = {
     // End of logout ajax logic
   // end of validation ajax routines
 
-    listActivities: function (token, callback) {
-      this.ajax({
-        method: 'GET',
-        url: this.fwm + '/activities',
-        headers: {
-          Authorization: 'Token token=' + token
-        },
-        dataType: 'json'
-      }, callback);
-    },
-
     listParticipants: function (token, callback) {
       debugger;
       this.ajax({
         method: 'GET',
         url: this.fwm + '/participants',
-        headers: {
-          Authorization: 'Token token=' + token
-        },
-        dataType: 'json'
-      }, callback);
-    },
-
-    listOneActivity: function (id, token, callback) {
-      this.ajax({
-        method: 'GET',
-        url: this.fwm + '/activities/'+id,
-        headers: {
-          Authorization: 'Token token=' + token
-        },
-        dataType: 'json'
-      }, callback);
-    },
-
-    SearchActivityByProvider: function (provider, token, callback) {
-      debugger;
-      this.ajax({
-        method: 'GET',
-        url: this.fwm + '/activitiess/?provider=' + provider,
-        headers: {
-          Authorization: 'Token token=' + token
-        },
-        dataType: 'json'
-      }, callback);
-    },
-
-    SearchActivityByDate: function (dov, token, callback) {
-      debugger;
-      this.ajax({
-        method: 'GET',
-        url: this.fwm + '/activitiess/?dov=' + dov,
         headers: {
           Authorization: 'Token token=' + token
         },
@@ -141,6 +95,7 @@ var fwmapi = {
     },
     // END ----- Search for a single particpant by ID
 
+    // Search for a list of particpants by their role
     searchByRole: function (role, token, callback) {
       this.ajax({
         method: 'GET',
@@ -151,6 +106,7 @@ var fwmapi = {
         dataType: 'json'
       }, callback);
     },
+    // END ----- Search for list of particpants by role
 
     // Search for a single Boat ----- NEEDS TESTING
     searchByBoat: function (title, token, callback) {
@@ -209,11 +165,11 @@ var fwmapi = {
       }, callback);
     },
 
-    addActivity: function (formdata, token, callback) {
+    addBoat: function (formdata, token, callback) {
       console.log(formdata);
       this.ajax({
         method: 'POST',
-        url: this.fwm + '/activities',
+        url: this.fwm + '/boats',
         headers: {
           Authorization: 'Token token=' + token
         },
@@ -251,11 +207,11 @@ var fwmapi = {
     },
 
 
-    deleteActivity: function (id, token, callback) {
+    deleteBoat: function (id, token, callback) {
       console.log(id);
       this.ajax({
       method: 'DELETE',
-      url: this.fwm + '/activities/'+ id,
+      url: this.fwm + '/boats/'+ id,
       headers: {
           Authorization: 'Token token=' + token
         },
@@ -619,36 +575,7 @@ $(document).ready(function() {
   });
   // end of Delete Activity processing
 
-  /*
-  $("#participant-body").on("click", function(event){
-    debugger;
-    var elementId = $(event.target).data("id");
-    if(elementId === undefined){
-      return;
-    }
-    if($('a#delete-button').hasClass('deletepart')){
-     //append the button
-      fwmapi.deleteParticipant(elementId, token, deleteCB);
-      } else {
-        console.log('edit button was clicked');
-        }
-  });
-  */
 
-  // $("#participant-body").on("click", function(event){
-  //   debugger;
-  //   var elementId = $(event.target).data("id");
-  //   if(elementId === undefined){
-  //     return;
-  //   }
-  //   if($($(this)).hasClass('deletepart')){
-  //    //append the button
-  //    // fwmapi.deleteParticipant(elementId, token, deleteCB);
-  //     console.log('delete button was clicked');
-  //     } else {
-  //       console.log('edit button was clicked');
-  //       }
-  // });
 
   $(document).on("click", "#delete-button", function(event){
     var elementId = $(event.target).data("id");
@@ -714,6 +641,10 @@ $(document).ready(function() {
     $('#updateAcivityDiv').css("display", "none");
     $('#searchDiv').css("display", "block");
     $('.getact').css("display", "none");
+  });
+
+  $('#showBoatForm').on('click', function(e) {
+    $('#showBoatAdd').show();
   });
 
   // Create an Activity processing

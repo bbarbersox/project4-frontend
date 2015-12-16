@@ -165,47 +165,25 @@
 
         <ul class="nav nav-tabs">
             <li class="active"><a href="index.html"><i class="icon-dashboard"></i> <span>Dashboard</span></a></li>
-            <!--
-            <li ><a href="reports.html" ><i class="icon-bar-chart"></i> <span>Reports</span></a></li>
-            <li ><a href="components.html" ><i class="icon-cogs"></i> <span>Components</span></a></li>
-            <li ><a href="pricing.html"><i class="icon-magic"></i> <span>Pricing</span></a></li>
-            -->
              <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> Participants <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <!--
-                    <li><a href="sign-in.html"><span>Sign-in Page</span></a></li>
-                    <li><a href="sign-up.html"><span>Sign-up Page</span></a></li>
-                    <li><a href="reset-password.html"><span>Forgot Password Page</span></a></li>
-                    -->
-                    <li><button type="button" id="showActivityForm" class="btn btn-link">Create an Activity</button></li>
                     <li><button type="button" id="showParticipantForm" class="btn btn-link">Create a Participant</button></li>
                     <li><button type="button" class="listParticipants btn btn-link">Show All Participants></button></li>
-                    <li><button type="button" class="listActivities btn btn-link">Show All Activities</button></li>
                     <li><button type="button" id="showSearch" class="btn btn-link">Search for an Activity</button></li>
                     <li><button type="button" class="deleteact btn btn-link">Delete the Activity below</button></li>
-                    <!--
-                    <li><code>btn btn-link</code>
-                    -->
                     <li><button type="button" class="btn btn-link">Show Activities by Date</button></li>
-
                 </ul>
             </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> Boats <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><button type="button" class="btn btn-link">Show all Residents</button></li>
-                    <li><button type="button" class="btn btn-link">Show a Resident</button></li>
+                    <li><button type="button" id="showBoatForm" class="btn btn-link">Create a Boat</button></li>
+                    <li><button type="button" class="listBoats btn btn-link">Show all Boats</button></li>
+                    <li><button type="button" class="btn btn-link">Show a Boat crew</button></li>
+                    <li><button type="button" class="btn btn-link">Modify a Boat's crew</button></li>
                 </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> Settings <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="sign-in.html"><span>Sign-in Page</span></a></li>
-                    <li><a href="sign-up.html"><span>Sign-up Page</span></a></li>
-                    <li><a href="reset-password.html"><span>Forgot Password Page</span></a></li>
-                </ul>
-            </li>
+            </li
         </ul>
     </div>
 
@@ -261,7 +239,9 @@
 
                   </li>
                   <li class="more">
-                    <button type="button" class="listParticipants btn btn-link">Show All</button>
+                    <button type="button" class="listParticipants btn btn-link">Show All Partipants</button>
+                    <button type="button" class="listBoats btn btn-link">Show All Boats</button>
+                    <button type="button" class="listTeams btn btn-link">Show All Teams</button>
                     <!-- <a href="#">Show All</a> -->
                   </li>
                 </ul>
@@ -329,34 +309,41 @@
                 <!-- end ofupdate Participant div-->
 
 
-
-                <!-- Update Acitvity Div
-                <div id="updateAcivityDiv">
-                  <form class="updateActivity">
-                    <h2 class="form-signin-heading">Update info and hit update</h2>
-
-                    <input type="text" name="id" class="form-control" id="activityId" placeholder="Participant Id">
-                    <input type="text" name="name" class="form-control" id="upName" placeholder="Activity Name">
-                    <input type="text" name="provider" class="form-control" id="upProvider" placeholder="Activity Service Provider">
-                    <input type="text" name="prono" class="form-control" id="upProno" placeholder="Street Number">
-                    <input type="text" name="prostreet" class="form-control" id="upProstreet"  placeholder="Street Name">
-                    <input type="text" name="procity" class="form-control" id="upProcity" placeholder="City">
-                    <input type="text" name="prostate" class="form-control" id="upProstate" placeholder="State">
-                    <input type="text" name="zip" class="form-control" id="upZip" placeholder="Zip code">
-                    <input type="text" name="dov" class="form-control" id="upDov" placeholder="Date of activity">
-                    <input type="text" name="tov" class="form-control" id="upTov" placeholder="Time of Activity">
-                    <input type="text" name="length" class="form-control" id="upLength" placeholder="Length of Activity">
-                    <input type="text" name="participant" class="form-control" id="upParticipant" placeholder="Participant">
-
-
-                    <button class="getact btn btn-lg btn-primary btn-block" name="getActivityForUpdate" type="click">Show a single activity</button>
-
-                    <button type="click" class="getact btn btn-lg btn-primary btn-block">Update activity</button>
-
-                    <button type="submit" class="updateact btn btn-lg btn-primary btn-block">Update activity</button>
-                  </form>
+                <!-- Create Boat Div -->
+                <div id="showBoatAdd">
+                    <form class="addBoat">
+                        <h2 class="form-signin-heading">Enter new Boat info below</h2>
+                        <input type="text" name="title" class="form-control" id="title" placeholder="Boats Title">
+                        <input type="text" class="form-control" id="description" placeholder="Description">
+                        <input type="text" class="form-control" id="avatar" placeholder="Picture">
+                        <input type="text" class="form-control" id="capacity"  placeholder="Capacity">
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">Add a Boat</button>
+                    </form>
                 </div>
-                 end of updateActivityDiv for activity creation-->
+                <!-- end of create Boat div-->
+
+                <!-- Update Boat Div -->
+                <div id="showBoatUpdate">
+                    <form class="updateBoat">
+                        <h2 class="form-signin-heading">Update boat info below</h2>
+                        <input type="text" name="id" class="form-control" id="boatId" placeholder="Boats Id">
+                        <input type="text" name="name" class="form-control" id="title" placeholder="Boats Title">
+                        <input type="text" class="form-control" id="description" placeholder="Description">
+                        <input type="text" class="form-control" id="avatar" placeholder="Picture of Boat">
+                        <input type="text" class="form-control" id="capacity" placeholder="Capacity">
+                        <input type="text" class="form-control" id="particpant_id" placeholder="Add a Participant">
+                        <button type="submit" id="update-boat-button" class="btn btn-lg btn-primary btn-block">Update boat</button>
+                    </form>
+                </div>
+                <!-- end ofupdate Participant div-->
+
+
+
+
+
+
+
+
 
                 <div id="searchDiv">
                     <input id="participantid" type="text" size="4" placeholder="Search by ID">
