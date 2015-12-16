@@ -254,7 +254,6 @@
                         </thead>
                         <tbody id="participant-body">
 
-                            <!-- </div> -->
                         </tbody>
                     </table>
                 </div>
@@ -308,19 +307,33 @@
                     <input type="text" class="form-control" id="boat_id" placeholder="Boat_id">
                     <input type="text" class="form-control" id="team_id" placeholder="Team_id">
                     <button type="submit" class="btn btn-lg btn-primary btn-block">Add new participant</button>
+                    </form>
                 </div>
                 <!-- end of create Participant div-->
 
-
+                <!-- Update Participant Div -->
+                <div id="showParticipantUpdate">
+                    <form class="updateParticipant">
+                        <h2 class="form-signin-heading">Update participant info below</h2>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Participants Name">
+                        <input type="text" class="form-control" id="email" placeholder="Email">
+                        <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+                        <input type="text" class="form-control" id="role"  placeholder="Role">
+                        <input type="text" class="form-control" id="boat_id" placeholder="Boat_id">
+                        <input type="text" class="form-control" id="team_id" placeholder="Team_id">
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">Update participant</button>
+                    </form>
+                </div>
+                <!-- end ofupdate Participant div-->
 
 
 
                 <!-- Update Acitvity Div -->
                 <div id="updateAcivityDiv">
                   <form class="updateActivity">
-                    <h2 class="form-signin-heading">Find an Activity, make your changes and hit update</h2>
+                    <h2 class="form-signin-heading">Update info and hit update</h2>
 
-                    <input type="text" name="id" class="form-control" id="activityId" placeholder="Activity Id">
+                    <input type="text" name="id" class="form-control" id="participantId" placeholder="Participant Id">
                     <input type="text" name="name" class="form-control" id="upName" placeholder="Activity Name">
                     <input type="text" name="provider" class="form-control" id="upProvider" placeholder="Activity Service Provider">
                     <input type="text" name="prono" class="form-control" id="upProno" placeholder="Street Number">
@@ -345,11 +358,11 @@
 
                 <div id="searchDiv">
                     <input id="actid" type="text" size="4" placeholder="Search by ID">
-                    <input id="providerid" type="text" size="4" placeholder="Search by Provider">
-                    <input id="dateid" type="text" size="4" placeholder="Search by Date">
+                    <input id="boatid" type="text" size="4" placeholder="Search by Boat">
+                    <input id="teamid" type="text" size="4" placeholder="Search by Team">
                     <button type="button" id="searchById" class="btn btn-link">Search By Id</button>
-                    <button type="button" id="searchByProvider" class="btn btn-link">Search By Provider</button>
-                    <button type="button" id="searchByDate" class="btn btn-link">Search By Date of Activity</button>
+                    <button type="button" id="searchByBoat" class="btn btn-link">Search By Boat</button>
+                    <button type="button" id="searchByTeam" class="btn btn-link">Search By Team</button>
                 </div>
               </div>
             </div>
@@ -401,8 +414,8 @@
 
         <footer>
             <hr>
-            <p class="pull-right">Design by <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
-            <p>&copy; 2013 <a href="#">Your Company</a></p>
+            <p class="pull-right">Design by Barber, Inc<a href="http://www.portnine.com" target="_blank">Portnine</a></p>
+            <p>&copy; 2013 <a href="#">Coastal Computer Services</a></p>
         </footer>
 
       </div>
@@ -474,42 +487,22 @@
     </form>
   </div>    <!-- end of activityFormDiv for activity creation-->
 
-
-  <!--
-  <div id="propertyFormDiv">
-    <form class="addProperty">
-      <h2 class="form-signin-heading">Enter new property info below</h2>
-      <input type="text" class="form-control" id="no" placeholder="Street Number">
-      <input type="text" class="form-control" id="street"  placeholder="Street">
-      <input type="text" class="form-control" id="city" placeholder="City">
-      <input type="text" class="form-control" id="state" placeholder="State">
-      <input type="text" class="form-control" id="zip" placeholder="Zip code">
-      <input type="text" class="form-control" id="house_mgmt_co" placeholder="Property Mgmt Company">
-      <input type="text" class="form-control" id="manager" placeholder="House Manager">
-      <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
-      <button class="getprop btn btn-lg btn-primary btn-block" name="getProperty" type="click">Show a single property</button>
-      <input id="propid" type="text" size="4" placeholder="Id">
-      <button class="updateprop btn btn-lg btn-primary btn-block" type="click">Update a property</button>
-      <button class="deleteprop btn btn-lg btn-primary btn-block" type="submit">Delete this property</button>
-    </form>
-  </div>
-    -->
-
+    <!-- Handlebars script for rendering my participant info to the screen -->
     <script id="participantsList" type="text/x-handlebars-template">
         {{#each participants}}
             <tr>
-              <td>{{name}}</td>
-              <td>{{email}}</td>
-              <td>{{phone}}</td>
-              <td>{{role}}</td>
-              <td>{{boat_id}}</td>
-              <td>{{team_id}}</td>
-              <td><button class="deletepart tbutton" data-id="{{id}}">Delete</button></td>
-              <td><button class="editpart tbutton" data-id="{{id}}">Edit</button></td
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>{{phone}}</td>
+                <td>{{role}}</td>
+                <td>{{boat_id}}</td>
+                <td>{{team_id}}</td>
+                <td><button class="editpart tbutton btn-xs" id="edit-button" type="submit" data-id="{{id}}">Edit</button></td>
+                <td><button class="deletepart tbutton btn-xs" id="delete-button" data-id="{{id}}">Delete</button></td>
             </tr>
-        <{{/each}}>
+        {{/each}}
     </script>
-
+    <!-- END  Handlebars script participant info to the screen -->
 
   <script src="app/bootstrap.js"></script>
     <!-- END Local Scripts -->

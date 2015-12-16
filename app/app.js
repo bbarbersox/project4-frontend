@@ -107,7 +107,7 @@ var fwmapi = {
       debugger;
       this.ajax({
         method: 'GET',
-        url: this.fwm + '/activities/?provider=' + provider,
+        url: this.fwm + '/activitiess/?provider=' + provider,
         headers: {
           Authorization: 'Token token=' + token
         },
@@ -119,13 +119,55 @@ var fwmapi = {
       debugger;
       this.ajax({
         method: 'GET',
-        url: this.fwm + '/activities/?dov=' + dov,
+        url: this.fwm + '/activitiess/?dov=' + dov,
         headers: {
           Authorization: 'Token token=' + token
         },
         dataType: 'json'
       }, callback);
     },
+
+
+    // Search for a single particpant by ID ----- NEEDS TESTING
+    searchById: function (id, token, callback) {
+      this.ajax({
+        method: 'GET',
+        url: this.fwm + '/participants/'+ id,
+        headers: {
+          Authorization: 'Token token=' + token
+        },
+        dataType: 'json'
+      }, callback);
+    },
+    // END ----- Search for a single particpant by ID ----- NEEDS TESTING
+
+    // Search for a single Boat ----- NEEDS TESTING
+    searchByBoat: function (title, token, callback) {
+      debugger;
+      this.ajax({
+        method: 'GET',
+        url: this.fwm + '/boats/?title=' + title,
+        headers: {
+          Authorization: 'Token token=' + token
+        },
+        dataType: 'json'
+      }, callback);
+    },
+    // END --- search for a single boat
+
+    // Search participants by Team ---- NEEDS TESTING
+    searchByTeam: function (team_name, token, callback) {
+      debugger;
+      this.ajax({
+        method: 'GET',
+        url: this.fwm + '/teams/?team_name=' + team_name,
+        headers: {
+          Authorization: 'Token token=' + token
+        },
+        dataType: 'json'
+      }, callback);
+    },
+    // END --- Search participants by Team
 
     updateActivity: function (id, data, token, callback) {
      this.ajax({
@@ -320,6 +362,21 @@ $(document).ready(function() {
   };
   // END --- populate a single record of activity data
 
+  // populate data from an single participant query into a form
+  var participantFormCB = function callback(error, data) {
+    debugger;
+    if (error) {
+      console.error(error);
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+    $('#result').val(JSON.stringify(data, null, 4));
+    console.log(data);
+    $('form').loadJSON(data);
+    $('#showParticipantUpdate').css("display", "block");
+  };
+  // END --- show a single participants info
+
   // Delete Activity Callback
   var deleteCB = function callback(error, data) {
     debugger;
@@ -387,24 +444,39 @@ $(document).ready(function() {
     e.preventDefault();
     console.log('got to list one activity function', token);
     // var id = $(".listOneActivity input[id=act-id]").val();
-    var id = $(".updateActivity input[id=actid]").val();
+    var id = $("#searchDiv input[id=actid]").val();
     actId = id;
     console.log("acitivty id is: " + id);
-    fwmapi.listOneActivity(id, token, actFormCB);
+    fwmapi.searchById(id, token, actFormCB);
   });
   // ----- end of Show Single Activity processing ----- //
 
+  /* Show Single Particpant ---
+  $('.searchById').on('click', function(e) {
+    debugger;
+    e.preventDefault();
+    console.log('got to list one participant function', token);
+    // var id = $(".listOneActivity input[id=act-id]").val();
+    var id = $(".updateActivity input[id=actid]").val();
+    actId = id;
+    console.log("participant id is: " + id);
+    fwmapi.listOneActivity(id, token, actFormCB);
+  }); */
+  // ----- end of Show Single Participant processing ----- //
+
   // Show Single Activity processing
+  /*
   $('#searchById').on('click', function(e) {
     debugger;
     e.preventDefault();
-    console.log('got to list one activity function', token);
+    console.log('got to list one participant function', token);
     // var id = $(".listOneActivity input[id=act-id]").val();
     var id = $("#searchDiv input[id=actid]").val();
     actId = id;
     console.log("acitivty id is: " + id);
     fwmapi.listOneActivity(id, token, actFormCB);
   });
+*/
   // ----- end of Show Single Activity processing ----- //
 
   // Show Single Activity processing
@@ -419,7 +491,43 @@ $(document).ready(function() {
   });
   // ----- end of Show Single Activity processing ----- //
 
-   // Search for activities by Date
+  // Show Single Particpant
+  $('#searchById').on('click', function(e) {
+    debugger;
+    e.preventDefault();
+    console.log('got to list one participant function', token);
+    // var id = $(".listOneActivity input[id=act-id]").val();
+    var id = $("#searchDiv input[id=actid]").val();
+    // actId = id;
+    console.log("participant id is: " + id);
+    fwmapi.searchById(id, token, participantFormCB);
+  });
+  // ----- end of Show Single Participant processing ----- //
+
+  // Show Single Boat processing ------ NEDDS TESTING
+  $('#searchByBoat').on('click', function(e) {
+    debugger;
+    e.preventDefault();
+    console.log('got to list one boat function', token);
+    // var id = $(".listOneActivity input[id=act-id]").val();
+    var boatName = $("#searchDiv input[id=boatid]").val();
+    console.log("The boat name is: " + boat);
+    fwmapi.searchByBoat(boatName, token, allActivityCB);
+  });
+  // ----- end of Show Single Boat processing ----- //
+
+  // Search for participants by Team ------ NEDDS TESTING
+  $('#searchByTeam').on('click', function(e) {
+    debugger;
+    e.preventDefault();
+    console.log('got to search by team_name', token);
+    var team_name = $("#searchDiv input[id=teamid]").val();
+    console.log("The teams name is: " + team_name);
+    fwmapi.searchByTeam(team_name, token, allActivityCB);
+  });
+  // ----- end of Search for participants by Teams  ----- //
+
+  // Search for activities by Date
   $('#searchByDate').on('click', function(e) {
     debugger;
     e.preventDefault();
@@ -434,14 +542,27 @@ $(document).ready(function() {
   // Delete An Activity processing
   $('.deleteact').on('click', function(e){
     e.preventDefault();
-    // debugger;
     console.log('got to delete Acivity');
-    // var actId = $(".addActivity input[id=actid]").val();
     console.log("acitivty id is: " + actId);
     fwmapi.deleteActivity(actId, token, deleteCB);
   });
   // end of Delete Activity processing
 
+  /*
+  $("#participant-body").on("click", function(event){
+    debugger;
+    var elementId = $(event.target).data("id");
+    if(elementId === undefined){
+      return;
+    }
+    if($('a#delete-button').hasClass('deletepart')){
+     //append the button
+      fwmapi.deleteParticipant(elementId, token, deleteCB);
+      } else {
+        console.log('edit button was clicked');
+        }
+  });
+  */
 
   $("#participant-body").on("click", function(event){
     debugger;
@@ -449,9 +570,29 @@ $(document).ready(function() {
     if(elementId === undefined){
       return;
     }
-    fwmapi.deleteParticipant(elementId, token, deleteCB);
-   });
+    if($($(this)).hasClass('deletepart')){
+     //append the button
+     // fwmapi.deleteParticipant(elementId, token, deleteCB);
+      console.log('delete button was clicked');
+      } else {
+        console.log('edit button was clicked');
+        }
+  });
 
+  $("#participant-body").on("submit", function(event){
+    debugger;
+    var elementId = $(event.target).data("id");
+    if(elementId === undefined){
+      return;
+    }
+    if($($(this)).hasClass('deletepart')){
+     //append the button
+     // fwmapi.deleteParticipant(elementId, token, deleteCB);
+      console.log('delete button was clicked');
+      } else {
+        console.log('edit button was clicked');
+        }
+  });
 
 
 
@@ -555,7 +696,7 @@ $(document).ready(function() {
     e.preventDefault();
     var dataForServer = {
       participant : {
-        "name":$('#name').val(),
+        "name":$("name").val(),
         "email":$("email").val(),
         "phone":$("phone").val(),
         "role":$("role").val(),
@@ -564,7 +705,7 @@ $(document).ready(function() {
       }
     };
 
-    dataForServer.participant["name"] = $(".addParticipant input[id=name]").val();
+    dataForServer.participant.name = $(".addParticipant input[id=name]").val();
     dataForServer.participant.email = $(".addParticipant input[id=email]").val();
 
     dataForServer.participant.phone = $(".addParticipant input[id=phone]").val();

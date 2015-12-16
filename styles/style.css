@@ -27,6 +27,10 @@
   display: none;
 }
 
+#showParticipantUpdate {
+  display: none;
+}
+
 #showParticipants {
   display: none;
 }
