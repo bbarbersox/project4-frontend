@@ -316,26 +316,26 @@
                 <div id="showParticipantUpdate">
                     <form class="updateParticipant">
                         <h2 class="form-signin-heading">Update participant info below</h2>
-                        <input type="text" name="pId" class="form-control" id="particpantId" placeholder="Participants Id">
+                        <input type="text" name="id" class="form-control" id="participantId" placeholder="Participants Id">
                         <input type="text" name="name" class="form-control" id="name" placeholder="Participants Name">
                         <input type="text" class="form-control" id="email" placeholder="Email">
                         <input type="text" class="form-control" id="phone" placeholder="Phone Number">
-                        <input type="text" class="form-control" id="role"  placeholder="Role">
+                        <input type="text" class="form-control" id="role" placeholder="Role">
                         <input type="text" class="form-control" id="boat_id" placeholder="Boat_id">
                         <input type="text" class="form-control" id="team_id" placeholder="Team_id">
-                        <button type="submit" class="btn btn-lg btn-primary btn-block">Update participant</button>
+                        <button type="submit" id="update-participant-button" class="btn btn-lg btn-primary btn-block">Update participant</button>
                     </form>
                 </div>
                 <!-- end ofupdate Participant div-->
 
 
 
-                <!-- Update Acitvity Div -->
+                <!-- Update Acitvity Div
                 <div id="updateAcivityDiv">
                   <form class="updateActivity">
                     <h2 class="form-signin-heading">Update info and hit update</h2>
 
-                    <input type="text" name="id" class="form-control" id="participantId" placeholder="Participant Id">
+                    <input type="text" name="id" class="form-control" id="activityId" placeholder="Participant Id">
                     <input type="text" name="name" class="form-control" id="upName" placeholder="Activity Name">
                     <input type="text" name="provider" class="form-control" id="upProvider" placeholder="Activity Service Provider">
                     <input type="text" name="prono" class="form-control" id="upProno" placeholder="Street Number">
@@ -350,13 +350,13 @@
 
 
                     <button class="getact btn btn-lg btn-primary btn-block" name="getActivityForUpdate" type="click">Show a single activity</button>
-                    <!--
+
                     <button type="click" class="getact btn btn-lg btn-primary btn-block">Update activity</button>
-                    -->
+
                     <button type="submit" class="updateact btn btn-lg btn-primary btn-block">Update activity</button>
                   </form>
                 </div>
-                <!-- end of updateActivityDiv for activity creation-->
+                 end of updateActivityDiv for activity creation-->
 
                 <div id="searchDiv">
                     <input id="actid" type="text" size="4" placeholder="Search by ID">
@@ -461,12 +461,6 @@
 
     <!--  Local Scripts -->
     <script src="app/handlebars_module.js" type = "application/javascript"></script>
-
-
-    <form id='myForm'>
-    <input type="button" name="first_btn" id="first_btn">
-    <input type="button" name="second_btn" id="second_btn">
-    </form>
 
   <div id="activityFormDiv">
     <!-- <form class="addActivity">  -->
