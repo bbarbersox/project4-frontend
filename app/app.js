@@ -128,7 +128,7 @@ var fwmapi = {
     },
 
 
-    // Search for a single particpant by ID ----- NEEDS TESTING
+    // Search for a single particpant by ID
     searchById: function (id, token, callback) {
       this.ajax({
         method: 'GET',
@@ -139,7 +139,18 @@ var fwmapi = {
         dataType: 'json'
       }, callback);
     },
-    // END ----- Search for a single particpant by ID ----- NEEDS TESTING
+    // END ----- Search for a single particpant by ID
+
+    searchByRole: function (role, token, callback) {
+      this.ajax({
+        method: 'GET',
+        url: this.fwm + '/participants/?role=' + role,
+        headers: {
+          Authorization: 'Token token=' + token
+        },
+        dataType: 'json'
+      }, callback);
+    },
 
     // Search for a single Boat ----- NEEDS TESTING
     searchByBoat: function (title, token, callback) {
@@ -285,12 +296,7 @@ $(document).ready(function() {
 
     fwmapi.listParticipants(token, participantsTableCB);
 
-    $( '.addParticipant' ).each(function(){
-    this.reset();
-    });
-
-
-    $( '.updateParticipant' ).each(function(){
+    $('.updateParticipant').each(function(){
     this.reset();
     });
 
@@ -525,12 +531,25 @@ $(document).ready(function() {
     e.preventDefault();
     console.log('got to list one participant function', token);
     // var id = $(".listOneActivity input[id=act-id]").val();
-    var id = $("#searchDiv input[id=actid]").val();
+    var id = $("#searchDiv input[id=participantid]").val();
     // actId = id;
     console.log("participant id is: " + id);
     fwmapi.searchById(id, token, participantFormCB);
   });
   // ----- end of Show Single Participant processing ----- //
+
+  // Show Particpants by role
+  $('#searchByRole').on('click', function(e) {
+    debugger;
+    e.preventDefault();
+    console.log('got to search participant by role function', token);
+    // var id = $(".listOneActivity input[id=act-id]").val();
+    var role = $("#searchDiv input[id=role]").val();
+    // actId = id;
+    console.log("participant search role is: " + role);
+    fwmapi.searchByRole(role, token, participantsTableCB);
+  });
+  // ----- end of Show Participant by role processing ----- //
 
   // Show Single Boat processing ------ NEDDS TESTING
   $('#searchByBoat').on('click', function(e) {
@@ -740,16 +759,21 @@ $(document).ready(function() {
   $('.addParticipant').on('submit', function(e) {
     debugger;
     e.preventDefault();
-    var dataForServer = {
-      participant : {
-        "name":$("name").val(),
-        "email":$("email").val(),
-        "phone":$("phone").val(),
-        "role":$("role").val(),
-        "boat_id":0,
-        "team_id":0
-      }
-    };
+
+    $('.addParticipant').each(function(){
+    this.reset();
+    });
+
+    // var dataForServer = {
+    //   participant : {
+    //     "name":$("name").val(),
+    //     "email":$("email").val(),
+    //     "phone":$("phone").val(),
+    //     "role":$("role").val(),
+    //     "boat_id":0,
+    //     "team_id":0
+    //   }
+    // };
 
     dataForServer.participant.name = $(".addParticipant input[id=name]").val();
     dataForServer.participant.email = $(".addParticipant input[id=email]").val();

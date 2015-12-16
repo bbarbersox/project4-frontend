@@ -20,10 +20,10 @@
 
     <div class="row-fluid">
     <div class="dialog">
-        <p class="brand" href="index.html">Fishin' with a Mission</p>
+        <p class="brand" href="index.html"></p>
         <div class="block">
             <div id="loginDiv" class="block-header">
-                <h2>Sign In</h2>
+                <h2>Fishin' with a Mission</h2>
             </div>
             <form class='login'>
                 <label>Username</label>
@@ -299,15 +299,15 @@
 
                 <!-- Create Participant Div -->
                 <div id="participantFormDiv">
-                  <form class="addParticipant">
-                    <h2 class="form-signin-heading">Enter new participant info below</h2>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Participants Name">
-                    <input type="text" class="form-control" id="email" placeholder="Email">
-                    <input type="text" class="form-control" id="phone" placeholder="Phone Number">
-                    <input type="text" class="form-control" id="role"  placeholder="Role">
-                    <input type="text" class="form-control" id="boat_id" placeholder="Boat_id">
-                    <input type="text" class="form-control" id="team_id" placeholder="Team_id">
-                    <button type="submit" class="btn btn-lg btn-primary btn-block">Add new participant</button>
+                    <form class="addParticipant">
+                        <h2 class="form-signin-heading">Enter new participant info below</h2>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Participants Name">
+                        <input type="text" class="form-control" id="email" placeholder="Email">
+                        <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+                        <input type="text" class="form-control" id="role"  placeholder="Role">
+                        <input type="text" class="form-control" id="boat_id" placeholder="Boat_id">
+                        <input type="text" class="form-control" id="team_id" placeholder="Team_id">
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">Add new participant</button>
                     </form>
                 </div>
                 <!-- end of create Participant div-->
@@ -359,10 +359,12 @@
                  end of updateActivityDiv for activity creation-->
 
                 <div id="searchDiv">
-                    <input id="actid" type="text" size="4" placeholder="Search by ID">
+                    <input id="participantid" type="text" size="4" placeholder="Search by ID">
+                    <input id="role" type="text" size="4" placeholder="Search by ID">
                     <input id="boatid" type="text" size="4" placeholder="Search by Boat">
                     <input id="teamid" type="text" size="4" placeholder="Search by Team">
                     <button type="button" id="searchById" class="btn btn-link">Search By Id</button>
+                    <button type="button" id="searchByRole" class="btn btn-link">Search By Role</button>
                     <button type="button" id="searchByBoat" class="btn btn-link">Search By Boat</button>
                     <button type="button" id="searchByTeam" class="btn btn-link">Search By Team</button>
                 </div>
