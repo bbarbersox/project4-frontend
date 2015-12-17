@@ -329,7 +329,8 @@ $(document).ready(function() {
     var participantsTemplate = Handlebars.compile($('#participantsList').html());
     var newHTML = participantsTemplate(data);
     $("#participant-body").html(newHTML);
-    $('#showParticipants').css("display", "block");
+    $('#showParticipants').show();
+    $('#showBoats').hide();
   };
    // END --- allParticipantCB
 
@@ -345,6 +346,7 @@ $(document).ready(function() {
     var boatsTemplate = Handlebars.compile($('#boatsList').html());
     var newHTML = boatsTemplate(data);
     $("#boat-body").html(newHTML);
+    $('#showParticipants').hide();
     $('#showBoats').show();
   };
    // END --- allParticipantCB
@@ -465,16 +467,15 @@ $(document).ready(function() {
   // ----- end of Login processing ----- //
 
   // Show All Activities processing
-  $('.listActivities').on('click', function(e) {
+  $('.listBoats').on('click', function(e) {
     e.preventDefault();
-    fwmapi.listActivities(token, allActivityCB);
+    fwmapi.listBoats(token, boatsTableCB);
   });
   // ----- end of Show All Activities processing ----- //
 
   // Show All Activities processing
   $('.listParticipants').on('click', function(e)
     {
-      debugger;
     e.preventDefault();
     fwmapi.listParticipants(token, participantsTableCB);
   });
