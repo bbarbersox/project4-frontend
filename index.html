@@ -218,7 +218,6 @@
                   <li>
                 -->
                 <div id="showParticipants">
-
                     <table id="Participants-table" class="table table-hover">
                         <thead>
                             <th>ID</th>
@@ -232,6 +231,24 @@
                             <th>delete</th>
                         </thead>
                         <tbody id="participant-body">
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="showBoats">
+                    <table id="Boats-table" class="table table-hover">
+                        <thead>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Picture</th>
+                            <th>Capacity</th>
+                            <th>Open Seats</th>
+                            <th>edit</th>
+                            <th>delete</th>
+                        </thead>
+                        <tbody id="boat-body">
 
                         </tbody>
                     </table>
@@ -336,13 +353,6 @@
                     </form>
                 </div>
                 <!-- end ofupdate Participant div-->
-
-
-
-
-
-
-
 
 
                 <div id="searchDiv">
@@ -485,6 +495,23 @@
                 <td>{{team_id}}</td>
                 <td><button class="editpart tbutton btn-xs" id="edit-button" data-id="{{id}}">Edit</button></td>
                 <td><button class="deletepart tbutton btn-xs" id="delete-button" data-id="{{id}}">Delete</button></td>
+            </tr>
+        {{/each}}
+    </script>
+    <!-- END  Handlebars script participant info to the screen -->
+
+    <!-- Handlebars script for rendering my participant info to the screen -->
+    <script id="boatsList" type="text/x-handlebars-template">
+        {{#each boats}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{title}}</td>
+                <td>{{description}}</td>
+                <td>{{avatar}}</td>
+                <td>{{capacity}}</td>
+                <td>{{open_seats}}</td>
+                <td><button class="editpart tbutton btn-xs" id="edit-boat-button" data-id="{{id}}">Edit</button></td>
+                <td><button class="deletepart tbutton btn-xs" id="delete-boat-button" data-id="{{id}}">Delete</button></td>
             </tr>
         {{/each}}
     </script>

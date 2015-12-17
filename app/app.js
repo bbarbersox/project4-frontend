@@ -166,6 +166,7 @@ var fwmapi = {
     },
 
     addBoat: function (formdata, token, callback) {
+      debugger;
       console.log(formdata);
       this.ajax({
         method: 'POST',
@@ -200,6 +201,18 @@ var fwmapi = {
       method: 'DELETE',
       url: this.fwm + '/participants/'+ id,
       headers: {
+          Authorization: 'Token token=' + token
+        },
+        dataType: 'json'
+      }, callback);
+    },
+
+    listBoats: function (token, callback) {
+      debugger;
+      this.ajax({
+        method: 'GET',
+        url: this.fwm + '/boats',
+        headers: {
           Authorization: 'Token token=' + token
         },
         dataType: 'json'
@@ -320,6 +333,21 @@ $(document).ready(function() {
   };
    // END --- allParticipantCB
 
+   var boatsTableCB = function callback(error, data) {
+    if (error) {
+      console.error(error);
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+    $('#result').val(JSON.stringify(data, null, 4));
+    console.log('got to Handlebars to boats table function');
+    console.log(data);
+    var boatsTemplate = Handlebars.compile($('#boatsList').html());
+    var newHTML = boatsTemplate(data);
+    $("#boat-body").html(newHTML);
+    $('#showBoats').show();
+  };
+   // END --- allParticipantCB
 
   /////////
   var formCB = function callback(error, data) {
@@ -372,24 +400,23 @@ $(document).ready(function() {
   // END --- show a single participants info
 
   var addBoatCB = function callback(error, data) {
+    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
       return;
     }
-
     $('#result').val(JSON.stringify(data, null, 4));
     console.log(data);
 
-    // fwmapi.listBoats(token, boatsTableCB);
+    fwmapi.listBoats(token, boatsTableCB);
 
     $('.addBoat').each(function(){
     this.reset();
     });
 
     $('#showBoatAdd').hide();
-    // $('#showBoatTable').show();
-
+    // $('#showBoats').show();
   };
 
   // Delete Activity Callback
@@ -672,9 +699,10 @@ $(document).ready(function() {
     $('#showBoatAdd').show();
   });
 
-  // Create an Activity processing
+  // Create a Boat processing
   $('.addBoat').on('submit', function(e) {
-    // e.preventDefault();
+    e.preventDefault();
+    debugger;
     var dataForServer = {
       boat : {
         "title": $(".addBoat input[id=title]").val(),
@@ -684,23 +712,9 @@ $(document).ready(function() {
         "open_seats":$(".addBoat input[id=capacity]").val()
       }
     };
-
-    // dataForServer.boat["name"] = $(".addBoat input[id=title]").val();
-    // dataForServer.activity.provider = $(".addActivity input[id=provider]").val();
-
-    // dataForServer.activity.prono = $(".addActivity input[id=proNo]").val();
-    // dataForServer.activity.prostreet = $(".addActivity input[id=prostreet]").val();
-    // dataForServer.activity.procity = $(".addActivity input[id=procity]").val();
-    // dataForServer.activity.prostate = $(".addActivity input[id=prostate]").val();
-    // dataForServer.activity.zip = $(".addActivity input[id=azip]").val();
-    // dataForServer.activity.dov = $(".addActivity input[id=dov]").val();
-    // dataForServer.activity.tov = $(".addActivity input[id=tov]").val();
-    // dataForServer.activity["length"] = $(".addActivity input[id=length]").val();
-    // dataForServer.activity.participant = $(".addActivity input[id=participant]").val();
-    // dataForServer.activity.user_id = userId;
-    fwmapi.addBoat(dataForServer, token, callback);
+    fwmapi.addBoat(dataForServer, token, addBoatCB);
   });
-  // ----- end of Create Activity processing ----- //
+  // ----- END of Create Boat processing ----- //
 
 
   // Create an Participant processing
