@@ -35,6 +35,10 @@
   display: none;
 }
 
+#showBoats {
+  display: none;
+}
+
 #showBoatAdd {
   display: none;
 }

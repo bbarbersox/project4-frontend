@@ -302,8 +302,26 @@
                         <input type="text" class="form-control" id="email" placeholder="Email">
                         <input type="text" class="form-control" id="phone" placeholder="Phone Number">
                         <input type="text" class="form-control" id="role"  placeholder="Role">
-                        <input type="text" class="form-control" id="boat_id" placeholder="Boat_id">
-                        <input type="text" class="form-control" id="team_id" placeholder="Team_id">
+                        <!-- <input type="text" class="form-control" id="boat_id" placeholder="Boat_id"> -->
+                        <div id="chooseBoatDiv" class="control-group">
+                            <!-- Select Basic -->
+                            <label class="control-label">Choose a boat</label>
+                            <div class="controls">
+                                <select id="chooseBoat" class="input-xlarge">
+                                <option> Choose a Boat </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="chooseTeamDiv" class="control-group">
+                            <!-- Select Basic -->
+                            <label class="control-label">Choose a team</label>
+                            <div class="controls">
+                                <select id="chooseTeam" class="input-xlarge">
+                                    <option> Choose a Team </option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- <input type="text" class="form-control" id="team_id" placeholder="Team_id"> -->
                         <button type="submit" class="btn btn-lg btn-primary btn-block">Add new participant</button>
                     </form>
                 </div>
@@ -318,8 +336,8 @@
                         <input type="text" class="form-control" id="email" placeholder="Email">
                         <input type="text" class="form-control" id="phone" placeholder="Phone Number">
                         <input type="text" class="form-control" id="role" placeholder="Role">
-                        <input type="text" class="form-control" id="boat_id" placeholder="Boat_id">
-                        <input type="text" class="form-control" id="team_id" placeholder="Team_id">
+                        <input type="text" class="form-control" id="boat_title" placeholder="Boat_title">
+                        <input type="text" class="form-control" id="team_name" placeholder="Team_name">
                         <button type="submit" id="update-participant-button" class="btn btn-lg btn-primary btn-block">Update participant</button>
                     </form>
                 </div>
@@ -364,6 +382,16 @@
                     <button type="button" id="searchByRole" class="btn btn-link">Search By Role</button>
                     <button type="button" id="searchByBoat" class="btn btn-link">Search By Boat</button>
                     <button type="button" id="searchByTeam" class="btn btn-link">Search By Team</button>
+                    <div id="chooseBoatDiv" class="control-group">
+
+                      <!-- Select Basic -->
+                        <label class="control-label"></label>
+                        <div class="controls">
+                            <select id="chooseBoat" class="input-xlarge">
+
+                            </select>
+                        </div>
+                    </div>
                 </div>
               </div>
             </div>
