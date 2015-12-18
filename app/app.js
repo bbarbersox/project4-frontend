@@ -50,9 +50,6 @@ var fwmapi = {
       }, callback);
       $('#loginDiv').css("display", "none");
       $('#dashboard').css("display", "block");
-      $('.listOneActivity').css("display", "block");
-      $('.listActivities').css("display", "block");
-      $('#activityFormDiv').css("display", "none");
     },
     // End of login ajax logic
 
@@ -335,30 +332,13 @@ $(document).ready(function() {
     // fwmapi.listActivities(token, allActivityCB);
     $('#status').val('you successfully logged in');
     $('.login').css("display", "none");
-    $('#activityFormDiv').css("display", "none");
-    $('#putActivitiesList').css("display", "block");
     fwmapi.listBoats(token, boatSelectCB);
     fwmapi.listTeams(token, teamSelectCB);
+    fwmapi.listTeams(token, teamsTableCB);
+    fwmapi.listParticipants(token, participantsTableCB);
     // $('#chooseBoat').trigger('change');
   };
 
-  // allActivityCB - callback processes return of activity data
-  var allActivityCB = function callback(error, data) {
-    if (error) {
-      console.error(error);
-      $('#result').val('status: ' + error.status + ', error: ' +error.error);
-      return;
-    }
-    $('#result').val(JSON.stringify(data, null, 4));
-    var activityData = data;
-    console.log('got to callback to process all activity data');
-    console.log(data);
-    $('#putActivitiesList').css("display", "block");
-    $('#activityFormDiv').css("display", "none");
-    $('#updateAcivityDiv').css("display", "none");
-    actHandlebars.displayActivities(data);
-  };
-  // END --- allActivityCB
 
   // allParticipantCB - callback processes return of participant data &
   // renders it, via handlebars into a table
