@@ -10,11 +10,9 @@ var propId = 0;
 var actId = 0;
 
 var fwmapi = {
-  fwm: 'http://localhost:3000',
-
+  // fwm: 'http://localhost:3000',
+  fwm: 'https://morning-reaches-9856.herokuapp.com'
   // var fwmapi = {
-  //fwm: 'https://glacial-taiga-1244.herokuapp.com/',
-  //  fwm: 'http://localhost:3000',
 
 // validation ajax functionality
   ajax: function(config, cb) {
