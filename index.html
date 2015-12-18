@@ -169,9 +169,6 @@
                 <ul class="dropdown-menu">
                     <li><button type="button" id="showParticipantForm" class="btn btn-link">Create a Participant</button></li>
                     <li><button type="button" class="listParticipants btn btn-link">Show All Participants></button></li>
-                    <li><button type="button" id="showSearch" class="btn btn-link">Search for an Activity</button></li>
-                    <li><button type="button" class="deleteact btn btn-link">Delete the Activity below</button></li>
-                    <li><button type="button" class="btn btn-link">Show Activities by Date</button></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -182,7 +179,22 @@
                     <li><button type="button" class="btn btn-link">Show a Boat crew</button></li>
                     <li><button type="button" class="btn btn-link">Modify a Boat's crew</button></li>
                 </ul>
-            </li
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> Teams <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><button type="button" id="showTeamForm" class="btn btn-link">Create a Team</button></li>
+                    <li><button type="button" class="listTeams btn btn-link">Show all Teams</button></li>
+                    <li><button type="button" class="btn btn-link">Show a Team</button></li>
+                    <li><button type="button" class="btn btn-link">Modify a Teams members</button></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> Search <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><button type="button" id="showSearch" class="btn btn-link">Searches, Searches, and more Searches</button></li>
+                </ul>
+            </li>
         </ul>
     </div>
 
@@ -191,8 +203,9 @@
 
         <ul id="dashboard-menu" class="nav nav-list">
 
+        <!--
             <li class="active "><a href="index.html"><i class="icon-home"></i> <span>Dashboard</span></a></li>
-
+        -->
             <li class=" "><a href="media.html"><i class="icon-film"></i> <span>Media</span></a></li>
 
 
@@ -207,9 +220,11 @@
 
             <div class="row-fluid">
               <div class="row-fluid">
-                <h2>Participants
+                <h2>Participants and Boats
+                <!--
                 <label for="result">Status</label>
                 <textarea id="status"></textarea>
+                -->
                 </h2>
 
                 <!--
@@ -261,6 +276,30 @@
                     <!-- <a href="#">Show All</a> -->
                   </li>
                 </ul>
+
+                <div id="searchDiv">
+                    <input id="participantid" type="text" size="4" placeholder="Search by ID">
+                    <input id="role" type="text" size="4" placeholder="Search by ID">
+                    <input id="boatid" type="text" size="4" placeholder="Search by Boat">
+                    <input id="teamid" type="text" size="4" placeholder="Search by Team">
+                    <button type="button" id="searchById" class="btn btn-link">Search By Id</button>
+                    <button type="button" id="searchByRole" class="btn btn-link">Search By Role</button>
+                    <button type="button" id="searchByBoat" class="btn btn-link">Search By Boat</button>
+                    <button type="button" id="searchByTeam" class="btn btn-link">Search By Team</button>
+                    <!--
+                    <div id="chooseBoatDiv" class="control-group">
+
+                      Select Box for choosing a boat for participant
+                        <label class="control-label"></label>
+                        <div class="controls">
+                            <select id="chooseBoat" class="input-xlarge">
+
+                            </select>
+                        </div>
+                    </div>
+                    -->
+                </div>
+
 
                 <!-- Create Participant Div -->
                 <div id="participantFormDiv">
@@ -355,47 +394,9 @@
                 </div>
                 <!-- end of update Boat div-->
 
-                <!-- Create Add Team Div -->
-                <div id="showTeamAdd">
-                    <form class="addTeam">
-                        <h2 class="form-signin-heading">Enter new Team info below</h2>
-                        <input type="text" name="tName" class="form-control" id="tName" placeholder="Team Name">
-                        <button type="submit" class="btn btn-lg btn-primary btn-block">Add a Team</button>
-                    </form>
-                </div>
-                <!-- end of create Add Team div-->
 
-                <!-- Update Team Div -->
-                <div id="showTeamUpdate">
-                    <form class="updateTeam">
-                        <h2 class="form-signin-heading">Update Team info below</h2>
-                        <input type="text" name="id" class="form-control" id="teamId" placeholder="Team Id">
-                        <input type="text" name="teamUpName" class="form-control" id="teamUpName" placeholder="Team Name">
-                        <button type="submit" id="update-team-button" class="btn btn-lg btn-primary btn-block">Update Team</button>
-                    </form>
-                </div>
-                <!-- end of update Team div-->
 
-                <div id="searchDiv">
-                    <input id="participantid" type="text" size="4" placeholder="Search by ID">
-                    <input id="role" type="text" size="4" placeholder="Search by ID">
-                    <input id="boatid" type="text" size="4" placeholder="Search by Boat">
-                    <input id="teamid" type="text" size="4" placeholder="Search by Team">
-                    <button type="button" id="searchById" class="btn btn-link">Search By Id</button>
-                    <button type="button" id="searchByRole" class="btn btn-link">Search By Role</button>
-                    <button type="button" id="searchByBoat" class="btn btn-link">Search By Boat</button>
-                    <button type="button" id="searchByTeam" class="btn btn-link">Search By Team</button>
-                    <div id="chooseBoatDiv" class="control-group">
 
-                      <!-- Select Box for choosing a boat for participant -->
-                        <label class="control-label"></label>
-                        <div class="controls">
-                            <select id="chooseBoat" class="input-xlarge">
-
-                            </select>
-                        </div>
-                    </div>
-                </div>
               </div>
             </div>
           </div>
@@ -416,6 +417,26 @@
                 </table>
             </div>
 
+            <!-- Create Add Team Div -->
+            <div id="showTeamAdd">
+                <form class="addTeam">
+                    <h2 class="form-signin-heading">Enter new Team info below</h2>
+                    <input type="text" name="tName" class="form-control" id="teamAddName" placeholder="Team Name">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">Add a Team</button>
+                </form>
+            </div>
+            <!-- end of create Add Team div-->
+
+            <!-- Update Team Div -->
+            <div id="showTeamUpdate">
+                <form class="updateTeam">
+                    <h2 class="form-signin-heading">Update Team info below</h2>
+                    <input type="text" name="id" class="form-control" id="teamId" placeholder="Team Id">
+                    <input type="text" name="teamUpName" class="form-control" id="teamUpName" placeholder="Team Name">
+                    <button type="submit" id="update-team-button" class="btn btn-lg btn-primary btn-block">Update Team</button>
+                </form>
+            </div>
+            <!-- end of update Team div-->
 
 
 
