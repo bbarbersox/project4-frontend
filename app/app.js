@@ -927,6 +927,8 @@ $(document).ready(function() {
     $('#searchDiv').css("display", "block");
     $('#chooseBoatDiv').show();
     $('#chooseTeamDiv').show();
+    $('#showParticipants').hide();
+    $('#showBoats').hide();
   });
 
   $('#showBoatForm').on('click', function(e) {
