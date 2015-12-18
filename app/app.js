@@ -10,8 +10,8 @@ var propId = 0;
 var actId = 0;
 
 var fwmapi = {
-  // fwm: 'http://localhost:3000',
-  fwm: 'https://morning-reaches-9856.herokuapp.com'
+  fwm: 'http://localhost:3000',
+  // fwm: 'https://morning-reaches-9856.herokuapp.com'
   // var fwmapi = {
 
 // validation ajax functionality
@@ -25,6 +25,7 @@ var fwmapi = {
 
     // Registration Ajax call
     register: function register(credentials, callback) {
+      debugger;
       this.ajax({
         method: 'POST',
         url: this.fwm + '/register',
@@ -359,6 +360,23 @@ $(document).ready(function() {
     // $('#participantFormDiv').css("display", "none");
   };
 
+  var registerCB = function callback(error, data) {
+    if (error) {
+      console.error(error);
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+    $('#result').val(JSON.stringify(data, null, 4));
+    console.log(data);
+    $('.text input[name="register"]').prop('checked', true);
+    $('.login').show();
+    $('#registerDiv').hide();
+    $('.register').hide();
+    $('#registerDiv').css("display", "none");
+    $('.register').css("display", "none");
+  };
+
+
   var loginCB = function callback(error, data) {
     if (error) {
       console.error(error);
@@ -638,9 +656,10 @@ $(document).ready(function() {
 
   // Register button processing
   $('.register').on('submit', function(e) {
-    var credentials = wrap('credentials', form2object(this));
-    fwmapi.register(credentials, callback);
+    debugger;
     e.preventDefault();
+    var credentials = wrap('credentials', form2object(this));
+    fwmapi.register(credentials, registerCB);
     });
   // ----- end of Register processing ----- //
 
