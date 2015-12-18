@@ -10,8 +10,8 @@ var propId = 0;
 var actId = 0;
 
 var fwmapi = {
-  fwm: 'http://localhost:3000',
-  // fwm: 'https://morning-reaches-9856.herokuapp.com'
+  // fwm: 'http://localhost:3000',
+  fwm: 'https://morning-reaches-9856.herokuapp.com',
   // var fwmapi = {
 
 // validation ajax functionality
