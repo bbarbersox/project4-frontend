@@ -207,6 +207,20 @@ var fwmapi = {
       }, callback);
     },
 
+    addTeam: function (formdata, token, callback) {
+      console.log(formdata);
+      this.ajax({
+        method: 'POST',
+        url: this.fwm + '/teams',
+        headers: {
+          Authorization: 'Token token=' + token
+        },
+        contentType : 'application/json',
+        data: JSON.stringify(formdata),
+        dataType: 'json'
+      }, callback);
+    },
+
     deleteParticipant: function (id, token, callback) {
       debugger;
       console.log(id);
@@ -389,6 +403,25 @@ $(document).ready(function() {
   };
    // END --- allParticipantCB
 
+   var teamsTableCB = function callback(error, data) {
+    debugger;
+    if (error) {
+      console.error(error);
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+    $('#result').val(JSON.stringify(data, null, 4));
+    console.log('got to Handlebars to teams table function');
+    console.log(data);
+    var teamsTemplate = Handlebars.compile($('#teamsList').html());
+    var newHTML = teamsTemplate(data);
+    $("#team-body").html(newHTML);
+    $('#showTeams').show();
+    $('#showBoats').hide();
+    $('showParticipants').hide();
+  };
+   // END --- allParticipantCB
+
   /////////
   var formCB = function callback(error, data) {
     debugger;
@@ -433,6 +466,7 @@ $(document).ready(function() {
     for (var i = 0; i < data.boats.length; i++) {
       console.log(chooseBoat);
       $('#chooseBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
+      $('#chooseUpdateBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
     };
   };
   // END --- populate data into a Boat Selector search field
@@ -448,7 +482,8 @@ $(document).ready(function() {
 
     for (var i = 0; i < data.teams.length; i++) {
       console.log(chooseTeam);
-      $('#chooseTeam').append('<option value="' + data.teams[i].team_name + '">' + data.teams[i].team_name + '</option>');
+      $('#chooseTeam').append('<option value="' + data.teams[i].id + '">' + data.teams[i].team_name + '</option>');
+      $('#chooseUpdateTeam').append('<option value="' + data.teams[i].id + '">' + data.teams[i].team_name + '</option>');
     };
   };
   // END --- populate data into a Team Selector search field
@@ -490,6 +525,27 @@ $(document).ready(function() {
 
     $('#showBoatAdd').hide();
     $('#showBoatUpdate').hide();
+    // $('#showBoats').show();
+  };
+
+  var addTeamCB = function callback(error, data) {
+    debugger;
+    if (error) {
+      console.error(error);
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+    console.log(data);
+    // fwmapi.listTeams(token, boatsTableCB);
+    $('.addTeam').each(function(){
+      this.reset();
+    });
+    $('.updateTeam').each(function(){
+      this.reset();
+    });
+
+    $('#showTeamAdd').hide();
+    $('#showTeamUpdate').hide();
     // $('#showBoats').show();
   };
 
@@ -562,6 +618,13 @@ $(document).ready(function() {
     fwmapi.listBoats(token, boatsTableCB);
   });
   // ----- end of Show All Boats processing ----- //
+
+    // Show All Teams processing
+  $('.listTeams').on('click', function(e) {
+    e.preventDefault();
+    fwmapi.listTeams(token, teamsTableCB);
+  });
+  // ----- end of Show All Teams processing ----- //
 
   // Show All Activities processing
   $('.listParticipants').on('click', function(e)
@@ -670,20 +733,20 @@ $(document).ready(function() {
     debugger;
     var dataForServer = {
       participant : {
-        name: $('#name').val(),
-        email: $('#email').val(),
-        phone: $('#phone').val(),
-        role: $('#role').val(),
-        boat_id: $('#boat_id').val(),
-        team_id: $('#team_id').val()
+        name: $(".updateParticipant input[id=name]").val(),
+        email: $(".updateParticipant input[id=email]").val(),
+        phone: $(".updateParticipant input[id=phone]").val(),
+        role: $(".updateParticipant input[id=role]").val(),
+        boat_id: $("#chooseUpdateBoat").val(),
+        team_id: $("#chooseUpdateTeam").val()
       }
     };
-    dataForServer.participant.name = $(".updateParticipant input[id=name]").val();
-    dataForServer.participant.email = $(".updateParticipant input[id=email]").val();
-    dataForServer.participant.phone = $(".updateParticipant input[id=phone]").val();
-    dataForServer.participant.role = $(".updateParticipant input[id=role]").val();
-    dataForServer.participant.boat_id = $(".updateParticipant input[id=boat_id]").val();
-    dataForServer.participant.team_id = $(".addParticipant input[id=team_id]").val();
+    // dataForServer.participant.name = $(".updateParticipant input[id=name]").val();
+    // dataForServer.participant.email = $(".updateParticipant input[id=email]").val();
+    // dataForServer.participant.phone = $(".updateParticipant input[id=phone]").val();
+    // dataForServer.participant.role = $(".updateParticipant input[id=role]").val();
+    // dataForServer.participant.boat_id = $(".updateParticipant input[id=boat_id]").val();
+    // dataForServer.participant.team_id = $(".addParticipant input[id=team_id]").val();
     var id = $('#participantId').val(); //captuers particicpants id
 
     fwmapi.updateParticipant(id, dataForServer, token, callback);
@@ -782,28 +845,18 @@ $(document).ready(function() {
   });
   // ----- end of Update Activity processing ----- //
 
-  $('#showActivityForm').on('click', function(e) {
-    $('#activityFormDiv').css("display", "block");
-    $('#putActivitiesList').css("display", "none");
-  });
-
-
   $('#showParticipantForm').on('click', function(e) {
     $('#participantFormDiv').css("display", "block");
     $('#putActivitiesList').css("display", "none");
     $('#chooseBoatDiv').show();
-    $('#chooseTeam').trigger('change');
+    $('#chooseTeam').show();
 
   });
 
   $('#showSearch').on('click', function(e) {
-    $('#activityFormDiv').css("display", "none");
-    $('#putActivitiesList').css("display", "none");
-    $('#updateAcivityDiv').css("display", "none");
     $('#searchDiv').css("display", "block");
-    $('.getact').css("display", "none");
     $('#chooseBoatDiv').show();
-    $('#chooseTeam').trigger('change');
+    $('#chooseTeamDiv').show();
   });
 
   $('#showBoatForm').on('click', function(e) {
@@ -848,5 +901,30 @@ $(document).ready(function() {
   });
   // ----- end of Create Participant processing ----- //
 
+  // Create a Boat processing
+  $('.addTeam').on('submit', function(e) {
+    e.preventDefault();
+    debugger;
+    var dataForServer = {
+      team : {
+        "team_name": $(".addTeam input[id=team_name]").val()
+      }
+    };
+    fwmapi.addTeam(dataForServer, token, addTeamCB);
+  });
+  // ----- END of Create Boat processing ----- //
+
+  // Create a Team processing
+  $('.addTeam').on('submit', function(e) {
+    e.preventDefault();
+    debugger;
+    var dataForServer = {
+      team : {
+        "team_name": $(".addTeam input[id=team_name]").val(),
+      }
+    };
+    fwmapi.addTeam(dataForServer, token, addTeamCB);
+  });
+  // ----- END of Create Team processing ----- //
 
 });

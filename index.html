@@ -15,9 +15,8 @@
 </head>
 
 
-<body class="">
+<body id="body-div" class="">
   <!--[endif]-->
-
     <div class="row-fluid">
     <div class="dialog">
         <p class="brand" href="index.html"></p>
@@ -109,7 +108,7 @@
                     </li>
 
                 </ul>
-                <a class="brand" href="index.html">Community Activities Manager</a>
+                <a class="brand" href="index.html">Fishin' with a Mission</a>
         </div>
     </div>
 
@@ -256,43 +255,12 @@
 
                   </li>
                   <li class="more">
-                    <button type="button" class="listParticipants btn btn-link">Show All Partipants</button>
+                    <button type="button" class="listParticipants btn btn-link">Show All Participants</button>
                     <button type="button" class="listBoats btn btn-link">Show All Boats</button>
                     <button type="button" class="listTeams btn btn-link">Show All Teams</button>
                     <!-- <a href="#">Show All</a> -->
                   </li>
                 </ul>
-
-                <!-- Create Acitvity Div -->
-                <div id="activityFormDiv">
-                  <form class="addActivity">
-                    <h2 class="form-signin-heading">Enter new activity info below</h2>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Activity Name">
-                    <input type="text" class="form-control" id="provider" placeholder="Activity Service Provider">
-                    <input type="text" class="form-control" id="prono" placeholder="Street Number">
-                    <input type="text" class="form-control" id="prostreet"  placeholder="Street Name">
-                    <input type="text" class="form-control" id="procity" placeholder="City">
-                    <input type="text" class="form-control" id="prostate" placeholder="State">
-                    <input type="text" class="form-control" id="zip" placeholder="Zip code">
-                    <input type="text" class="form-control" id="dov" placeholder="Date of activity">
-                    <input type="text" class="form-control" id="tov" placeholder="Time of Activity">
-                    <input type="text" class="form-control" id="length" placeholder="Length of Activity">
-                    <input type="text" class="form-control" id="participant" placeholder="Participant">
-                    <button type="submit" class="btn btn-lg btn-primary btn-block">Add new activity</button>
-                    <!--
-                    <button class="getact btn btn-lg btn-primary btn-block" name="getActivity" type="click">Show a single activity</button>
-
-                    <input id="actid" type="text" size="4" placeholder="Id">
-                    -->
-                    <button class="updateact btn btn-lg btn-primary btn-block" type="click">Update an activity</button>
-                  </form>
-                  <button class="getact btn btn-lg btn-primary btn-block" name="getActivity" type="click">Show a single activity</button>
-                  <!--
-                  <button class="deleteact btn btn-lg btn-primary btn-block" name="deleteActivity" type="click">Delete this activity</button>
-                  -->
-                </div>
-                <!-- end of activityFormDiv for activity creation-->
-
 
                 <!-- Create Participant Div -->
                 <div id="participantFormDiv">
@@ -336,8 +304,23 @@
                         <input type="text" class="form-control" id="email" placeholder="Email">
                         <input type="text" class="form-control" id="phone" placeholder="Phone Number">
                         <input type="text" class="form-control" id="role" placeholder="Role">
-                        <input type="text" class="form-control" id="boat_title" placeholder="Boat_title">
-                        <input type="text" class="form-control" id="team_name" placeholder="Team_name">
+                        <div id="chooseBoatDiv" class="control-group">
+                            <label class="control-label">Choose a boat</label>
+                            <div class="controls">
+                                <select id="chooseUpdateBoat" class="input-xlarge">
+                                    <option> Choose a Boat </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="chooseTeamDiv" class="control-group">
+                            <!-- Select Basic -->
+                            <label class="control-label">Choose a team</label>
+                            <div class="controls">
+                                <select id="chooseUpdateTeam" class="input-xlarge">
+                                    <option> Choose a Team </option>
+                                </select>
+                            </div>
+                        </div>
                         <button type="submit" id="update-participant-button" class="btn btn-lg btn-primary btn-block">Update participant</button>
                     </form>
                 </div>
@@ -370,8 +353,28 @@
                         <button type="submit" id="update-boat-button" class="btn btn-lg btn-primary btn-block">Update boat</button>
                     </form>
                 </div>
-                <!-- end ofupdate Participant div-->
+                <!-- end of update Boat div-->
 
+                <!-- Create Add Team Div -->
+                <div id="showTeamAdd">
+                    <form class="addTeam">
+                        <h2 class="form-signin-heading">Enter new Team info below</h2>
+                        <input type="text" name="tName" class="form-control" id="tName" placeholder="Team Name">
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">Add a Team</button>
+                    </form>
+                </div>
+                <!-- end of create Add Team div-->
+
+                <!-- Update Team Div -->
+                <div id="showTeamUpdate">
+                    <form class="updateTeam">
+                        <h2 class="form-signin-heading">Update Team info below</h2>
+                        <input type="text" name="id" class="form-control" id="teamId" placeholder="Team Id">
+                        <input type="text" name="teamUpName" class="form-control" id="teamUpName" placeholder="Team Name">
+                        <button type="submit" id="update-team-button" class="btn btn-lg btn-primary btn-block">Update Team</button>
+                    </form>
+                </div>
+                <!-- end of update Team div-->
 
                 <div id="searchDiv">
                     <input id="participantid" type="text" size="4" placeholder="Search by ID">
@@ -384,7 +387,7 @@
                     <button type="button" id="searchByTeam" class="btn btn-link">Search By Team</button>
                     <div id="chooseBoatDiv" class="control-group">
 
-                      <!-- Select Basic -->
+                      <!-- Select Box for choosing a boat for participant -->
                         <label class="control-label"></label>
                         <div class="controls">
                             <select id="chooseBoat" class="input-xlarge">
@@ -399,29 +402,49 @@
 
           <div class="span4 sidebar">
     <div class="widget">
-        <h2>Boats</h2>
+        <h2>Teams</h2>
+            <div id="showTeams">
+                <table id="Teams-table" class="table table-hover">
+                    <thead>
+                        <th>Name</th>
+                        <th>edit</th>
+                        <th>delete</th>
+                    </thead>
+                    <tbody id="team-body">
+
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+
+
+        <!--
         <ul class="cards">
             <li>
                 <p class="title">Bolvej</p>
                 <div class="img">
                     <img src="assets/images/small-fishing-boat.jpg">
-                    <!-- <div class="label label-info">Pro</div> -->
+                     <div class="label label-info">Pro</div>
                 </div>
                 <p class="info-text">Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
-                <!--
+
                 <div class="stats">
                     <p class="time">5 minutes ago</p>
                     <span>15 <i class="icon-pushpin"></i></span>
                     <span>27 <i class="icon-comment"></i></span>
                     <span>158 <i class="icon-eye-open"></i></span>
                 </div>
-                -->
+
             </li>
             <li>
                 <p class="title">Laguana fishing boat</p>
                 <div class="img">
                     <img src="assets/images/laguna-fishing-boat.jpg">
-                    <!-- <div class="label label-warning">Free</div> -->
+                     <div class="label label-warning">Free</div>
                 </div>
                 <p class="info-text">Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master.</p>
             </li>
@@ -429,13 +452,18 @@
                 <p class="title">Smith's Southport Boat</p>
                 <div class="img">
                     <img src="assets/images/southport-boat.png">
-                    <!-- <div class="label label-info">Pro</div> -->
+                     <div class="label label-info">Pro</div>
                 </div>
                 <p class="info-text">Anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack.</p>
             </li>
             <li class="more">
                 <a href="#">Show All</a>
             </li>
+            -->
+
+
+
+
         </ul>
     </div>
   </div>
@@ -443,8 +471,8 @@
 
         <footer>
             <hr>
-            <p class="pull-right">Design by Barber, Inc<a href="http://www.portnine.com" target="_blank">Portnine</a></p>
-            <p>&copy; 2013 <a href="#">Coastal Computer Services</a></p>
+            <p class="pull-right">Design by Barber, Inc<a href="http://www.portnine.com" target="_blank"></a></p>
+            <p>&copy; 2015 <a href="#">Coastal Computer Services</a></p>
         </footer>
 
       </div>
@@ -452,63 +480,11 @@
 
   </div>
 
-    <!-- Handlebars - populate activities data on dashboard -->
-    <script id="activitiesList" type="text/x-handlebars-template">
-        {{#each activities}}
-            <div id="activitytest">
-                <div class="overview">
-                    <p class="main-detail">{{dov}}</p>
-                    <p class="sub-detail">{{tov}}</p>
-                    <!--
-                    <span class="label label-success">Active</span> <span class="label label-info">New</span>
-                    -->
-                </div>
-                <div class="info" data-id="{{id}}">
-                    <p>{{name}}</p>
-                    <p>{{provider}}</p>
-                    <!--
-                    <a class="btn btn-mini" href="#">Show Details</a>
-                    -->
-                    <button type="button" class="btn btn-link">Show Details</button>
-                    <button type="button" class="btn btn-link">Edit</button>
-                    <button type="button" class="btn btn-link">Delete</button>
-                </div>
-                <li>
-                <p> </p>
-                </li>
-                <div class="clearfix"></div>
-            </div>
-        {{/each}}
-    </script>
-    <!-- END Handlebars call -->
-
-
     <!-- handlebars -->
     <script type="text/javascript" src="app/handlebars-v4.0.4.js"></script>
 
     <!--  Local Scripts -->
     <script src="app/handlebars_module.js" type = "application/javascript"></script>
-
-  <div id="activityFormDiv">
-    <!-- <form class="addActivity">  -->
-    <form class="activityForm">
-      <h2 class="form-signin-heading">Enter new activity info below</h2>
-      <input type="text" name="name" class="form-control" id="name" placeholder="Activity Name">
-      <input type="text" class="form-control" id="provider" placeholder="Activity Service Provider">
-      <input type="text" class="form-control" id="prono" placeholder="Street Number">
-      <input type="text" class="form-control" id="prostreet"  placeholder="Street Name">
-      <input type="text" class="form-control" id="procity" placeholder="City">
-      <input type="text" class="form-control" id="prostate" placeholder="State">
-      <input type="text" class="form-control" id="zip" placeholder="Zip code">
-      <input type="text" class="form-control" id="dov" placeholder="Date of activity">
-      <input type="text" class="form-control" id="tov" placeholder="Time of Activity">
-      <input type="text" class="form-control" id="length" placeholder="Length of Activity">
-      <input type="text" class="form-control" id="participant" placeholder="Participant">
-      <button type="submit" class="addActivity btn btn-lg btn-primary btn-block">Add new activity</button>
-      <button class="getact btn btn-lg btn-primary btn-block" name="getActivity" type="click">Show a single activity</button>
-      <input id="actid" type="text" size="4" placeholder="Id">
-    </form>
-  </div>    <!-- end of activityFormDiv for activity creation-->
 
     <!-- Handlebars script for rendering my participant info to the screen -->
     <script id="participantsList" type="text/x-handlebars-template">
@@ -528,7 +504,7 @@
     </script>
     <!-- END  Handlebars script participant info to the screen -->
 
-    <!-- Handlebars script for rendering my participant info to the screen -->
+    <!-- Handlebars script for rendering my boats info to the screen -->
     <script id="boatsList" type="text/x-handlebars-template">
         {{#each boats}}
             <tr>
@@ -540,6 +516,18 @@
                 <td>{{open_seats}}</td>
                 <td><button class="editpart tbutton btn-xs" id="edit-boat-button" data-id="{{id}}">Edit</button></td>
                 <td><button class="deletepart tbutton btn-xs" id="delete-boat-button" data-id="{{id}}">Delete</button></td>
+            </tr>
+        {{/each}}
+    </script>
+    <!-- END  Handlebars script participant info to the screen -->
+
+    <!-- Handlebars script for rendering my team info to the screen -->
+    <script id="teamsList" type="text/x-handlebars-template">
+        {{#each teams}}
+            <tr>
+                <td>{{team_name}}</td>
+                <td><button class="editteam tbutton btn-xs" id="edit-team-button" data-id="{{id}}">Edit</button></td>
+                <td><button class="deleteteam tbutton btn-xs" id="delete-team-button" data-id="{{id}}">Delete</button></td>
             </tr>
         {{/each}}
     </script>

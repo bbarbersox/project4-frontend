@@ -1,4 +1,13 @@
 
+#body-div {
+  background-image: url("../Assets/images/fishing kids.jpg");
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 #loginDiv {
   display: block;
 }
@@ -39,11 +48,23 @@
   display: none;
 }
 
+#showTeams {
+  display: none;
+}
+
 #showBoatAdd {
   display: none;
 }
 
 #showBoatUpdate {
+  display: none;
+}
+
+#showTeamAdd {
+  display: none;
+}
+
+#showTeamUpdate {
   display: none;
 }
 
