@@ -68,7 +68,7 @@ The front end of this web app is hosted on gh-pages on github at git@github.com:
 
 The back end of this web app is hosted on heroku at https://morning-reaches-9856.herokuapp.com/
 
-The website backend is also in github at https://github.com/bbarbersox/project4-backend/blob/master/README.md
+The website backend is also in github at https://github.com/bbarbersox/project4-backend.git
 
 And finally the backend readme file is located at https://github.com/bbarbersox/project4-backend/blob/master/README.md
 
