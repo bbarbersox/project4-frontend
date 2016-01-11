@@ -1,11 +1,24 @@
 
 #body-div {
-  background-image: url("../Assets/images/fishing kids.jpg");
+  background-image: url("../Assets/images/individual-fish-image-resized.jpg");
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  color: black;
+  background-size: 100%;
+}
+
+#h1 {
+  color: black;
+  font-size: 100%;
+}
+
+#img.source-image {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #loginDiv {

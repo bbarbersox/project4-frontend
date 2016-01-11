@@ -2,16 +2,14 @@
 
 // Global variable definitions
 
-var userEmail = "";
 var token = "";
 var userId = 0;
-var dataReturned ={};
-var propId = 0;
+// var propId = 0;
 var actId = 0;
 
 var fwmapi = {
-  // fwm: 'http://localhost:3000',
-  fwm: 'https://morning-reaches-9856.herokuapp.com',
+  fwm: 'http://localhost:3000',
+  // fwm: 'https://morning-reaches-9856.herokuapp.com',
   // var fwmapi = {
 
 // validation ajax functionality
@@ -63,10 +61,10 @@ var fwmapi = {
       }, callback);
     },
     // End of logout ajax logic
-  // end of validation ajax routines
+    // end of validation ajax routines
 
+    // List all the event Participants - AJAX call
     listParticipants: function (token, callback) {
-      debugger;
       this.ajax({
         method: 'GET',
         url: this.fwm + '/participants',
@@ -76,7 +74,7 @@ var fwmapi = {
         dataType: 'json'
       }, callback);
     },
-
+    // END --- List all the event Participants - AJAX call
 
     // Search for a single particpant by ID
     searchById: function (id, token, callback) {
@@ -89,7 +87,7 @@ var fwmapi = {
         dataType: 'json'
       }, callback);
     },
-    // END ----- Search for a single particpant by ID
+    // END --- Search for a single particpant by ID
 
     // Search for a single particpant by ID
     searchByTeamId: function (id, token, callback) {
@@ -102,9 +100,7 @@ var fwmapi = {
         dataType: 'json'
       }, callback);
     },
-    // END ----- Search for a single particpant by ID
-
-
+    // END --- Search for a single particpant by ID
 
     // Search for a list of particpants by their role
     searchByRole: function (role, token, callback) {
@@ -117,7 +113,7 @@ var fwmapi = {
         dataType: 'json'
       }, callback);
     },
-    // END ----- Search for list of particpants by role
+    // END --- Search for list of particpants by role
 
     // Search for a single Boat ----- NEEDS TESTING
     searchByBoat: function (title, token, callback) {
@@ -355,9 +351,6 @@ $(document).ready(function() {
 
     $('#participantFormDiv').hide();
     $('#showParticipantUpdate').hide();
-    // $('#putActivitiesList').css("display", "block");
-    // $('#updateAcivityDiv').css("display", "none");
-    // $('#participantFormDiv').css("display", "none");
   };
 
   var registerCB = function callback(error, data) {
@@ -378,6 +371,7 @@ $(document).ready(function() {
 
 
   var loginCB = function callback(error, data) {
+    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -666,6 +660,7 @@ $(document).ready(function() {
   // Login button processing
   $('.login').on('submit', function(e) {
     e.preventDefault();
+    debugger;
     var credentials = wrap('credentials', form2object(this));
     var cb = function cb(error, data) {
       if (error) {
@@ -693,7 +688,7 @@ $(document).ready(function() {
   });
   // ----- end of Show All Teams processing ----- //
 
-  // Show All Activities processing
+  // Show All Particioants processing
   $('.listParticipants').on('click', function(e)
     {
     e.preventDefault();
@@ -702,16 +697,16 @@ $(document).ready(function() {
   // ----- end of Show All Activities processing ----- //
 
   // Show Single Activity processing
-  $('.getact').on('click', function(e) {
-    debugger;
-    e.preventDefault();
-    console.log('got to list one activity function', token);
-    // var id = $(".listOneActivity input[id=act-id]").val();
-    var id = $("#searchDiv input[id=actid]").val();
-    actId = id;
-    console.log("acitivty id is: " + id);
-    fwmapi.searchById(id, token, actFormCB);
-  });
+  // $('.getact').on('click', function(e) {
+  //   debugger;
+  //   e.preventDefault();
+  //   console.log('got to list one activity function', token);
+  //   // var id = $(".listOneActivity input[id=act-id]").val();
+  //   var id = $("#searchDiv input[id=actid]").val();
+  //   actId = id;
+  //   console.log("acitivty id is: " + id);
+  //   fwmapi.searchById(id, token, actFormCB);
+  // });
   // ----- end of Show Single Activity processing ----- //
 
 
@@ -720,9 +715,7 @@ $(document).ready(function() {
     debugger;
     e.preventDefault();
     console.log('got to list one participant function', token);
-    // var id = $(".listOneActivity input[id=act-id]").val();
     var id = $("#searchDiv input[id=participantid]").val();
-    // actId = id;
     console.log("participant id is: " + id);
     fwmapi.searchById(id, token, participantFormCB);
   });
@@ -733,9 +726,7 @@ $(document).ready(function() {
   //   debugger;
   //   e.preventDefault();
   //   console.log('got to list one boat function', token);
-  //   // var id = $(".listOneActivity input[id=act-id]").val();
   //   var id = $("#showBoatUpdate input[id=boatId]").val();
-  //   // actId = id;
   //   console.log("boat id is: " + id);
   //   fwmapi.searchByBoatId(id, token, boatFormCB);
   // });
@@ -746,9 +737,7 @@ $(document).ready(function() {
     debugger;
     e.preventDefault();
     console.log('got to list one team function', token);
-    // var id = $(".listOneActivity input[id=act-id]").val();
     var id = $("#showTeamUpdate input[id=teamId]").val();
-    // actId = id;
     console.log("team id is: " + id);
     fwmapi.searchById(id, token, teamFormCB);
   });
@@ -759,9 +748,7 @@ $(document).ready(function() {
     debugger;
     e.preventDefault();
     console.log('got to search participant by role function', token);
-    // var id = $(".listOneActivity input[id=act-id]").val();
     var role = $("#searchDiv input[id=role]").val();
-    // actId = id;
     console.log("participant search role is: " + role);
     fwmapi.searchByRole(role, token, participantsTableCB);
   });
@@ -772,7 +759,6 @@ $(document).ready(function() {
     debugger;
     e.preventDefault();
     console.log('got to list one boat function', token);
-    // var id = $(".listOneActivity input[id=act-id]").val();
     var boatName = $("#searchDiv input[id=boatid]").val();
     console.log("The boat name is: " + boatName);
     fwmapi.searchByBoat(boatName, token, boatsTableCB);
@@ -813,7 +799,6 @@ $(document).ready(function() {
     debugger;
     e.preventDefault();
     console.log('got to search by date', token);
-    // var id = $(".listOneActivity input[id=act-id]").val();
     var dateOfVisit = $("#searchDiv input[id=dateid]").val();
     console.log("The date is: " + dateOfVisit);
     fwmapi.SearchActivityByDate(dateOfVisit, token, allActivityCB);
@@ -916,8 +901,10 @@ $(document).ready(function() {
 
 
   $('#showParticipantForm').on('click', function(e) {
-    $('#participantFormDiv').css("display", "block");
-    $('#putActivitiesList').css("display", "none");
+    // $('#participantFormDiv').css("display", "block");
+    // $('#putActivitiesList').css("display", "none");
+    $('#participantFormDiv').show();
+    $('#showParticipants').hide();
     $('#chooseBoatDiv').show();
     $('#chooseTeam').show();
 
@@ -973,6 +960,8 @@ $(document).ready(function() {
         "team_id": $("#chooseTeam").val()
       }
     };
+
+
 
     fwmapi.addParticipant(dataForServer, token, callback);
   });

@@ -64,7 +64,8 @@ User Stories
     View sponsorship requirements
     Submit sponsor ship docs & images (of boats if being donated)
 
-The front end of this web app is hosted on gh-pages on github at git@github.com:bbarbersox/project4-frontend.git
+The front end of this web app is hosted on gh-pages on github at
+http://bbarbersox.github.io/project4-frontend/index.html
 
 The back end of this web app is hosted on heroku at https://morning-reaches-9856.herokuapp.com/
 
