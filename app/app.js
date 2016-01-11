@@ -45,8 +45,8 @@ var fwmapi = {
         data: JSON.stringify(credentials),
         dataType: 'json',
       }, callback);
-      $('#loginDiv').css("display", "none");
-      $('#dashboard').css("display", "block");
+  //    $('#loginDiv').css("display", "none");
+
     },
     // End of login ajax logic
 
@@ -354,6 +354,7 @@ $(document).ready(function() {
   };
 
   var registerCB = function callback(error, data) {
+    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -361,17 +362,15 @@ $(document).ready(function() {
     }
     $('#result').val(JSON.stringify(data, null, 4));
     console.log(data);
-    $('.text input[name="register"]').prop('checked', true);
+    // $('.text input[name="register"]').prop('checked', true);
+    // $('.text input[name="register"]').prop('checked', false);
     $('.login').show();
     $('#registerDiv').hide();
     $('.register').hide();
-    $('#registerDiv').css("display", "none");
-    $('.register').css("display", "none");
   };
 
 
   var loginCB = function callback(error, data) {
-    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -381,9 +380,9 @@ $(document).ready(function() {
     console.log(data);
     token = data.user.token;
     userId = data.user.id;
-    // fwmapi.listActivities(token, allActivityCB);
-    $('#status').val('you successfully logged in');
-    $('.login').css("display", "none");
+    // $('#status').val('you successfully logged in');
+    $('.login').hide();
+    $('#dashboard').css("display", "block");
     fwmapi.listBoats(token, boatSelectCB);
     fwmapi.listTeams(token, teamSelectCB);
     fwmapi.listTeams(token, teamsTableCB);
@@ -643,10 +642,13 @@ $(document).ready(function() {
 
   // If user has not registered this register checkbox will be clicked
   $('.checkbox').on('click', function(e){
-    $('#registerDiv').css("display", "block");
-    $('.register').css("display", "block");
-    $('.login').css("display", "none");
+    debugger;
+    $('.register').show();
+    $('#registerDiv').show();
+    $('.login').hide();
   });  // end of register checkbox processing
+
+
 
   // Register button processing
   $('.register').on('submit', function(e) {
@@ -920,6 +922,8 @@ $(document).ready(function() {
 
   $('#showBoatForm').on('click', function(e) {
     $('#showBoatAdd').show();
+    $('#showParticipants').hide();
+    $('#showBoats').hide();
   });
 
   $('#showTeamForm').on('click', function(e) {
