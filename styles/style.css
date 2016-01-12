@@ -33,18 +33,6 @@
   display: none;
 }
 
-#propertiesDiv {
-  display: none;
-}
-
-#propertyFormDiv {
-  display: none;
-}
-
-#activityFormDiv {
-  display: none;
-}
-
 #participantFormDiv {
   display: none;
 }
@@ -81,14 +69,6 @@
   display: none;
 }
 
-#updateAcivityDiv {
-  display: none;
-}
-
-#putActivitiesList {
-  display: none;
-}
-
 #searchDiv {
   display: none;
 }
@@ -118,80 +98,19 @@
   display: none;
 }
 
-.properties {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-.listActivities {
-  display: none;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-.listOneActivity {
-  display: none;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-.getact {
-  display: none;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-#updateActivity {
-  display: block;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-.deleteActivity {
-  display: none;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-.listProperties {
-  display: none;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-.listOneProperty {
-  display: none;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-.addProperty {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-.addActivity {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-.deleteProperty {
-  display: none;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
 .bs-example {
       margin: 20px;
+}
+
+.btn-label {
+    font-size: 0;
+    height: 1px;
+    overflow: hidden;
+    display: block;
+    color:transparent !important;
+    text-shadow:none !important;
+    border:none !important;
+    box-shadow:none !important;
+    background: transparent;
+    border: none;
 }

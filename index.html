@@ -518,8 +518,8 @@
                 <td>{{role}}</td>
                 <td>{{boat_id}}</td>
                 <td>{{team_id}}</td>
-                <td><button class="editpart tbutton btn-xs" id="edit-button" data-id="{{id}}">Edit</button></td>
-                <td><button class="deletepart tbutton btn-xs" id="delete-button" data-id="{{id}}">Delete</button></td>
+                <td><button class="icon-edit" id="edit-button" data-id="{{id}}"></button></td>
+                <td><button class="icon-remove" id="delete-button" data-id="{{id}}"></button></td>
             </tr>
         {{/each}}
     </script>
@@ -535,8 +535,8 @@
                 <td>{{avatar}}</td>
                 <td>{{capacity}}</td>
                 <td>{{open_seats}}</td>
-                <td><button class="editpart tbutton btn-xs" id="edit-boat-button" data-id="{{id}}">Edit</button></td>
-                <td><button class="deletepart tbutton btn-xs" id="delete-boat-button" data-id="{{id}}">Delete</button></td>
+                <td><button class="icon-edit" id="edit-boat-button" data-id="{{id}}"></button></td>
+                <td><button class="icon-remove" id="delete-boat-button" data-id="{{id}}"></button></td>
             </tr>
         {{/each}}
     </script>
@@ -547,8 +547,9 @@
         {{#each teams}}
             <tr>
                 <td>{{team_name}}</td>
-                <td><button class="editteam tbutton btn-xs" id="edit-team-button" data-id="{{id}}">Edit</button></td>
-                <td><button class="deleteteam tbutton btn-xs" id="delete-team-button" data-id="{{id}}">Delete</button></td>
+                <td><button class="icon-edit" id="edit-team-button" data-id="{{id}}"></button></td>
+
+                <td><button class="icon-remove" id="delete-team-button" data-id="{{id}}"></button></td>
             </tr>
         {{/each}}
     </script>
