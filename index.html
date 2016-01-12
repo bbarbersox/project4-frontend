@@ -24,93 +24,102 @@
             <p class="brand" href="index.html"></p>
             <div class="block">
                 <div id="loginDiv" class="block-header">
+
+                    <form class='login'>
+                        <label>Username</label>
+                        <input name="email" id="inputEmail" type="text" class="span12">
+                        <label>Password</label>
+                        <input type="password" name="password" id="inputPassword" type="password" class="span12">
+
+                        <div class="form-action">
+                            <button class="btn btn-success pull-right" type="submit">Sign in</button>
+                            <label>
+                            <!--
+                            <li><button type="button" id="checkbox" class="checkbox btn btn-link">Register now</button></li>
+                            -->
+                            <!--
+                            <input type="checkbox" name="checkme" value="check_uncheckme" id="checkme" />
+                            -->
+
+                            <input id="checkme" class="checkbox" type="checkbox" value="check_uncheckme"> Register now
+
+                            </label>
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
                 </div>
-                <form class='login'>
-                    <label>Username</label>
-                    <input name="email" id="inputEmail" type="text" class="span12">
-                    <label>Password</label>
-                    <input type="password" name="password" id="inputPassword" type="password" class="span12">
 
-                    <div class="form-action">
-                        <button class="btn btn-success pull-right" type="submit">Sign in</button>
-                        <label>
-                        <!--
-                        <li><button type="button" id="checkbox" class="checkbox btn btn-link">Register now</button></li>
-                        -->
-                        <!--
-                        <input type="checkbox" name="checkme" value="check_uncheckme" id="checkme" />
-                        -->
+                <div id="registerDiv" class="block-header">
+                    <form class="register">
+                        <label>Username</label>
+                        <input name="email" id="inputEmail" type="text" class="span12">
+                        <label>Password</label>
+                        <input type="password" name="password" id="inputPassword" type="password" class="span12">
+                        <label>Password Confirmation</label>
+                        <input type="password" name="password_confirmation" id="inputPasswordConfirm" class="span12">
+                        <div class="form-action">
+                            <button class="btn btn-success pull-right" type="submit">Sign up</button>
+                            <!--
+                            You can have a remember me or sign up here
+                            <label class="remember-me"><input type="checkbox"> Remember me</label>
+                            <a href="sign-up.html" class="sign-up">Sign Up</a>
 
-                        <input id="checkme" class="checkbox" type="checkbox" value="check_uncheckme"> Register now
 
-                        </label>
-                        <div class="clearfix"></div>
-                    </div>
-                </form>
+                                <label>
+                                <input class="checkbox" type="checkbox" value="register-now"> Register now
+                                </label>
+                                -->
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
 
-<!--[endif]-->
-<div class="row-fluid">
-    <div class="dialog">
-        <div class="block">
-            <div id="registerDiv" class="block-header">
-            </div>
-            <form class="register">
-                <label>Username</label>
-                <input name="email" id="inputEmail" type="text" class="span12">
-                <label>Password</label>
-                <input type="password" name="password" id="inputPassword" type="password" class="span12">
-                <label>Password Confirmation</label>
-                <input type="password" name="password_confirmation" id="inputPasswordConfirm" class="span12">
-                <div class="form-action">
-                    <button class="btn btn-success pull-right" type="submit">Sign up</button>
-                    <!--
-                    You can have a remember me or sign up here
-                    <label class="remember-me"><input type="checkbox"> Remember me</label>
-                    <a href="sign-up.html" class="sign-up">Sign Up</a>
+    <!--
+    <div class="row-fluid">
+        <div class="dialog">
+            <div class="block">
+
+                <div id="registerDiv" class="block-header">
+                    <form class="register">
+                        <label>Username</label>
+                        <input name="email" id="inputEmail" type="text" class="span12">
+                        <label>Password</label>
+                        <input type="password" name="password" id="inputPassword" type="password" class="span12">
+                        <label>Password Confirmation</label>
+                        <input type="password" name="password_confirmation" id="inputPasswordConfirm" class="span12">
+                        <div class="form-action">
+                            <button class="btn btn-success pull-right" type="submit">Sign up</button>
+
+                            You can have a remember me or sign up here
+                            <label class="remember-me"><input type="checkbox"> Remember me</label>
+                            <a href="sign-up.html" class="sign-up">Sign Up</a>
 
 
-                        <label>
-                        <input class="checkbox" type="checkbox" value="register-now"> Register now
-                        </label>
-                        -->
-                    <div class="clearfix"></div>
+                                <label>
+                                <input class="checkbox" type="checkbox" value="register-now"> Register now
+                                </label>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
                 </div>
-            </form>
+
+            </div>
         </div>
     </div>
-</div>
+    -->
 
+<!--
 <div class='status'>
 
 </div>
+-->
 
   <div id="dashboard">
-    <div class="navbar">
-        <div class="navbar-inner">
-                <ul class="nav pull-right">
-
-                    <li id="fat-menu" class="dropdown">
-                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-user"></i> Bill Barber
-                            <i class="icon-caret-down"></i>
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="#">My Account</a></li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
-                            <li class="divider visible-phone"></li>
-                            <li><a tabindex="-1" href="sign-in.html">Logout</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-                <a class="brand" href="index.html">Fishin' with a Mission</a>
-        </div>
-    </div>
 
     <div id="main-menu">
 
@@ -195,6 +204,20 @@
                     <li><button type="button" id="showSearch" class="btn btn-link">Searches, Searches, and more Searches</button></li>
                 </ul>
             </li>
+            <li id="fat-menu" class="dropdown pull-right">
+                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-user"></i> Bill Barber
+                    <i class="icon-caret-down"></i>
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li><a tabindex="-1" href="#">My Account</a></li>
+                    <li class="divider"></li>
+                    <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
+                    <li class="divider visible-phone"></li>
+                    <li><a tabindex="-1" href="sign-in.html">Logout</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 
@@ -241,8 +264,10 @@
                             <th>Role</th>
                             <th>Boat</th>
                             <th>Team</th>
+                            <!--
                             <th>edit</th>
                             <th>delete</th>
+                            -->
                         </thead>
                         <tbody id="participant-body">
 
@@ -259,8 +284,10 @@
                             <th>Picture</th>
                             <th>Capacity</th>
                             <th>Open Seats</th>
+                            <!--
                             <th>edit</th>
                             <th>delete</th>
+                            -->
                         </thead>
                         <tbody id="boat-body">
 
@@ -271,7 +298,8 @@
                   </li>
                   <li class="more">
                     <button type="button" class="listParticipants btn btn-link">Show All Participants</button>
-                    <button type="button" class="listBoats btn btn-link">Show All Boats</button>
+                    <!-- <button type="button" class="listBoats btn btn-link">Show All Boats</button> -->
+                    <button type="button" class="listBoats btn">Show All Boats</button>
                     <button type="button" class="listTeams btn btn-link">Show All Teams</button>
                     <!-- <a href="#">Show All</a> -->
                   </li>
@@ -408,8 +436,10 @@
                 <table id="Teams-table" class="table table-hover">
                     <thead>
                         <th>Name</th>
+                        <!--
                         <th>edit</th>
                         <th>delete</th>
+                        -->
                     </thead>
                     <tbody id="team-body">
 
@@ -518,8 +548,8 @@
                 <td>{{role}}</td>
                 <td>{{boat_id}}</td>
                 <td>{{team_id}}</td>
-                <td><button class="icon-edit" id="edit-button" data-id="{{id}}"></button></td>
-                <td><button class="icon-remove" id="delete-button" data-id="{{id}}"></button></td>
+                <td><button class="icon-pencil btn-link" id="edit-button" data-id="{{id}}"></button></td>
+                <td><button class="icon-trash btn-link" id="delete-button" data-id="{{id}}"></button></td>
             </tr>
         {{/each}}
     </script>
@@ -535,8 +565,8 @@
                 <td>{{avatar}}</td>
                 <td>{{capacity}}</td>
                 <td>{{open_seats}}</td>
-                <td><button class="icon-edit" id="edit-boat-button" data-id="{{id}}"></button></td>
-                <td><button class="icon-remove" id="delete-boat-button" data-id="{{id}}"></button></td>
+                <td><button class="icon-pencil btn-link" id="edit-boat-button" data-id="{{id}}"></button></td>
+                <td><button class="icon-trash btn-link" id="delete-boat-button" data-id="{{id}}"></button></td>
             </tr>
         {{/each}}
     </script>
@@ -547,9 +577,9 @@
         {{#each teams}}
             <tr>
                 <td>{{team_name}}</td>
-                <td><button class="icon-edit" id="edit-team-button" data-id="{{id}}"></button></td>
+                <td><button class="icon-pencil btn-link" id="edit-team-button" data-id="{{id}}"></button></td>
 
-                <td><button class="icon-remove" id="delete-team-button" data-id="{{id}}"></button></td>
+                <td><button class="icon-trash btn-link" id="delete-team-button" data-id="{{id}}"></button></td>
             </tr>
         {{/each}}
     </script>

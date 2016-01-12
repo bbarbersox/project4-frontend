@@ -2409,6 +2409,7 @@ input[type="submit"].btn.btn-mini {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
+  border: none;
 }
 .btn-link:hover,
 .btn-link:focus {

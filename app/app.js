@@ -364,9 +364,10 @@ $(document).ready(function() {
     console.log(data);
     // $('.text input[name="register"]').prop('checked', true);
     // $('.text input[name="register"]').prop('checked', false);
-    $('.login').show();
-    $('#registerDiv').hide();
-    $('.register').hide();
+    $('.login').css("display", "block");
+    // $('#registerDiv').hide();
+    $('#registerDiv').css("display", "none");
+    $('.register').css("display", "none");
   };
 
 
@@ -381,7 +382,8 @@ $(document).ready(function() {
     token = data.user.token;
     userId = data.user.id;
     // $('#status').val('you successfully logged in');
-    $('.login').hide();
+    $('.login').css("display", "none");
+    // $('.login').hide();
     $('#dashboard').css("display", "block");
     fwmapi.listBoats(token, boatSelectCB);
     fwmapi.listTeams(token, teamSelectCB);
@@ -405,8 +407,8 @@ $(document).ready(function() {
     var participantsTemplate = Handlebars.compile($('#participantsList').html());
     var newHTML = participantsTemplate(data);
     $("#participant-body").html(newHTML);
-    $('#showParticipants').show();
-    $('#showBoats').hide();
+    $('#showParticipants').css("display", "block");
+    $('#showBoats').css("display", "none");
   };
    // END --- allParticipantCB
 
@@ -643,9 +645,9 @@ $(document).ready(function() {
   // If user has not registered this register checkbox will be clicked
   $('.checkbox').on('click', function(e){
     debugger;
-    $('.register').show();
-    $('#registerDiv').show();
-    $('.login').hide();
+    $('.register').css("display", "block");
+    $('#registerDiv').css("display", "block");
+    $('.login').css("display", "none");
   });  // end of register checkbox processing
 
 
@@ -853,17 +855,6 @@ $(document).ready(function() {
     var id = $('#boatId').val(); //captuers particicpants id
     fwmapi.updateBoat(id, dataForServer, token, addBoatCB);
   });
-
-  // Delete An Activity processing
-  $('deleteact').on('click', function(e){
-    e.preventDefault();
-    console.log('got to delete Acivity');
-    console.log("acitivty id is: " + actId);
-    fwmapi.deleteActivity(actId, token, deleteCB);
-  });
-  // end of Delete Activity processing
-
-
 
   $(document).on("click", "#delete-button", function(event){
     var elementId = $(event.target).data("id");
