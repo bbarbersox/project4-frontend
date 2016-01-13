@@ -115,6 +115,20 @@ var fwmapi = {
     },
     // END --- Search for list of particpants by role
 
+    // Search for a list of particpants by the boat they are assigned to
+    searchCrewByBoat: function (boatId, token, callback) {
+      debugger;
+      this.ajax({
+        method: 'GET',
+        url: this.fwm + '/participants/?boat_id=' + boatId,
+        headers: {
+          Authorization: 'Token token=' + token
+        },
+        dataType: 'json'
+      }, callback);
+    },
+    // END --- Search for list of particpants by role
+
     // Search for a single Boat ----- NEEDS TESTING
     searchByBoat: function (title, token, callback) {
       debugger;
@@ -191,6 +205,19 @@ var fwmapi = {
      this.ajax({
       method: 'PATCH',
       url: this.fwm + '/boats/' + id, // id is the boat id
+      headers: {
+        Authorization: 'Token token=' + token
+      },
+      contentType: 'application/json; charset=utf-8',
+      data: JSON.stringify(data),
+      dataType: 'json'
+      }, callback);
+    },
+
+    updateTeam: function (id, data, token, callback) {
+     this.ajax({
+      method: 'PATCH',
+      url: this.fwm + '/teams/' + id, // id is the team id
       headers: {
         Authorization: 'Token token=' + token
       },
@@ -409,6 +436,7 @@ $(document).ready(function() {
     $("#participant-body").html(newHTML);
     $('#showParticipants').css("display", "block");
     $('#showBoats').css("display", "none");
+    $('#showCrew').hide();
   };
    // END --- allParticipantCB
 
@@ -428,13 +456,37 @@ $(document).ready(function() {
     $('#result').val(JSON.stringify(data, null, 4));
     console.log('got to Handlebars to boats table function');
     console.log(data);
+    // var id = data.boats[0].id;
+    // console.log(id);
+    // fwmapi.searchCrewByBoat(id, token, showCrewCB);
     var boatsTemplate = Handlebars.compile($('#boatsList').html());
     var newHTML = boatsTemplate(data);
     $("#boat-body").html(newHTML);
     $('#showParticipants').hide();
     $('#showBoats').show();
+    $('#showCrew').hide();
   };
-   // END --- allParticipantCB
+   // END --- allBoatsCB
+
+      var showCrewCB = function callback(error, data) {
+    debugger;
+    if (error) {
+      console.error(error);
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+    $('#result').val(JSON.stringify(data, null, 4));
+    console.log('got to Handlebars to boats crew callback function');
+    console.log(data);
+    var boatsCrewTemplate = Handlebars.compile($('#boatsCrew').html());
+    var newHTML = boatsCrewTemplate(data);
+    $("#crew-body").html(newHTML);
+    $('#showTeams').hide();
+    $('#showTeamAdd').hide();
+    $('#showTeamUpdate').hide();
+    $('#showCrew').show();
+  };
+   // END --- allBoatsCB
 
    var teamsTableCB = function callback(error, data) {
     debugger;
@@ -546,7 +598,7 @@ $(document).ready(function() {
     }
     $('#result').val(JSON.stringify(data, null, 4));
     console.log(data);
-    $('form').loadJSON(data);
+    $('.updateParticipant').loadJSON(data);
     $('#chooseBoatDiv').show();
     $('#chooseTeamDiv').show();
     $('#showParticipantUpdate').show();
@@ -700,20 +752,6 @@ $(document).ready(function() {
   });
   // ----- end of Show All Activities processing ----- //
 
-  // Show Single Activity processing
-  // $('.getact').on('click', function(e) {
-  //   debugger;
-  //   e.preventDefault();
-  //   console.log('got to list one activity function', token);
-  //   // var id = $(".listOneActivity input[id=act-id]").val();
-  //   var id = $("#searchDiv input[id=actid]").val();
-  //   actId = id;
-  //   console.log("acitivty id is: " + id);
-  //   fwmapi.searchById(id, token, actFormCB);
-  // });
-  // ----- end of Show Single Activity processing ----- //
-
-
   // Show Single Particpant
   $('#searchById').on('click', function(e) {
     debugger;
@@ -758,6 +796,17 @@ $(document).ready(function() {
   });
   // ----- end of Show Participant by role processing ----- //
 
+  // Show Particpants by boat
+  // $('#searchCrewByBoat').on('click', function(e) {
+  //   debugger;
+  //   e.preventDefault();
+  //   console.log('got to search participant by boat function', token);
+  //   var boatId = $("#searchDiv input[id=role]").val();
+  //   console.log("participant search role is: " + role);
+  //   fwmapi.searchCrewByBoat(role, token, participantsTableCB);
+  // });
+  // ----- end of Show Participant by boat processing ----- //
+
   // Show Single Boat processing ------ NEDDS TESTING
   $('#searchByBoat').on('click', function(e) {
     debugger;
@@ -765,7 +814,8 @@ $(document).ready(function() {
     console.log('got to list one boat function', token);
     var boatName = $("#searchDiv input[id=boatid]").val();
     console.log("The boat name is: " + boatName);
-    fwmapi.searchByBoat(boatName, token, boatsTableCB);
+    // fwmapi.searchByBoat(boatName, token, boatsTableCB);
+    fwmapi.searchCrewByBoat(boatName, token, boatsTableCB);
   });
   // ----- end of Show Single Boat processing ----- //
 
@@ -852,7 +902,7 @@ $(document).ready(function() {
     // dataForServer.participant.role = $(".updateParticipant input[id=role]").val();
     // dataForServer.participant.boat_id = $(".updateParticipant input[id=boat_id]").val();
     // dataForServer.participant.team_id = $(".addParticipant input[id=team_id]").val();
-    var id = $('#boatId').val(); //captuers particicpants id
+    var id = $('#boatId').val(); //captuers the boat id
     fwmapi.updateBoat(id, dataForServer, token, addBoatCB);
   });
 
@@ -872,6 +922,13 @@ $(document).ready(function() {
   var id = $(event.target).data("id");
   console.log(id);
   fwmapi.searchByBoatId(id, token, boatFormCB);
+  });
+
+  $(document).on("click", "#see-crew-button", function(event){
+  debugger;
+  var id = $(event.target).data("id");
+  console.log(id);
+  fwmapi.searchCrewByBoat(id, token, showCrewCB);
   });
 
   $(document).on("click", "#delete-boat-button", function(event){
@@ -897,6 +954,7 @@ $(document).ready(function() {
     // $('#participantFormDiv').css("display", "block");
     // $('#putActivitiesList').css("display", "none");
     $('#participantFormDiv').show();
+    $('#showParticipantUpdate').hide();
     $('#showParticipants').hide();
     $('#chooseBoatDiv').show();
     $('#chooseTeam').show();
@@ -956,7 +1014,9 @@ $(document).ready(function() {
       }
     };
 
-
+    var boatName = $("#chooseBoat :selected").text(); //capture boat name chosen off the list
+    console.log(boatName);
+    // var teamName = $("#chooseTeam :selected").text(); // capture team name chosen off the list
 
     fwmapi.addParticipant(dataForServer, token, callback);
   });
@@ -984,7 +1044,8 @@ $(document).ready(function() {
         "team_name": $(".updateTeam input[id=teamUpName]").val(),
       }
     };
-    fwmapi.updateTeam(dataForServer, token, updateTeamCB);
+    var id = $('#teamId').val(); //captuers the team id
+    fwmapi.updateTeam(id, dataForServer, token, addTeamCB);
   });
   // ----- END of Update Team processing ----- //
 
