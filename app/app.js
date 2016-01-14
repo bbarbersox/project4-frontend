@@ -31,8 +31,8 @@ var fwmapi = {
         data: JSON.stringify(credentials),
         dataType: 'json',
       }, callback);
-      $('#registerDiv').css("display", "none");
-      $('#loginDiv').css("display", "block");
+      // $('#registerDiv').css("display", "none");
+      // $('#loginDiv').css("display", "block");
     },
     // End of register ajax logic
 
@@ -127,7 +127,7 @@ var fwmapi = {
         dataType: 'json'
       }, callback);
     },
-    // END --- Search for list of particpants by role
+    // END --- Search for list of particpants by the boat they are assigned to
 
     // Search for a single Boat ----- NEEDS TESTING
     searchByBoat: function (title, token, callback) {
@@ -384,7 +384,11 @@ $(document).ready(function() {
     debugger;
     if (error) {
       console.error(error);
-      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      // $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      $('#status').show();
+      $('#status').val('registration error: ' + error.error + ' Please try again');
+      $('#status').hide().html(data).fadeIn('slow').delay(2000).hide(1);
+
       return;
     }
     $('#result').val(JSON.stringify(data, null, 4));
@@ -392,8 +396,11 @@ $(document).ready(function() {
     // $('.text input[name="register"]').prop('checked', true);
     // $('.text input[name="register"]').prop('checked', false);
     $('.login').css("display", "block");
+    $('#status').show();
+      $('#status').val('you have successfully registered');
+      $('#status').hide().html(data).fadeIn('slow').delay(2000).hide(1);
     // $('#registerDiv').hide();
-    $('#registerDiv').css("display", "none");
+    $('#registerDiv').hide();
     $('.register').css("display", "none");
   };
 
@@ -402,13 +409,18 @@ $(document).ready(function() {
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      // $('#status').val('login error: ' + error.status + ', error: ' + error.error);
+      // $('#status').val('login error: ' + error.error + ' Please try again');
+      $('#status').hide().html(data).fadeIn('slow').delay(1000).hide(1);
       return;
     }
     $('#result').val(JSON.stringify(data, null, 4));
     console.log(data);
     token = data.user.token;
     userId = data.user.id;
-    // $('#status').val('you successfully logged in');
+    $('#statusDB').val('you successfully logged in');
+    // $('#statusDB').show();
+    $('#statusDB').hide().html(data).fadeIn('slow').delay(1000).hide(1);
     $('.login').css("display", "none");
     // $('.login').hide();
     $('#dashboard').css("display", "block");
@@ -925,9 +937,12 @@ $(document).ready(function() {
   });
 
   $(document).on("click", "#see-crew-button", function(event){
-  debugger;
   var id = $(event.target).data("id");
-  console.log(id);
+  var title = $(event.target).data("title");  // Save the title of the boat
+  var tr = document.getElementById('crew-table').tHead.children[0],
+    th = document.createElement('th');
+  th.innerHTML = "Crew of the Boat " + title; // create the table header html using proper boat title
+  tr.replaceChild(th, tr.childNodes[0]);  // replace current header with new boat name
   fwmapi.searchCrewByBoat(id, token, showCrewCB);
   });
 

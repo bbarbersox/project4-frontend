@@ -29,9 +29,11 @@ h1 {
   /* color: #eee; */
 }
 h2 {
-  color: #41414c;
+  /* color: #41414c; */
+  color: navy-blue;
   font-size: 1.25em;
   font-weight: normal;
+  text-align: center;
 }
 h3 {
   color: #41414c;

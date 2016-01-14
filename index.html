@@ -19,10 +19,13 @@
   <!--[endif]-->
     <div class="row-fluid">
         <h1>Fishin' with a Mission</h1>
+        <h2>The annual Charity you do not want to miss!!!</h2>
+
         <div class="dialog">
 
             <p class="brand" href="index.html"></p>
             <div class="block">
+                <textarea id="status"></textarea>
                 <div id="loginDiv" class="block-header">
 
                     <form class='login'>
@@ -44,6 +47,8 @@
                             <input id="checkme" class="checkbox" type="checkbox" value="check_uncheckme"> Register now
 
                             </label>
+                            <!-- <label for="result">Status</label> -->
+                            <textarea id="status"></textarea>
                             <div class="clearfix"></div>
                         </div>
                     </form>
@@ -69,6 +74,7 @@
                                 <input class="checkbox" type="checkbox" value="register-now"> Register now
                                 </label>
                                 -->
+                            <textarea id="status"></textarea>
                             <div class="clearfix"></div>
                         </div>
                     </form>
@@ -78,15 +84,16 @@
         </div>
     </div>
 
-<!--
-<div class='status'>
+    <!--
+    <div id='status'>
 
-</div>
--->
+    </div>
+    -->
 
   <div id="dashboard">
 
     <div id="main-menu">
+        <textarea id="statusDB"></textarea>
 
         <div id="phone-navigation">
             <select class="selectnav" id="phone-menu">
@@ -204,14 +211,10 @@
       <div class="container-fluid">
         <div class="row-fluid">
           <div class="span8 main-content">
+
             <div class="row-fluid">
               <div class="row-fluid">
-                <h2>Participants and Boats
-                <!--
-                <label for="result">Status</label>
-                <textarea id="status"></textarea>
-                -->
-                </h2>
+                <h2>Participants and Boats</h2>
 
                 <div id="showParticipants">
                     <table id="Participants-table" class="table table-hover">
@@ -432,9 +435,10 @@
 
                 <!-- Show Crew Div -->
                 <div id="showCrew">
-                    <table id="Crew-table" class="table table-hover">
+                    <table id="crew-table" class="table table-hover">
                         <thead>
-                            <th>Crew Members & Roles</th>
+                            <th></th>
+                            <!-- <th>Crew Members & Roles</th> -->
                         </thead>
                         <tbody id="crew-body">
 
@@ -516,7 +520,7 @@
                 <td>{{avatar}}</td>
                 <td>{{capacity}}</td>
                 <td>{{open_seats}}</td>
-                <td><button class="icon-list btn-link" id="see-crew-button" data-id="{{id}}"></button></td>
+                <td><button class="icon-list btn-link" id="see-crew-button" data-id="{{id}}"  data-title="{{title}}"></button></td>
                 <td><button class="icon-pencil btn-link" id="edit-boat-button" data-id="{{id}}"></button></td>
                 <td><button class="icon-trash btn-link" id="delete-boat-button" data-id="{{id}}"></button></td>
             </tr>

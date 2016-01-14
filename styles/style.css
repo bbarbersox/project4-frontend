@@ -9,10 +9,11 @@
   background-size: 100%;
 }
 
-#h1 {
+/* #h1 {
   color: black;
   font-size: 100%;
-}
+} */
+
 
 #img.source-image {
   width: 100%;
@@ -81,19 +82,27 @@
 }
 
 #result {
-  height: 60ex;
+  height: 60px;
   width: 90%;
   margin: 0 auto;
 }
 
-/*
-.status {
-  max-height: 20px;
-  max-width: 20px;
+
+#status {
+  max-height: 10%;
+  max-width: 100%;
   padding: 5px;
   margin: 0 auto;
+  display: none;
 }
-*/
+
+#status {
+  max-height: 10%;
+  max-width: 100%;
+  padding: 5px;
+  margin: 0 auto;
+  display: none;
+}
 
 .login {
   display: block;
