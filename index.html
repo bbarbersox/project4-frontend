@@ -164,7 +164,7 @@
                     <li class="divider visible-phone"></li>
                     <li><a tabindex="-1" href="sign-in.html">Logout</a></li>
                     -->
-                    <li><button type="button" id="logout" class="btn btn-link">Working Logout</button></li>
+                    <li><button type="button" id="logout" class="btn btn-link">Logout</button></li>
                 </ul>
             </li>
         </ul>
@@ -172,9 +172,12 @@
 
 
     <div id="sidebar-nav">
-    <!--
-        <ul id="dashboard-menu" class="nav nav-list">
 
+        <ul id="dashboard-menu" class="nav nav-list">
+            <li>    About Event</li>
+            <li>    Contact Us</li>
+            <li>    Map & Directions</li>
+        <!--
             <div id="searchDiv">
                     <input id="participantid" type="text" size="4" placeholder="Search Participants by ID">
                     <button type="button" id="searchById" class="btn btn-link">Search By Id</button>
@@ -201,9 +204,9 @@
 
 
             <li class="active "><a href="index.html"><i class="icon-home"></i> <span>Dashboard</span></a></li>
-        -->
-            <li class=" "><a href="media.html"><i class="icon-film"></i> <span>Media</span></a></li>
 
+            <li class=" "><a href="media.html"><i class="icon-film"></i> <span>Media</span></a></li>
+            -->
 
         </ul>
     </div>
@@ -272,37 +275,25 @@
                 </ul>
 
 
+
+                <div id="searchBoatDiv" class="control-group">
+                    <label class="control-label">Choose a boat</label>
+                    <div class="controls">
+                        <select id="findBoat" class="input-xlarge">
+                        <option> Get a Boat's details </option>
+                        </select>
+                    </div>
+                </div>
+
                 <div id="searchDiv">
                     <input id="participantid" type="text" size="4" placeholder="Search Participants by ID">
                     <button type="button" id="searchById" class="btn btn-link">Search By Id</button>
                     <input id="role" type="text" size="4" placeholder="Search Participants by Role">
                     <button type="button" id="searchByRole" class="btn btn-link">Search By Role</button>
-                    <input id="boatid" type="text" size="4" placeholder="Search by Boat">
-                    <button type="button" id="searchByBoat" class="btn btn-link">Search By Boat</button>
                     <!--
-                    <div id="searchBoatDiv" class="control-group">
-                        <label class="control-label">Choose a boat</label>
-                        <div class="controls">
-                            <select id="searchBoat" class="input-xlarge">
-                            <option> Choose a Boat </option>
-                            </select>
-                        </div>
-                    </div>
-                    -->
                     <input id="teamid" type="text" size="4" placeholder="Search by Team">
                     <button type="button" id="searchByTeam" class="btn btn-link">Search By Team</button>
-                    <!--
-                    <div id="chooseBoatDiv" class="control-group">
-
-                      Select Box for choosing a boat for participant
-                        <label class="control-label"></label>
-                        <div class="controls">
-                            <select id="chooseBoat" class="input-xlarge">
-
-                            </select>
-                        </div>
-                    </div>
-                -->
+                    -->
                 </div>
 
 
@@ -310,7 +301,7 @@
                 <div id="participantFormDiv">
                     <form class="addParticipant">
                         <h2 class="form-signin-heading">Enter new participant info below</h2>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Participants Name">
+                        <input type="text" name="name" class="form-control" id="name" data-boat-title="a test" placeholder="Participants Name">
                         <input type="text" class="form-control" id="email" placeholder="Email">
                         <input type="text" class="form-control" id="phone" placeholder="Phone Number">
                         <input type="text" class="form-control" id="role"  placeholder="Role">
@@ -319,7 +310,7 @@
                             <!-- Select Basic -->
                             <label class="control-label">Choose a boat</label>
                             <div class="controls">
-                                <select id="chooseBoat" class="input-xlarge">
+                                <select id="chooseBoat" class="input-xlarge" data-boat-title="{{title}}">
                                 <option> Choose a Boat </option>
                                 </select>
                             </div>
@@ -328,7 +319,7 @@
                             <!-- Select Basic -->
                             <label class="control-label">Choose a team</label>
                             <div class="controls">
-                                <select id="chooseTeam" class="input-xlarge">
+                                <select id="chooseTeam" class="input-xlarge" data-team-name="{{team_name}}">
                                     <option> Choose a Team </option>
                                 </select>
                             </div>
@@ -343,7 +334,7 @@
                 <div id="showParticipantUpdate">
                     <form class="updateParticipant">
                         <h2 class="form-signin-heading">Update participant info below</h2>
-                        <input type="text" name="id" class="form-control" id="participantId" placeholder="Participants Id">
+                        <input type="text" name="id" class="form-control" data-boat-title="tryit" id="participantId" placeholder="Participants Id">
                         <input type="text" name="name" class="form-control" id="name" placeholder="Participants Name">
                         <input type="text" class="form-control" id="email" placeholder="Email">
                         <input type="text" class="form-control" id="phone" placeholder="Phone Number">
@@ -360,7 +351,7 @@
                             <!-- Select Basic -->
                             <label class="control-label">Choose a team</label>
                             <div class="controls">
-                                <select id="chooseUpdateTeam" class="input-xlarge">
+                                <select id="chooseUpdateTeam" class="input-xlarge" data-team-name="{{team_name}}">
                                     <option> Choose a Team </option>
                                 </select>
                             </div>

@@ -6,6 +6,7 @@ var token = "";
 var userId = 0;
 // var propId = 0;
 var actId = 0;
+var boatName = "";
 
 var fwmapi = {
   // fwm: 'http://localhost:3000',
@@ -23,7 +24,6 @@ var fwmapi = {
 
     // Registration Ajax call
     register: function register(credentials, callback) {
-      debugger;
       this.ajax({
         method: 'POST',
         url: this.fwm + '/register',
@@ -52,7 +52,6 @@ var fwmapi = {
 
     // Logout Ajax logic --- NEEDS TO BE TESTED
     logout: function(id, token, callback) {
-      debugger;
       this.ajax({
         method: "DELETE",
         url: this.fwm + "/logout/" + id,
@@ -120,7 +119,6 @@ var fwmapi = {
 
     // Search for a list of particpants by the boat they are assigned to
     searchCrewByBoat: function (boatId, token, callback) {
-      debugger;
       this.ajax({
         method: 'GET',
         url: this.fwm + '/participants/?boat_id=' + boatId,
@@ -134,7 +132,6 @@ var fwmapi = {
 
     // Search for a single Boat ----- NEEDS TESTING
     searchByBoat: function (title, token, callback) {
-      debugger;
       this.ajax({
         method: 'GET',
         url: this.fwm + '/boats/?title=' + title,
@@ -148,7 +145,6 @@ var fwmapi = {
 
     // Search for a single Boat ----- NEEDS TESTING
     searchByBoatId: function (id, token, callback) {
-      debugger;
       this.ajax({
         method: 'GET',
         url: this.fwm + '/boats/' + id,
@@ -162,7 +158,6 @@ var fwmapi = {
 
     // Search for a single Team ----- NEEDS TESTING
     searchByTeamId: function (id, token, callback) {
-      debugger;
       this.ajax({
         method: 'GET',
         url: this.fwm + '/teams/' + id,
@@ -176,7 +171,6 @@ var fwmapi = {
 
     // Search participants by Team ---- NEEDS TESTING
     searchByTeam: function (team_name, token, callback) {
-      debugger;
       this.ajax({
         method: 'GET',
         url: this.fwm + '/teams/?team_name=' + team_name,
@@ -190,7 +184,6 @@ var fwmapi = {
 
     // Update a participant AJAX call
     updateParticipant: function (id, data, token, callback) {
-     debugger;
      this.ajax({
       method: 'PATCH',
       url: this.fwm + '/participants/' + id,
@@ -339,6 +332,7 @@ var fwmapi = {
 $(document).ready(function() {
 
    $('#chooseBoatDiv').hide();
+   $('#searchBoatDiv').hide();
 
   // logic to take data from a form an put it into an object
   var form2object = function(form) {
@@ -360,6 +354,7 @@ $(document).ready(function() {
   };
 
   var callback = function callback(error, data) {
+    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -412,8 +407,6 @@ $(document).ready(function() {
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
-      // $('#status').val('login error: ' + error.status + ', error: ' + error.error);
-      // $('#status').val('login error: ' + error.error + ' Please try again');
       $('#status').hide().html(data).fadeIn('slow').delay(1000).hide(1);
       return;
     }
@@ -461,25 +454,29 @@ $(document).ready(function() {
       return;
     }
     $('#result').val(JSON.stringify(data, null, 4));
-    console.log('got to Handlebars to  participants table function');
-    console.log(data);
+
+    // Scaffolding for retrieving boats nae for table
+    // var allBoats = fwmapi.listBoats(token, boatsNameCB);
+    // for (var i=0; i < data.participants.length; i++) {
+    //   var boatId = data.participants[i].boat_id;
+    //   console.log(boatId);
+    //   var boatsTitle = fwmapi.searchByBoatId(boatId, token, boatsNameCB);
+    //   console.log(boatsTitle);
+    // }
+    // console.log(allBoats);
+
     var participantsTemplate = Handlebars.compile($('#participantsList').html());
     var newHTML = participantsTemplate(data);
     $("#participant-body").html(newHTML);
     $('#showParticipants').css("display", "block");
     $('#showBoats').css("display", "none");
     $('#showCrew').hide();
+    $('#searchDiv').hide();
+    $('#searchBoatDiv').hide();
   };
    // END --- allParticipantCB
 
-   // window.Handlebars.registerHelper('select', function( value, options ){
-    //     var $el = $('<select />').html( options.fn(this) );
-    //     $el.find('[value="' + value + '"]').attr({'selected':'selected'});
-    //     return $el.html();
-    // });
-
    var boatsTableCB = function callback(error, data) {
-    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -488,17 +485,35 @@ $(document).ready(function() {
     $('#result').val(JSON.stringify(data, null, 4));
     console.log('got to Handlebars to boats table function');
     console.log(data);
-    // var id = data.boats[0].id;
-    // console.log(id);
-    // fwmapi.searchCrewByBoat(id, token, showCrewCB);
     var boatsTemplate = Handlebars.compile($('#boatsList').html());
     var newHTML = boatsTemplate(data);
     $("#boat-body").html(newHTML);
     $('#showParticipants').hide();
     $('#showBoats').show();
     $('#showCrew').hide();
+    $('#searchDiv').hide();
+    $('#searchBoatDiv').hide();
   };
    // END --- allBoatsCB
+
+   var boatsNameCB = function callback(error, data) {
+    debugger;
+    if (error) {
+      console.error(error);
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+    var boatName = data.title;
+    var boatTitle = data.title;
+    console.log('got to boats name callback');
+    // console.log(data, boatName, boatTitle);
+
+    // var id = data.boats[0].id;
+    // console.log(id);
+    // fwmapi.searchCrewByBoat(id, token, showCrewCB);
+    return boatName;
+  };
+   // END --- get Boats Name
 
       var showCrewCB = function callback(error, data) {
     debugger;
@@ -541,7 +556,6 @@ $(document).ready(function() {
 
   /////////
   var formCB = function callback(error, data) {
-    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -594,18 +608,19 @@ $(document).ready(function() {
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
       return;
     }
-
+    // populate boat select boxes
     for (var i = 0; i < data.boats.length; i++) {
       console.log(chooseBoat);
       $('#chooseBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
       $('#chooseUpdateBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
+      $('#findBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
     };
+    // END --- populate boat select boxes
   };
   // END --- populate data into a Boat Selector search field
 
   // populate data into a Team Selector search field
   var teamSelectCB = function callback(error, data) {
-    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -622,7 +637,6 @@ $(document).ready(function() {
 
   // populate data from an single participant query into a form
   var participantFormCB = function callback(error, data) {
-    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -640,7 +654,6 @@ $(document).ready(function() {
   // END --- show a single participants info
 
   var addBoatCB = function callback(error, data) {
-    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -662,7 +675,6 @@ $(document).ready(function() {
   };
 
   var addTeamCB = function callback(error, data) {
-    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -682,13 +694,8 @@ $(document).ready(function() {
     // $('#showBoats').show();
   };
 
-  // var updateBoatCB = function callback(err, data) {
-
-  // };
-
   // Delete Participant Callback
   var deleteCB = function callback(error, data) {
-    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -702,7 +709,6 @@ $(document).ready(function() {
 
   // Delete Boat Callback
   var deleteBoatCB = function callback(error, data) {
-    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -763,16 +769,6 @@ $(document).ready(function() {
   // ----- end of Login processing ----- //
   $('#logout').on('click', function(e) {
     e.preventDefault();
-    debugger;
-    // var credentials = wrap('credentials', form2object(this));
-    // var cb = function cb(error, data) {
-    //   if (error) {
-    //     callback(error);
-    //     return;
-    //   }
-    //   callback(null, data);
-    // };
-
     fwmapi.logout(userId, token, logoutCB);
   });
   //Logout button processing
@@ -813,17 +809,6 @@ $(document).ready(function() {
   });
   // ----- end of Show Single Participant processing ----- //
 
-   // Show Single Boat
-  // $('#searchByBoatId').on('click', function(e) {
-  //   debugger;
-  //   e.preventDefault();
-  //   console.log('got to list one boat function', token);
-  //   var id = $("#showBoatUpdate input[id=boatId]").val();
-  //   console.log("boat id is: " + id);
-  //   fwmapi.searchByBoatId(id, token, boatFormCB);
-  // });
-  // ----- end of Show Single Boat processing ----- //
-
    // Show Single Team
   $('#searchByTeamId').on('click', function(e) {
     debugger;
@@ -846,17 +831,6 @@ $(document).ready(function() {
   });
   // ----- end of Show Participant by role processing ----- //
 
-  // Show Particpants by boat
-  // $('#searchCrewByBoat').on('click', function(e) {
-  //   debugger;
-  //   e.preventDefault();
-  //   console.log('got to search participant by boat function', token);
-  //   var boatId = $("#searchDiv input[id=role]").val();
-  //   console.log("participant search role is: " + role);
-  //   fwmapi.searchCrewByBoat(role, token, participantsTableCB);
-  // });
-  // ----- end of Show Participant by boat processing ----- //
-
   // Show Single Boat processing ------ NEDDS TESTING
   $('#searchByBoat').on('click', function(e) {
     debugger;
@@ -869,23 +843,17 @@ $(document).ready(function() {
   });
   // ----- end of Show Single Boat processing ----- //
 
-  // Choose a Boat processing
-  // $('#chooseBoat').on('change', function(e) {
-  //   debugger;
-  //   e.preventDefault();
-  //   console.log('got to choose a boat function', token);
-  //   fwmapi.listBoats(token, boatSelectCB);
-  // });
-  // ----- end Choose a Boat processing ----- //
-
-  // Choose a Team processing ------ NEDDS TESTING
-  // $('#chooseTeam').on('change', function(e) {
-  //   debugger;
-  //   e.preventDefault();
-  //   console.log('got to choose a team function', token);
-  //   fwmapi.listTeams(token, teamSelectCB);
-  // });
-  // ----- end Choose a Team processing ----- //
+  $('#findBoat').on('change', function(e) {
+    debugger;
+    e.preventDefault();
+    console.log('got to list one boat function', token);
+    var boatName = $("#findBoat option:selected").text();
+    var boatId = $("#findBoat").val();
+    console.log("The boat name is: " + boatName + "The boat id is " + boatId);
+    fwmapi.searchByBoat(boatName, token, boatsTableCB);
+    // fwmapi.searchCrewByBoat(boatName, token, boatsTableCB);
+  });
+  // ----- end of Show Single Boat processing ----- //
 
   // Search for participants by Team ------ NEDDS TESTING
   $('#searchByTeam').on('click', function(e) {
@@ -1004,18 +972,19 @@ $(document).ready(function() {
 
 
   $('#showParticipantForm').on('click', function(e) {
-    // $('#participantFormDiv').css("display", "block");
-    // $('#putActivitiesList').css("display", "none");
     $('#participantFormDiv').show();
     $('#showParticipantUpdate').hide();
     $('#showParticipants').hide();
     $('#chooseBoatDiv').show();
     $('#chooseTeam').show();
+    $('#searchDiv').hide();
+    $('#searchBoatDiv').hide();
 
   });
 
   $('#showSearch').on('click', function(e) {
-    $('#searchDiv').css("display", "block");
+    $('#searchDiv').show();
+    $('#searchBoatDiv').show();
     $('#chooseBoatDiv').show();
     $('#chooseTeamDiv').show();
     $('#showParticipants').hide();
@@ -1026,6 +995,8 @@ $(document).ready(function() {
     $('#showBoatAdd').show();
     $('#showParticipants').hide();
     $('#showBoats').hide();
+    $('#searchDiv').hide();
+    $('#searchBoatDiv').hide();
   });
 
   $('#showTeamForm').on('click', function(e) {
@@ -1068,6 +1039,8 @@ $(document).ready(function() {
     };
 
     var boatName = $("#chooseBoat :selected").text(); //capture boat name chosen off the list
+    var pname =document.getElementById("name");
+    pname.setAttribute("data-boat-title", boatName);
     console.log(boatName);
     // var teamName = $("#chooseTeam :selected").text(); // capture team name chosen off the list
 
