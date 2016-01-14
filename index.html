@@ -152,16 +152,18 @@
             </li>
             <li id="fat-menu" class="dropdown pull-right">
                 <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-user"></i> Bill Barber
+                    <i class="icon-user"></i> Welcome
                     <i class="icon-caret-down"></i>
                 </a>
 
                 <ul class="dropdown-menu">
-                    <li><a tabindex="-1" href="#">My Account</a></li>
+                    <li><a tabindex="-1" href="#">My Profile</a></li>
                     <li class="divider"></li>
+                    <!--
                     <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
                     <li class="divider visible-phone"></li>
                     <li><a tabindex="-1" href="sign-in.html">Logout</a></li>
+                    -->
                     <li><button type="button" id="logout" class="btn btn-link">Working Logout</button></li>
                 </ul>
             </li>
@@ -172,6 +174,30 @@
     <div id="sidebar-nav">
 
         <ul id="dashboard-menu" class="nav nav-list">
+
+            <div id="searchDiv">
+                    <input id="participantid" type="text" size="4" placeholder="Search Participants by ID">
+                    <button type="button" id="searchById" class="btn btn-link">Search By Id</button>
+                    <input id="role" type="text" size="4" placeholder="Search Participants by Role">
+                    <button type="button" id="searchByRole" class="btn btn-link">Search By Role</button>
+                    <input id="boatid" type="text" size="4" placeholder="Search by Boat">
+                    <button type="button" id="searchByBoat" class="btn btn-link">Search By Boat</button>
+                    <input id="teamid" type="text" size="4" placeholder="Search by Team">
+                    <button type="button" id="searchByTeam" class="btn btn-link">Search By Team</button>
+                    <!--
+                    <div id="chooseBoatDiv" class="control-group">
+
+                      Select Box for choosing a boat for participant
+                        <label class="control-label"></label>
+                        <div class="controls">
+                            <select id="chooseBoat" class="input-xlarge">
+
+                            </select>
+                        </div>
+                    </div>
+                    -->
+                </div>
+
 
         <!--
             <li class="active "><a href="index.html"><i class="icon-home"></i> <span>Dashboard</span></a></li>
@@ -246,13 +272,23 @@
                 </ul>
 
                 <div id="searchDiv">
-                    <input id="participantid" type="text" size="4" placeholder="Search by ID">
-                    <input id="role" type="text" size="4" placeholder="Search by Role">
-                    <input id="boatid" type="text" size="4" placeholder="Search by Boat">
-                    <input id="teamid" type="text" size="4" placeholder="Search by Team">
+                    <input id="participantid" type="text" size="4" placeholder="Search Participants by ID">
                     <button type="button" id="searchById" class="btn btn-link">Search By Id</button>
+                    <input id="role" type="text" size="4" placeholder="Search Participants by Role">
                     <button type="button" id="searchByRole" class="btn btn-link">Search By Role</button>
+                    <input id="boatid" type="text" size="4" placeholder="Search by Boat">
                     <button type="button" id="searchByBoat" class="btn btn-link">Search By Boat</button>
+                    <!--
+                    <div id="searchBoatDiv" class="control-group">
+                        <label class="control-label">Choose a boat</label>
+                        <div class="controls">
+                            <select id="searchBoat" class="input-xlarge">
+                            <option> Choose a Boat </option>
+                            </select>
+                        </div>
+                    </div>
+                    -->
+                    <input id="teamid" type="text" size="4" placeholder="Search by Team">
                     <button type="button" id="searchByTeam" class="btn btn-link">Search By Team</button>
                     <!--
                     <div id="chooseBoatDiv" class="control-group">

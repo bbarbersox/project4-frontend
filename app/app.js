@@ -864,8 +864,8 @@ $(document).ready(function() {
     console.log('got to list one boat function', token);
     var boatName = $("#searchDiv input[id=boatid]").val();
     console.log("The boat name is: " + boatName);
-    // fwmapi.searchByBoat(boatName, token, boatsTableCB);
-    fwmapi.searchCrewByBoat(boatName, token, boatsTableCB);
+    fwmapi.searchByBoat(boatName, token, boatsTableCB);
+    // fwmapi.searchCrewByBoat(boatName, token, boatsTableCB);
   });
   // ----- end of Show Single Boat processing ----- //
 
