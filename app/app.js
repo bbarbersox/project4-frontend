@@ -51,12 +51,15 @@ var fwmapi = {
     // End of login ajax logic
 
     // Logout Ajax logic --- NEEDS TO BE TESTED
-    logout: function(id, token,callback) {
+    logout: function(id, token, callback) {
+      debugger;
       this.ajax({
         method: "DELETE",
-        url: this.fwm + "logout" + id,
+        url: this.fwm + "/logout/" + id,
         contentType: 'application/json; charset=utf-8',
-        data: JSON.stringify(),
+        headers: {
+          Authorization: 'Token token=' + token
+        },
         dataType: 'json',
       }, callback);
     },
@@ -431,6 +434,23 @@ $(document).ready(function() {
     // $('#chooseBoat').trigger('change');
   };
 
+  var logoutCB =function callback(error, data) {
+    debugger;
+    if (error) {
+      console.error(error);
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      $('#status').hide().html(data).fadeIn('slow').delay(1000).hide(1);
+      return;
+    }
+    $('#result').val(JSON.stringify(data, null, 4));
+    console.log(data);
+    $('.login').each(function(){
+    this.reset();
+    });
+    $('.login').show();
+    $('#dashboard').hide();
+  };
+
 
   // allParticipantCB - callback processes return of participant data &
   // renders it, via handlebars into a table
@@ -741,6 +761,24 @@ $(document).ready(function() {
     fwmapi.login(credentials, loginCB);
   });
   // ----- end of Login processing ----- //
+  $('#logout').on('click', function(e) {
+    e.preventDefault();
+    debugger;
+    // var credentials = wrap('credentials', form2object(this));
+    // var cb = function cb(error, data) {
+    //   if (error) {
+    //     callback(error);
+    //     return;
+    //   }
+    //   callback(null, data);
+    // };
+
+    fwmapi.logout(userId, token, logoutCB);
+  });
+  //Logout button processing
+
+  // ----- end of Logout processing ----- //
+
 
   // Show All Boats processing
   $('.listBoats').on('click', function(e) {

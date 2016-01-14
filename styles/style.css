@@ -31,6 +31,10 @@
   display: none;
 }
 
+#logout {
+
+}
+
 #dashboard {
   display: none;
 }
@@ -87,14 +91,6 @@
   margin: 0 auto;
 }
 
-
-#status {
-  max-height: 10%;
-  max-width: 100%;
-  padding: 5px;
-  margin: 0 auto;
-  display: none;
-}
 
 #status {
   max-height: 10%;

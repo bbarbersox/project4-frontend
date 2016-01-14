@@ -37,17 +37,9 @@
                         <div class="form-action">
                             <button class="btn btn-success pull-right" type="submit">Sign in</button>
                             <label>
-                            <!--
-                            <li><button type="button" id="checkbox" class="checkbox btn btn-link">Register now</button></li>
-                            -->
-                            <!--
-                            <input type="checkbox" name="checkme" value="check_uncheckme" id="checkme" />
-                            -->
-
                             <input id="checkme" class="checkbox" type="checkbox" value="check_uncheckme"> Register now
-
                             </label>
-                            <!-- <label for="result">Status</label> -->
+
                             <textarea id="status"></textarea>
                             <div class="clearfix"></div>
                         </div>
@@ -64,16 +56,6 @@
                         <input type="password" name="password_confirmation" id="inputPasswordConfirm" class="span12">
                         <div class="form-action">
                             <button class="btn btn-success pull-right" type="submit">Sign up</button>
-                            <!--
-                            You can have a remember me or sign up here
-                            <label class="remember-me"><input type="checkbox"> Remember me</label>
-                            <a href="sign-up.html" class="sign-up">Sign Up</a>
-
-
-                                <label>
-                                <input class="checkbox" type="checkbox" value="register-now"> Register now
-                                </label>
-                                -->
                             <textarea id="status"></textarea>
                             <div class="clearfix"></div>
                         </div>
@@ -84,17 +66,9 @@
         </div>
     </div>
 
-    <!--
-    <div id='status'>
-
-    </div>
-    -->
-
   <div id="dashboard">
-
     <div id="main-menu">
         <textarea id="statusDB"></textarea>
-
         <div id="phone-navigation">
             <select class="selectnav" id="phone-menu">
 
@@ -188,6 +162,7 @@
                     <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
                     <li class="divider visible-phone"></li>
                     <li><a tabindex="-1" href="sign-in.html">Logout</a></li>
+                    <li><button type="button" id="logout" class="btn btn-link">Working Logout</button></li>
                 </ul>
             </li>
         </ul>
@@ -217,7 +192,7 @@
                 <h2>Participants and Boats</h2>
 
                 <div id="showParticipants">
-                    <table id="Participants-table" class="table table-hover">
+                    <table id="Participants-table" class="table table-hover sortable">
                         <thead>
                             <th>ID</th>
                             <th>Name</th>
@@ -238,7 +213,7 @@
                 </div>
 
                 <div id="showBoats">
-                    <table id="Boats-table" class="table table-hover">
+                    <table id="Boats-table" class="table table-hover sortable">
                         <thead>
                             <th>ID</th>
                             <th>Title</th>
@@ -398,7 +373,7 @@
             <!-- <div class="widget"> -->
                 <h2>Teams and Crews</h2>
                 <div id="showTeams">
-                    <table id="Teams-table" class="table table-hover">
+                    <table id="Teams-table" class="table table-hover sortable">
                         <thead>
                             <th>Name</th>
                             <!--
@@ -435,7 +410,7 @@
 
                 <!-- Show Crew Div -->
                 <div id="showCrew">
-                    <table id="crew-table" class="table table-hover">
+                    <table id="crew-table" class="table table-hover sortable">
                         <thead>
                             <th></th>
                             <!-- <th>Crew Members & Roles</th> -->
@@ -563,5 +538,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="app/jquery.loadJSON.js"></script>
   <script src="app/app.js" type="application/javascript" charset="utf-8"></script>
+      <script src="app/sorttable.js"></script>
 </body>
 </html>
