@@ -4,13 +4,70 @@
 
 var token = "";
 var userId = 0;
-// var propId = 0;
-var actId = 0;
-var boatName = "";
+
+var teams = {
+  addTeamToArray: function(id, name) {
+    debugger;
+    teams[id] = name;
+    // teams.name = name;
+    console.log("got to add team to array routine", this.id);
+    return;
+  },
+
+getTeamName: function(id) {
+    debugger;
+    // var boatArray = boats[id]; // get the array of detail for this team
+    var team_name = teams[id];  // get the teams name
+    console.log(team_name);
+    return team_name;
+  }
+};
+
+var boats = {
+
+  addBoatToArray: function(id, title, capacity, open_seats) {
+    debugger;
+    boats[id] = [title, capacity, open_seats];
+    console.log("got to add boat to array routine", this.id);
+    return;
+  },
+
+  buildExistingBoatArray: function(id, title, capacity, open_seats) {
+    boats[id] = [title, capacity, open_seats];
+    console.log("got to add boat to array routine", this.id);
+    return;
+  },
+
+  deleteBoatFromArray: function(){
+    return;
+  },
+
+  getBoatName: function(id) {
+    debugger;
+    var boatArray = boats[id]; // get the array of detail for this boat is
+    var title = boatArray[0];  // get the boats title
+    console.log(title);
+    return title;
+  },
+
+  openSeatsCalc: function(id, seatsTaken) {
+    debugger;
+    console.log("got to openSeatsCalc routine");
+    var boatArray = boats[id];
+    boatArray[2] = boatArray[2] - seatsTaken;
+    var dataForServer = {
+      boat : {
+        open_seats: boatArray[2]
+      }
+    };
+    // fwmapi.updateBoat(id, dataForServer, token, fwmapi.addBoatCB);
+    return;
+  }
+};
 
 var fwmapi = {
-  // fwm: 'http://localhost:3000',
-  fwm: 'https://morning-reaches-9856.herokuapp.com',
+  fwm: 'http://localhost:3000',
+  // fwm: 'https://morning-reaches-9856.herokuapp.com',
   // var fwmapi = {
 
 // validation ajax functionality
