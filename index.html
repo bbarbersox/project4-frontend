@@ -339,19 +339,29 @@
                         <input type="text" class="form-control" id="email" placeholder="Email">
                         <input type="text" class="form-control" id="phone" placeholder="Phone Number">
                         <input type="text" class="form-control" id="role" placeholder="Role">
-                        <div id="chooseBoatDiv" class="control-group">
-                            <label class="control-label">Choose a boat</label>
+                        <input type="text" class="form-control" id="boat_title" placeholder="Boat">
+
+                        <div id="boatSelectBox" class="control-group">
+                            <!-- <label class="control-label">Choose a boat</label> -->
+                            <label>
+                                <input id="changeBoat" class="changeBoat" type="checkbox" value="check_uncheckme"> Change Boat
+                            </label>
                             <div class="controls">
                                 <select id="chooseUpdateBoat" class="input-xlarge">
                                     <option> Choose a Boat </option>
                                 </select>
                             </div>
                         </div>
-                        <div id="chooseTeamDiv" class="control-group">
+                        <input type="text" class="form-control" id="team_name" placeholder="Team">
+                        <!-- <input type="text" class="form-control" id="team_id" placeholder="Team"> -->
+                        <label>
+                            <input id="changeTeam" class="changeTeam" type="checkbox" value="check_uncheckme"> Change Team
+                        </label>
+                        <div id="teamSelectBox" class="control-group">
                             <!-- Select Basic -->
-                            <label class="control-label">Choose a team</label>
+                            <!-- <label class="control-label">Choose a team</label> -->
                             <div class="controls">
-                                <select id="chooseUpdateTeam" class="input-xlarge" data-team-name="{{team_name}}">
+                                <select id="chooseUpdateTeam" class="input-xlarge">
                                     <option> Choose a Team </option>
                                 </select>
                             </div>
@@ -504,8 +514,8 @@
                 <td>{{email}}</td>
                 <td>{{phone}}</td>
                 <td>{{role}}</td>
-                <td>{{boat_id}}</td>
-                <td>{{team_id}}</td>
+                <td>{{boat_name}}</td>
+                <td>{{team_name}}</td>
                 <td><button class="icon-pencil btn-link" id="edit-button" data-id="{{id}}"></button></td>
                 <td><button class="icon-trash btn-link" id="delete-button" data-id="{{id}}"></button></td>
             </tr>
@@ -548,9 +558,7 @@
             <tr>
                 <td>{{team_name}}</td>
                 <td><button class="icon-pencil btn-link" id="edit-team-button" data-id="{{id}}"></button></td>
-                <!--
                 <td><button class="icon-trash btn-link" id="delete-team-button" data-id="{{id}}"></button></td>
-                -->
             </tr>
         {{/each}}
     </script>
