@@ -436,7 +436,6 @@ $(document).ready(function() {
   };
 
   var registerCB = function callback(error, data) {
-    debugger;
     if (error) {
       console.error(error);
       // $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -513,6 +512,18 @@ $(document).ready(function() {
     $('#result').val(JSON.stringify(data, null, 4));
 
     // Scaffolding for retrieving boats nae for table
+    for (var i=0; i < data.participants.length; i++) {
+      var boatTitle = boats.getBoatName(data.participants[i].boat_id);
+      data.participants[i].boat_name = boatTitle; // create boatname property in table
+      //var boatTitle = data.participants[i].boat_id;
+      console.log(boatTitle);
+      var name = teams.getTeamName(data.participants[i].team_id);
+      data.participants[i].team_name = name;
+    //  var boatsTitle = fwmapi.searchByBoatId(boatId, token, boatsNameCB);
+    //  console.log(boatTitle);
+    }
+
+
     // var allBoats = fwmapi.listBoats(token, boatsNameCB);
     // for (var i=0; i < data.participants.length; i++) {
     //   var boatId = data.participants[i].boat_id;
@@ -671,6 +682,7 @@ $(document).ready(function() {
       $('#chooseBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
       $('#chooseUpdateBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
       $('#findBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
+      boats.buildExistingBoatArray(data.boats[i].id, data.boats[i].title, data.boats[i].capacity, data.boats[i].open_seats);
     };
     // END --- populate boat select boxes
   };
@@ -688,6 +700,7 @@ $(document).ready(function() {
       console.log(chooseTeam);
       $('#chooseTeam').append('<option value="' + data.teams[i].id + '">' + data.teams[i].team_name + '</option>');
       $('#chooseUpdateTeam').append('<option value="' + data.teams[i].id + '">' + data.teams[i].team_name + '</option>');
+      teams.addTeamToArray(data.teams[i].id, data.teams[i].team_name);
     };
   };
   // END --- populate data into a Team Selector search field
