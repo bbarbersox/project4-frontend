@@ -64,8 +64,8 @@ var boats = {
 };
 
 var fwmapi = {
-  // fwm: 'http://localhost:3000',
-  fwm: 'https://morning-reaches-9856.herokuapp.com',
+  fwm: 'http://localhost:3000',
+  // fwm: 'https://morning-reaches-9856.herokuapp.com',
   // var fwmapi = {
 
 // validation ajax functionality
@@ -86,8 +86,6 @@ var fwmapi = {
         data: JSON.stringify(credentials),
         dataType: 'json',
       }, callback);
-      // $('#registerDiv').css("display", "none");
-      // $('#loginDiv').css("display", "block");
     },
     // End of register ajax logic
 
@@ -699,6 +697,7 @@ $(document).ready(function() {
 
   // populate data from an single participant query into a form
   var participantFormCB = function callback(error, data) {
+    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -707,10 +706,20 @@ $(document).ready(function() {
     $('#result').val(JSON.stringify(data, null, 4));
     console.log(data);
     $('.updateParticipant').loadJSON(data);
-    $('#chooseBoatDiv').show();
-    $('#chooseTeamDiv').show();
+    var boatTitle = boats.getBoatName(data.boat_id);
+    document.getElementById("boat_title").value = boatTitle;
+    $('.updateParticipant').boat_name = boatTitle; // create boatname property in table
+    var team_name = teams.getTeamName(data.team_id);
+    document.getElementById("team_name").value = team_name;
+    $('.updateParticipant').team_name = team_name;
+    $('#changeBoat').show();
+    $('#changeTeam').show();
+    $('#chooseUpdateBoat').hide();
+    $('#chooseUpdateTeam').hide();
     $('#showParticipantUpdate').show();
     $('#showParticipants').hide();
+    $('#boat_id').hide();
+    $('#team_id').hide();
     $('#status').val('you can now update the participants info');
   };
   // END --- show a single participants info
@@ -944,14 +953,17 @@ $(document).ready(function() {
   $('.updateParticipant').on('submit', function(e) {
     e.preventDefault();
     debugger;
+
     var dataForServer = {
       participant : {
         name: $(".updateParticipant input[id=name]").val(),
         email: $(".updateParticipant input[id=email]").val(),
         phone: $(".updateParticipant input[id=phone]").val(),
         role: $(".updateParticipant input[id=role]").val(),
-        boat_id: $("#chooseUpdateBoat").val(),
-        team_id: $("#chooseUpdateTeam").val()
+        boat_id: $(".updateParticipant input[id=boat_id]").val(),
+        // boat_id: $("#chooseUpdateBoat").val(),
+        team_id: $(".updateParticipant input[id=team_id]").val()
+        // team_id: $("#chooseUpdateTeam").val()
       }
     };
     // dataForServer.participant.name = $(".updateParticipant input[id=name]").val();
@@ -960,6 +972,17 @@ $(document).ready(function() {
     // dataForServer.participant.role = $(".updateParticipant input[id=role]").val();
     // dataForServer.participant.boat_id = $(".updateParticipant input[id=boat_id]").val();
     // dataForServer.participant.team_id = $(".addParticipant input[id=team_id]").val();
+
+    var chkBox = document.getElementById('changeBoat');
+    if (chkBox.checked){
+      dataForServer.participant.boat_id = $("#chooseUpdateBoat").val();
+    };
+
+    var chkBox = document.getElementById('changeTeam');
+    if (chkBox.checked){
+      dataForServer.participant.team_id = $("#chooseUpdateTeam").val();
+    };
+
     var id = $('#participantId').val(); //captuers particicpants id
 
     fwmapi.updateParticipant(id, dataForServer, token, callback);
@@ -1069,6 +1092,18 @@ $(document).ready(function() {
   $('#showTeamForm').on('click', function(e) {
     $('#showTeamAdd').show();
     $('#showTeams').hide();
+  });
+
+  $('#changeBoat').on('click', function() {
+    debugger;
+    $('#chooseUpdateBoat').show();
+    $('#changeBoat').hide();
+  });
+
+  $('#changeTeam').on('click', function() {
+    debugger;
+    $('#chooseUpdateTeam').show();
+    $('#changeTeam').hide();
   });
 
   // Create a Boat processing
