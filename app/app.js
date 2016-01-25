@@ -60,6 +60,39 @@ var boats = {
       }
     };
     return (dataForServer);
+  },
+
+  buildBoatSelectBox: function(data) {
+    // first reset the boat selection boxes
+    debugger;
+    var boatSelect = document.getElementById("chooseBoat");
+    var boatUpdateSelect = document.getElementById("chooseUpdateBoat");
+    var findBoatSelect = document.getElementById("findBoat");
+    var length = boatSelect.options.length;
+    while(chooseBoat.options.length > 0){
+      chooseBoat.remove(0);
+    };
+    while(chooseUpdateBoat.options.length > 0){
+      chooseUpdateBoat.remove(0);
+    };
+    while(findBoat.options.length > 0){
+      findBoat.remove(0);
+    };
+    // for (i = 0; i < length; i++) {
+    //   // boatSelect.options[i] = null;
+    //   boatSelect.remove(i);
+    //   boatUpdateSelect.remove(i);
+    //   findBoatSelect.remove(i);
+    // }
+
+    // Populate the Boat Select box with current boat info
+    for (var i = 0; i < data.boats.length; i++) {
+      console.log(chooseBoat);
+      $('#chooseBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
+      $('#chooseUpdateBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
+      $('#findBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
+      boats.buildExistingBoatArray(data.boats[i].id, data.boats[i].title, data.boats[i].capacity, data.boats[i].open_seats);
+    };
   }
 };
 
@@ -530,6 +563,7 @@ $(document).ready(function() {
    // END --- allParticipantCB
 
    var boatsTableCB = function callback(error, data) {
+    debugger;
     if (error) {
       console.error(error);
       $('#result').val('status: ' + error.status + ', error: ' +error.error);
@@ -538,6 +572,7 @@ $(document).ready(function() {
     $('#result').val(JSON.stringify(data, null, 4));
     console.log('got to Handlebars to boats table function');
     console.log(data);
+    boats.buildBoatSelectBox(data);  // build boat select box
     var boatsTemplate = Handlebars.compile($('#boatsList').html());
     var newHTML = boatsTemplate(data);
     $("#boat-body").html(newHTML);
@@ -662,13 +697,14 @@ $(document).ready(function() {
       return;
     }
     // populate boat select boxes
-    for (var i = 0; i < data.boats.length; i++) {
-      console.log(chooseBoat);
-      $('#chooseBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
-      $('#chooseUpdateBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
-      $('#findBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
-      boats.buildExistingBoatArray(data.boats[i].id, data.boats[i].title, data.boats[i].capacity, data.boats[i].open_seats);
-    };
+    // for (var i = 0; i < data.boats.length; i++) {
+    //   console.log(chooseBoat);
+    //   $('#chooseBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
+    //   $('#chooseUpdateBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
+    //   $('#findBoat').append('<option value="' + data.boats[i].id + '">' + data.boats[i].title + '</option>');
+    //   boats.buildExistingBoatArray(data.boats[i].id, data.boats[i].title, data.boats[i].capacity, data.boats[i].open_seats);
+    // };
+    boats.buildBoatSelectBox(data);
     // END --- populate boat select boxes
   };
   // END --- populate data into a Boat Selector search field
