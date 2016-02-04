@@ -381,7 +381,7 @@ label {
   top:0;
   position:fixed;
   /* background-image:url(http://unsplash.it/1600/600?random=1); */
-  background-image:url(Assets/images/teach-a-man-to-fish.jpg);
+  background-image:url(../assets/images/teach-a-man-to-fish.jpg);
   background-position:center center;
   background-repeat:no-repeat;
   -webkit-background-size: cover;
